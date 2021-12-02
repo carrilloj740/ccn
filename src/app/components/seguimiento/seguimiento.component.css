@@ -1,0 +1,50 @@
+.card {
+  width: 85%;
+  float: right;
+  height: 55%;
+  top: 10px;
+  right: 50px;
+}
+
+table {
+  width: 100%;
+}
+
+.mat-form-field {
+  font-size: 14px;
+  width: 100%;
+}
+
+#content {
+  overflow: auto;
+  height: 100vh;
+  padding-bottom: 5rem;
+  top: 10px
+}
+
+.background {
+  background: #006a3a;
+}
+
+
+.toolbar {
+  background: #006a3a;
+}
+
+.toolbar2 {
+  color: #efefef;
+
+}
+
+
+.logo {
+  width: 200px;
+}
+
+.icon {
+  color: #ffff;
+}
+
+.body {
+  background: #efefef;
+}

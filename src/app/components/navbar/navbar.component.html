@@ -1,0 +1,26 @@
+<mat-toolbar class="toolbar">
+  <img class="logo" src="../assets/logo.png">
+  <span class="example-spacer"></span>
+  <button class="icon" mat-button routerLink="/inicio">Inicio</button>
+  <button class="icon" mat-button routerLink="/nueva">Nueva Orden</button>
+  <button class="icon" mat-button routerLink="/seguimiento">Seguimiento</button>
+  <span class="example-spacer"></span>
+
+  <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+    <mat-icon class="icon">account_circle</mat-icon>
+  </button>
+  <mat-menu #menu="matMenu">
+    <button mat-menu-item>
+      <span>Perfil</span>
+    </button>
+    <button mat-menu-item disabled>
+      <span>Opcion 1</span>
+    </button>
+    <button mat-menu-item>
+      <span>Opcion 2</span>
+    </button>
+  </mat-menu>
+  <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
+    <mat-icon class="icon" routerLink="/login">logout</mat-icon>
+  </button>
+</mat-toolbar>

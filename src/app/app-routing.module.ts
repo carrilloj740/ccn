@@ -1,7 +1,20 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { InicioComponent } from './components/inicio/inicio.component';
+import { LoginComponent } from './components/login/login.component';
+import { NuevaComponent } from './components/nueva/nueva.component';
+import { SeguimientoComponent } from './components/seguimiento/seguimiento.component';
+import { VerificacionComponent } from './components/verificacion/verificacion.component';
 
-const routes: Routes = [];
+const routes: Routes = [
+  { path: '', redirectTo: 'verificacion', pathMatch: 'full'},
+  {path:'verificacion', component: VerificacionComponent},
+  { path:'login', component: LoginComponent },
+  {path: 'inicio', loadChildren:() => import('./components/inicio/inicio-routing.module').then(x => x.InicioRoutingModule)},
+  {path: 'nueva', component: NuevaComponent},
+  {path: 'seguimiento', component: SeguimientoComponent},
+  { path:'**', redirectTo: 'verificacion', pathMatch: 'full'}
+];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

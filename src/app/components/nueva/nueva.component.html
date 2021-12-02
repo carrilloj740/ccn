@@ -1,0 +1,197 @@
+<mat-toolbar class="toolbar">
+  <img class="logo" src="../assets/logo.png">
+  <span class="example-spacer"></span>
+  <button class="icon" mat-button routerLink="/inicio">Inicio</button>
+  <button class="icon" mat-button routerLink="/nueva">Nueva Orden</button>
+  <button class="icon" mat-button routerLink="/seguimiento">Seguimiento</button>
+  <span class="example-spacer"></span>
+
+  <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+    <mat-icon class="icon">account_circle</mat-icon>
+  </button>
+  <mat-menu #menu="matMenu">
+    <button mat-menu-item>
+      <span>Perfil</span>
+    </button>
+    <button mat-menu-item disabled>
+      <span>Opción 1</span>
+    </button>
+    <button mat-menu-item>
+      <span>Opción 2</span>
+    </button>
+  </mat-menu>
+  <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
+    <mat-icon class="icon" routerLink="/login">logout</mat-icon>
+  </button>
+</mat-toolbar>
+
+
+
+<mat-toolbar class="toolbar2">
+  <h1 style="color: black; ">Crear nueva orden</h1>
+</mat-toolbar>
+
+
+<div class="container">
+  <mat-card style="margin-top: px;">
+    <form>
+      <mat-grid-list cols="3" rowHeight="70px">
+        <mat-grid-tile [colspan]="1" [rowspan]="1">
+          <mat-form-field class="ancho">
+            <mat-label>Mi numero de compra</mat-label>
+            <input matInput>
+          </mat-form-field>
+        </mat-grid-tile>
+        <mat-grid-tile [colspan]="1" [rowspan]="1">
+          <mat-form-field class="ancho">
+            <mat-label>
+              <mat-label>Enviar a</mat-label>
+              <mat-select>
+                <mat-option value="one">First option</mat-option>
+                <mat-option value="two">Second option</mat-option>
+              </mat-select>
+            </mat-label>
+            <input matInput>
+          </mat-form-field>
+        </mat-grid-tile>
+        <mat-grid-tile [colspan]="1" [rowspan]="1">
+          <mat-form-field class="ancho">
+            <mat-label>
+              <mat-label>Fuente</mat-label>
+              <mat-select>
+                <mat-option value="one">First option</mat-option>
+                <mat-option value="two">Second option</mat-option>
+              </mat-select>
+            </mat-label>
+            <input matInput>
+          </mat-form-field>
+        </mat-grid-tile>
+        <mat-grid-tile [colspan]="1" [rowspan]="1">
+          <mat-form-field class="ancho">
+            <mat-label>
+              <mat-label>Vendido a</mat-label>
+              <mat-select>
+                <mat-option value="one">First option</mat-option>
+                <mat-option value="two">Second option</mat-option>
+              </mat-select>
+            </mat-label>
+            <input matInput>
+          </mat-form-field>
+        </mat-grid-tile>
+        <mat-grid-tile [colspan]="1" [rowspan]="1">
+          <mat-form-field class="ancho">
+            <mat-label>Incortem</mat-label>
+            <input matInput>
+          </mat-form-field>
+        </mat-grid-tile>
+        <mat-grid-tile [colspan]="1" [rowspan]="1">
+          <mat-form-field class="ancho">
+            <mat-label>País</mat-label>
+            <input matInput>
+          </mat-form-field>
+        </mat-grid-tile>
+        <mat-grid-tile [colspan]="1" [rowspan]="1">
+          <mat-form-field class="ancho">
+            <mat-label>ETD</mat-label>
+            <input matInput [matDatepicker]="picker">
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>
+        </mat-grid-tile>
+        <mat-grid-tile>
+          <mat-form-field class="ancho">
+            <mat-label>ETA</mat-label>
+            <input matInput [matDatepicker]="picker2">
+            <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+            <mat-datepicker #picker2></mat-datepicker>
+          </mat-form-field>
+        </mat-grid-tile>
+
+      </mat-grid-list>
+      <br>
+      <mat-divider></mat-divider>
+      <br>
+      <h1>Productos</h1>
+      <mat-grid-list cols="3" rowHeight="70px">
+        <mat-grid-tile [colspan]="1" [rowspan]="1">
+          <mat-form-field class="ancho">
+            <mat-label>Seleccionar producto</mat-label>
+            <mat-select>
+              <mat-option value="one">First option</mat-option>
+              <mat-option value="two">Second option</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </mat-grid-tile>
+        <mat-grid-tile [colspan]="1" [rowspan]="1">
+          <mat-form-field class="ancho">
+            <mat-label>Cantidad de casos</mat-label>
+            <input matInput>
+          </mat-form-field>
+        </mat-grid-tile>
+        <mat-grid-tile [colspan]="1" [rowspan]="1">
+          <mat-form-field class="ancho">
+            <mat-label># de contenedores (Linea de pedido)</mat-label>
+            <input matInput>
+          </mat-form-field>
+        </mat-grid-tile>
+      </mat-grid-list>
+
+      <br>
+      <mat-divider></mat-divider>
+      <h1 style="margin-top: 15px;">Total Containers</h1>
+
+
+      <table mat-table [dataSource]="dataSource" class="mat-elevation-z2">
+
+        <ng-container matColumnDef="sku">
+          <th mat-header-cell *matHeaderCellDef> SKU </th>
+          <td mat-cell *matCellDef="let element"> {{element.sku}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="producto">
+          <th mat-header-cell *matHeaderCellDef> Descripción de Producto </th>
+          <td mat-cell *matCellDef="let element"> {{element.producto}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="etd">
+          <th mat-header-cell *matHeaderCellDef> ETD </th>
+          <td mat-cell *matCellDef="let element"> {{element.etd}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="cantidad">
+          <th mat-header-cell *matHeaderCellDef> Cantidad </th>
+          <td mat-cell *matCellDef="let element"> {{element.cantidad}} </td>
+        </ng-container>
+
+
+        <ng-container matColumnDef="contenedor">
+          <th mat-header-cell *matHeaderCellDef> Tipo de Contenedor </th>
+          <td mat-cell *matCellDef="let element"> {{element.contenedor}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="contenedors">
+          <th mat-header-cell *matHeaderCellDef> # de Contenededores </th>
+          <td mat-cell *matCellDef="let element"> {{element.contenedors}} </td>
+        </ng-container>
+        
+        <ng-container matColumnDef="icon">
+          <th mat-header-cell *matHeaderCellDef></th>
+          <td mat-cell *matCellDef="let element"> <mat-icon>delete</mat-icon> </td>
+        </ng-container>
+
+      
+        
+
+        <ng-container matColumnDef="shipment">
+          <th mat-header-cell *matHeaderCellDef> Número de envio </th>
+          <td mat-cell *matCellDef="let element"> {{element.shipment}} </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+
+
+    </form>
+  </mat-card>
+</div>

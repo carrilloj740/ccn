@@ -1,0 +1,36 @@
+.ancho {
+  width: 75%;
+  height: 50%;
+  position: absolute;
+  top: 100px;
+  left: 10%;
+}
+
+.anchofoto {
+  width: 50%;
+
+}
+
+.cardfoto {
+  width: 100%;
+
+}
+
+.card {
+  width: 80%;
+  top: 100px;
+  left: 10%;
+}
+
+.titlecolor {
+  color: #0D0743;
+}
+
+
+.stat {
+  border-right: 1px solid gainsboro;
+}
+
+.body {
+  background: #efefef;
+}

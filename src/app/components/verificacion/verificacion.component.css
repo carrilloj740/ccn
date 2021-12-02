@@ -1,0 +1,39 @@
+.body{
+    display: flex;
+    justify-content: center;
+    height: 100%;
+    align-items: center;
+    background-color: #f5f5f5;
+    width: 100%;
+    background-image: url(https://www.ccn.com.ni/wp-content/uploads/2016/04/CCN032016-2-REDU-97-500x500.jpg);
+    background-size:100%;
+
+}
+
+.verificacion{
+    width: 100%;
+    max-width: 330px;
+    text-align: center;
+
+}
+
+.buttomancho{
+    width: 30%;
+    background-color: #006a3a;
+    left: 25px;
+}
+
+
+
+
+.ancho{
+    width: 5px;
+}
+
+.derecha{
+    left: 30%;
+    width: 30%;
+    background-color: #006a3a;
+    color: #ffff;
+ }
+
