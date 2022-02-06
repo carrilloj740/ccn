@@ -17,6 +17,8 @@ import {MatGridListModule} from '@angular/material/grid-list';
 import {MatSelectModule} from '@angular/material/select';
 import {MatStepperModule} from '@angular/material/stepper';
 import {MatMenuModule} from '@angular/material/menu';
+import {MatDialogModule} from '@angular/material/dialog';
+import { MatSelectCountryModule } from '@angular-material-extensions/select-country';
 
 
 @NgModule({
@@ -39,7 +41,9 @@ import {MatMenuModule} from '@angular/material/menu';
     MatTableModule,
     MatNativeDateModule,
     MatStepperModule,
-    MatMenuModule
+    MatMenuModule,
+    MatDialogModule,
+    MatSelectCountryModule
   ],
 
   exports: [
@@ -59,7 +63,9 @@ import {MatMenuModule} from '@angular/material/menu';
     MatTableModule,
     MatNativeDateModule,
     MatStepperModule,
-    MatMenuModule
+    MatMenuModule,
+    MatDialogModule,
+    MatSelectCountryModule
   ]
 })
 export class MaterialModule { }

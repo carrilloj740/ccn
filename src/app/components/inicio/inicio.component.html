@@ -1,16 +1,21 @@
 <app-navbar></app-navbar>
 
+
+
 <div class="body">
-  <mat-card class="card">
+
+  <mat-card class="card" style="border-radius: 15px;">
     <mat-grid-list cols="2" rowHeight="2:1">
       <mat-grid-tile class="stat">
         <section class="py-3 ">
           <div class="container">
-            <div class="row">
+            <div class="row" style="text-align: center;">
               <div class="col-lg-9">
+                <h1 style="font-weight: 700;font-family: 'Montserrat', sans-serif;">
+                  <mat-icon>account_balance_wallet</mat-icon> Amount available
+                </h1>
+                <h2>$100.000</h2>
               </div>
-              <h1>Saldo Disponible</h1>
-              <h2>$100.000</h2>
             </div>
           </div>
         </section>
@@ -18,18 +23,22 @@
       <mat-grid-tile>
         <section class="py-3 ">
           <div class="container">
-            <div class="row">
-
-              <h2>Saldo por Bodega</h2>
-              <h3>Bodega 1: $50.000</h3>
-              <h3>Bodega 2: $30.000</h3>
-              <h3>Bodega 3: $20.000</h3>
+            <div class="row" style="text-align: center;">
+              <h1 style="font-weight: 700;font-family: 'Montserrat', sans-serif;"><img class="icon"
+                  src="../assets/img/almacen.png"> Warehouse amount </h1>
+              <h2>Warehouse 2: $30.000</h2>
+              <h2>Warehouse 3: $20.000</h2>
+              <h2>Warehouse 1: $50.000</h2>
 
             </div>
           </div>
         </section>
       </mat-grid-tile>
-
     </mat-grid-list>
+
   </mat-card>
+
 </div>
+
+
+  <img class="publicidad" src="../assets/img/publ1.jpeg" alt="">

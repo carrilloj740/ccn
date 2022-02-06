@@ -1,144 +1,192 @@
-<mat-toolbar class="toolbar">
-  <img class="logo" src="../assets/logo.png">
-  <span class="example-spacer"></span>
-  <button class="icon" mat-button routerLink="/inicio">Inicio</button>
-  <button class="icon" mat-button routerLink="/nueva">Nueva Orden</button>
-  <button class="icon" mat-button routerLink="/seguimiento">Seguimiento</button>
-  <span class="example-spacer"></span>
-
-  <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
-    <mat-icon class="icon">account_circle</mat-icon>
-  </button>
-  <mat-menu #menu="matMenu">
-    <button mat-menu-item>
-      <span>Perfil</span>
-    </button>
-    <button mat-menu-item disabled>
-      <span>Opción 1</span>
-    </button>
-    <button mat-menu-item>
-      <span>Opción 2</span>
-    </button>
-  </mat-menu>
-  <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
-    <mat-icon class="icon" routerLink="/login">logout</mat-icon>
-  </button>
-</mat-toolbar>
-
-
+<app-navbar></app-navbar>
 
 <mat-toolbar class="toolbar2">
-  <h1 style="color: black; ">Crear nueva orden</h1>
+  <h1 style="color: black; font-weight: 700;font-family: 'Montserrat', sans-serif;">New Order<mat-icon>shopping_cart
+    </mat-icon>
+  </h1>
 </mat-toolbar>
 
+<mat-card>
 
-<div class="container">
-  <mat-card style="margin-top: px;">
-    <form>
-      <mat-grid-list cols="3" rowHeight="70px">
-        <mat-grid-tile [colspan]="1" [rowspan]="1">
-          <mat-form-field class="ancho">
-            <mat-label>Mi numero de compra</mat-label>
-            <input matInput>
-          </mat-form-field>
-        </mat-grid-tile>
-        <mat-grid-tile [colspan]="1" [rowspan]="1">
-          <mat-form-field class="ancho">
-            <mat-label>
-              <mat-label>Enviar a</mat-label>
-              <mat-select>
-                <mat-option value="one">First option</mat-option>
-                <mat-option value="two">Second option</mat-option>
+  <div class="container">
+    <mat-card>
+      <form [formGroup]="form" (ngSubmit)="agregarOrden()">
+        <mat-grid-list cols="3" rowHeight="100px">
+          <mat-grid-tile [colspan]="1" [rowspan]="1">
+            <mat-form-field class="ancho">
+              <mat-label>My PO Number</mat-label>
+              <input matInput formControlName="poNumber">
+            </mat-form-field>
+          </mat-grid-tile>
+          
+          <mat-grid-tile [colspan]="1" [rowspan]="1">
+            <mat-form-field class="ancho">
+              <mat-label>Sold to</mat-label>
+              <mat-select formControlName="soldTo">
+                <mat-option *ngFor="let soldTo of soldTo" [value]="soldTo.value">
+                  {{soldTo.viewValue}}
+                </mat-option>
               </mat-select>
-            </mat-label>
-            <input matInput>
-          </mat-form-field>
-        </mat-grid-tile>
-        <mat-grid-tile [colspan]="1" [rowspan]="1">
-          <mat-form-field class="ancho">
-            <mat-label>
-              <mat-label>Fuente</mat-label>
-              <mat-select>
-                <mat-option value="one">First option</mat-option>
-                <mat-option value="two">Second option</mat-option>
-              </mat-select>
-            </mat-label>
-            <input matInput>
-          </mat-form-field>
-        </mat-grid-tile>
-        <mat-grid-tile [colspan]="1" [rowspan]="1">
-          <mat-form-field class="ancho">
-            <mat-label>
-              <mat-label>Vendido a</mat-label>
-              <mat-select>
-                <mat-option value="one">First option</mat-option>
-                <mat-option value="two">Second option</mat-option>
-              </mat-select>
-            </mat-label>
-            <input matInput>
-          </mat-form-field>
-        </mat-grid-tile>
-        <mat-grid-tile [colspan]="1" [rowspan]="1">
-          <mat-form-field class="ancho">
-            <mat-label>Incortem</mat-label>
-            <input matInput>
-          </mat-form-field>
-        </mat-grid-tile>
-        <mat-grid-tile [colspan]="1" [rowspan]="1">
-          <mat-form-field class="ancho">
-            <mat-label>País</mat-label>
-            <input matInput>
-          </mat-form-field>
-        </mat-grid-tile>
-        <mat-grid-tile [colspan]="1" [rowspan]="1">
-          <mat-form-field class="ancho">
-            <mat-label>ETD</mat-label>
-            <input matInput [matDatepicker]="picker">
-            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-            <mat-datepicker #picker></mat-datepicker>
-          </mat-form-field>
-        </mat-grid-tile>
-        <mat-grid-tile>
-          <mat-form-field class="ancho">
-            <mat-label>ETA</mat-label>
-            <input matInput [matDatepicker]="picker2">
-            <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
-            <mat-datepicker #picker2></mat-datepicker>
-          </mat-form-field>
-        </mat-grid-tile>
+            </mat-form-field>
+          </mat-grid-tile>
 
-      </mat-grid-list>
+
+        
+          <mat-grid-tile [colspan]="1" [rowspan]="1">
+            <mat-form-field class="ancho">
+              <mat-label>Source</mat-label>
+              <mat-select formControlName="source">
+                <mat-option *ngFor="let source of source" [value]="source.value">
+                  {{source.viewValue}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </mat-grid-tile>
+
+          <mat-grid-tile [colspan]="1" [rowspan]="1">
+            <mat-form-field class="ancho">
+              <mat-label>Ship to</mat-label>
+              <mat-select formControlName="shipTo">
+                <mat-option *ngFor="let shipTo of shipTo" [value]="shipTo.value">
+                  {{shipTo.viewValue}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </mat-grid-tile>
+
+          <mat-grid-tile [colspan]="1" [rowspan]="1">
+            <mat-form-field class="ancho">
+              <mat-label>Incortem</mat-label>
+              <input matInput formControlName="incortem">
+            </mat-form-field>
+          </mat-grid-tile>
+          
+        
+          <mat-grid-tile [colspan]="1" [rowspan]="1">
+            <mat-form-field class="ancho">
+              <mat-label>Country</mat-label>
+              <mat-select formControlName="country">
+                <mat-option *ngFor="let country of country" [value]="country.value">
+                  {{country.viewValue}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </mat-grid-tile>
+
+          
+          <mat-grid-tile [colspan]="1" [rowspan]="1">
+            <mat-form-field class="ancho">
+              <mat-label>Request ETD</mat-label>
+              <input matInput [matDatepicker]="picker" formControlName="requestEtd">
+              <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+              <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+          </mat-grid-tile>
+
+          <mat-grid-tile>
+            <mat-form-field class="ancho">
+              <mat-label>Request ETA</mat-label>
+              <input matInput [matDatepicker]="picker2" formControlName="requestEta">
+              <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+              <mat-datepicker #picker2></mat-datepicker>
+            </mat-form-field>
+          </mat-grid-tile>
+          
+
+        </mat-grid-list>
+        <br>
+
+        <mat-divider></mat-divider>
+        <br>
+
+
+        <h1 style="font-weight: 700;font-family: 'Montserrat', sans-serif;">Product <mat-icon>inventory_2</mat-icon>
+        </h1>
+
+        <mat-grid-list cols="3" rowHeight="100px">
+          
+          <mat-grid-tile [colspan]="1" [rowspan]="1">
+            <mat-form-field class="ancho">
+              <mat-label>Select Product</mat-label>
+              <mat-select formControlName="selectProduct">
+                <mat-option *ngFor="let selectProduct of selectProduct" [value]="selectProduct.value">
+                  {{selectProduct.viewValue}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </mat-grid-tile>
+
+          
+          <mat-grid-tile [colspan]="1" [rowspan]="1">
+            <mat-form-field class="ancho">
+              <mat-label>Quantity in case </mat-label>
+              <input matInput type="number" formControlName="quantity">
+            </mat-form-field>
+          </mat-grid-tile>
+
+          <mat-grid-tile [colspan]="1" [rowspan]="1">
+            <mat-form-field class="ancho">
+              <mat-label># of Containers(Order Line)</mat-label>
+              <input matInput type="number" formControlName="orderLine">
+            </mat-form-field>
+          </mat-grid-tile>
+
+          <mat-grid-tile [colspan]="1" [rowspan]="1">
+            <mat-form-field class="ancho">
+              <mat-label>Loading</mat-label>
+              <input matInput type="number" formControlName="loading">
+            </mat-form-field>
+          </mat-grid-tile>
+
+          <mat-grid-tile [colspan]="1" [rowspan]="1">
+            <mat-form-field class="ancho">
+              <mat-label>Pallets</mat-label>
+              <input matInput formControlName="pallets">
+            </mat-form-field>
+          </mat-grid-tile>
+
+
+          <mat-grid-tile [colspan]="1" [rowspan]="1">
+            <mat-form-field class="ancho">
+              <mat-label>Container Type</mat-label>
+              <mat-select formControlName="containerType">
+                <mat-option *ngFor="let containerType of containerType" [value]="containerType.value">
+                  {{containerType.viewValue}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </mat-grid-tile>
+
+
+          <mat-grid-tile [colspan]="1" [rowspan]="1">
+            <mat-form-field class="ancho">
+              <mat-label>Shipment Type</mat-label>
+              <mat-select formControlName="shipmentType">
+                <mat-option *ngFor="let shipmentType of shipmentType" [value]="shipmentType.value">
+                  {{shipmentType.viewValue}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </mat-grid-tile>
+
+          <mat-grid-tile [colspan]="1" [rowspan]="1">
+            <mat-form-field class="ancho">
+              <mat-label>Minimum Order Quantities</mat-label>
+              <input matInput type="number" formControlName="minimumOrder">
+            </mat-form-field>
+          </mat-grid-tile>
+        </mat-grid-list>
+
+
+        <button type="submit" class="buttomancho buttomcolor" mat-raised-button
+            [disabled]="form.invalid">Add</button>
+
+      </form>
       <br>
       <mat-divider></mat-divider>
-      <br>
-      <h1>Productos</h1>
-      <mat-grid-list cols="3" rowHeight="70px">
-        <mat-grid-tile [colspan]="1" [rowspan]="1">
-          <mat-form-field class="ancho">
-            <mat-label>Seleccionar producto</mat-label>
-            <mat-select>
-              <mat-option value="one">First option</mat-option>
-              <mat-option value="two">Second option</mat-option>
-            </mat-select>
-          </mat-form-field>
-        </mat-grid-tile>
-        <mat-grid-tile [colspan]="1" [rowspan]="1">
-          <mat-form-field class="ancho">
-            <mat-label>Cantidad de casos</mat-label>
-            <input matInput>
-          </mat-form-field>
-        </mat-grid-tile>
-        <mat-grid-tile [colspan]="1" [rowspan]="1">
-          <mat-form-field class="ancho">
-            <mat-label># de contenedores (Linea de pedido)</mat-label>
-            <input matInput>
-          </mat-form-field>
-        </mat-grid-tile>
-      </mat-grid-list>
 
-      <br>
-      <mat-divider></mat-divider>
-      <h1 style="margin-top: 15px;">Total Containers</h1>
+      <h1 style="margin-top: 15px;font-weight: 700;font-family: 'Montserrat', sans-serif;">Total Containers <img
+          class="icon" src="../assets/img/almacen.png"> </h1>
 
 
       <table mat-table [dataSource]="dataSource" class="mat-elevation-z2">
@@ -149,7 +197,7 @@
         </ng-container>
 
         <ng-container matColumnDef="producto">
-          <th mat-header-cell *matHeaderCellDef> Descripción de Producto </th>
+          <th mat-header-cell *matHeaderCellDef> Product description</th>
           <td mat-cell *matCellDef="let element"> {{element.producto}} </td>
         </ng-container>
 
@@ -159,31 +207,30 @@
         </ng-container>
 
         <ng-container matColumnDef="cantidad">
-          <th mat-header-cell *matHeaderCellDef> Cantidad </th>
+          <th mat-header-cell *matHeaderCellDef> Quantity </th>
           <td mat-cell *matCellDef="let element"> {{element.cantidad}} </td>
         </ng-container>
 
 
         <ng-container matColumnDef="contenedor">
-          <th mat-header-cell *matHeaderCellDef> Tipo de Contenedor </th>
+          <th mat-header-cell *matHeaderCellDef> Type of Containers</th>
           <td mat-cell *matCellDef="let element"> {{element.contenedor}} </td>
         </ng-container>
 
         <ng-container matColumnDef="contenedors">
-          <th mat-header-cell *matHeaderCellDef> # de Contenededores </th>
+          <th mat-header-cell *matHeaderCellDef> # of Containers </th>
           <td mat-cell *matCellDef="let element"> {{element.contenedors}} </td>
         </ng-container>
-        
+
         <ng-container matColumnDef="icon">
           <th mat-header-cell *matHeaderCellDef></th>
-          <td mat-cell *matCellDef="let element"> <mat-icon>delete</mat-icon> </td>
+          <td mat-cell *matCellDef="let element">
+            <mat-icon>delete</mat-icon>
+          </td>
         </ng-container>
 
-      
-        
-
         <ng-container matColumnDef="shipment">
-          <th mat-header-cell *matHeaderCellDef> Número de envio </th>
+          <th mat-header-cell *matHeaderCellDef> Shipment number </th>
           <td mat-cell *matCellDef="let element"> {{element.shipment}} </td>
         </ng-container>
 
@@ -191,7 +238,5 @@
         <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
       </table>
 
-
-    </form>
-  </mat-card>
-</div>
+    </mat-card>
+  </div>

@@ -1,89 +1,58 @@
-<mat-toolbar class="toolbar">
-  <img class="logo" src="../assets/logo.png">
-  <span class="example-spacer"></span>
-  <button class="icon" mat-button routerLink="/inicio">Inicio</button>
-  <button class="icon" mat-button routerLink="/nueva">Nueva Orden</button>
-  <button class="icon" mat-button routerLink="/seguimiento">Seguimiento</button>
-  <span class="example-spacer"></span>
-
-  <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
-    <mat-icon class="icon">account_circle</mat-icon>
-  </button>
-  <mat-menu #menu="matMenu">
-    <button mat-menu-item>
-      <span>Perfil</span>
-    </button>
-    <button mat-menu-item disabled>
-      <span>Opción 1</span>
-    </button>
-    <button mat-menu-item>
-      <span>Opción 2</span>
-    </button>
-  </mat-menu>
-  <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
-    <mat-icon class="icon" routerLink="/login">logout</mat-icon>
-  </button>
-</mat-toolbar>
-
+<app-navbar></app-navbar>
 
 
 <mat-toolbar class="toolbar2">
-  <h1 style="color: black;">Seguimiento</h1>
+  <h1 style= " color: black; font-weight: 700;font-family: 'Montserrat', sans-serif;">Tracking <img class="icon"src="../assets/img/location.png"> </h1>
 </mat-toolbar>
 <div class="background">
-  <mat-card class="tabla">
-    <div class="main">
-      <mat-form-field appearance="standard">
-        <mat-label>Filtrar</mat-label>
-        <input matInput (keyup)="applyFilter($event)" placeholder="Ej. Numero de Orden  " #input>
-      </mat-form-field>
-      <table mat-table [dataSource]="dataSource" class="mat-elevation-z1">
+  <div class="main">
+    <mat-form-field appearance="standard" style=" width: 90%;   margin-left: 90px;">
+      <mat-label>Filter</mat-label >
+      <input matInput (keyup)="applyFilter($event)" placeholder="Ej. Numero de Orden  " #input>
+    </mat-form-field>
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z1 backgroundtable">
 
-        <!--- Note that these columns can be defined in any order.
+      <!--- Note that these columns can be defined in any order.
               The actual rendered columns are set as a property on the row definition" -->
 
-        <!-- Position Column -->
-        <ng-container matColumnDef="vista">
-          <th mat-header-cell *matHeaderCellDef>Vista</th>
-          <td mat-cell *matCellDef="let element">
-            <mat-icon>visibility</mat-icon>
-          </td>
-        </ng-container>
+      <!--  -->
+      <ng-container matColumnDef="vista">
+        <th mat-header-cell *matHeaderCellDef>View</th>
+        <td mat-cell *matCellDef="let element">
 
-        <!-- Name Column -->
-        <ng-container matColumnDef="order_Number">
-          <th mat-header-cell *matHeaderCellDef> Número de Orden </th>
-          <td mat-cell *matCellDef="let element"> {{element.order_Number}} </td>
-        </ng-container>
+          <mat-icon mat-raised-button (click)="openDialog()">visibility</mat-icon>
+        </td>
+      </ng-container>
 
-        <!-- Weight Column -->
-        <ng-container matColumnDef="sold_Number">
-          <th mat-header-cell *matHeaderCellDef> Número de Venta </th>
-          <td mat-cell *matCellDef="let element"> {{element.sold_Number}} </td>
-        </ng-container>
+      <ng-container matColumnDef="order_Number">
+        <th mat-header-cell *matHeaderCellDef> Order number</th>
+        <td mat-cell *matCellDef="let element"> {{element.order_Number}} </td>
+      </ng-container>
 
-        <!-- Symbol Column -->
-        <ng-container matColumnDef="sold_to">
-          <th mat-header-cell *matHeaderCellDef> Vendido a </th>
-          <td mat-cell *matCellDef="let element"> {{element.sold_to}} </td>
-        </ng-container>
+      <ng-container matColumnDef="sold_Number">
+        <th mat-header-cell *matHeaderCellDef> Sold number </th>
+        <td mat-cell *matCellDef="let element"> {{element.sold_Number}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="sold_to">
+        <th mat-header-cell *matHeaderCellDef> Sold to </th>
+        <td mat-cell *matCellDef="let element"> {{element.sold_to}} </td>
+      </ng-container>
 
 
-        <ng-container matColumnDef="etd_solicitado">
-          <th mat-header-cell *matHeaderCellDef> ETD solicitado </th>
-          <td mat-cell *matCellDef="let element"> {{element.etd_solicitado}} </td>
-        </ng-container>
+      <ng-container matColumnDef="etd_solicitado">
+        <th mat-header-cell *matHeaderCellDef> ETD request </th>
+        <td mat-cell *matCellDef="let element"> {{element.etd_solicitado}} </td>
+      </ng-container>
 
-        <ng-container matColumnDef="ETA_solicitada">
-          <th mat-header-cell *matHeaderCellDef> ETA solicitada </th>
-          <td mat-cell *matCellDef="let element"> {{element.ETA_solicitada}} </td>
-        </ng-container>
+      <ng-container matColumnDef="ETA_solicitada">
+        <th mat-header-cell *matHeaderCellDef> ETA request </th>
+        <td mat-cell *matCellDef="let element"> {{element.ETA_solicitada}} </td>
+      </ng-container>
 
-        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-      </table>
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
 
-    </div>
-  </mat-card>
+  </div>
 </div>
-<!--Tabla-->

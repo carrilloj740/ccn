@@ -13,7 +13,7 @@ import { NuevaComponent } from './components/nueva/nueva.component';
 import { SeguimientoComponent } from './components/seguimiento/seguimiento.component';
 import { LoginComponent } from './components/login/login.component';
 import { VerificacionComponent } from './components/verificacion/verificacion.component';
-
+import { MoreComponent } from './components/more/more.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -23,6 +23,7 @@ import { VerificacionComponent } from './components/verificacion/verificacion.co
     SeguimientoComponent,
     LoginComponent,
     VerificacionComponent,
+    MoreComponent,
     
   ],
   imports: [
