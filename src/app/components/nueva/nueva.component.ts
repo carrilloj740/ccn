@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { InMemoryDataService } from '../../services/in-memory-data.service';
+import { DropdownService } from '../../services/dropdown.service'
 
 
 
@@ -29,40 +31,41 @@ const ELEMENT_DATA: PeriodicElement[] = [
 })
 export class NuevaComponent implements OnInit {
 
+
   form: FormGroup;
 
 
-  shipTo: any[] = [
+  shipTos: any[] = [
     {value: '19677 - Compañia Cervecera de Nicaragua, S.', viewValue: '19677 - Compañia Cervecera de Nicaragua, S.'},
     {value: '60577 - Compañia Cervecera de Nicaragua, S.', viewValue: '60577 - Compañia Cervecera de Nicaragua, S.'},
   ];
   
-  soldTo: any[] = [
+  soldTos: any[] = [
     {value: '19677 - Compañia Cervecera de Nicaragua, S.', viewValue: '19677 - Compañia Cervecera de Nicaragua, S.'},
     {value: '60577 - Compañia Cervecera de Nicaragua, S.', viewValue: '60577 - Compañia Cervecera de Nicaragua, S.'},
   ];
 
-  source: any[] = [
+  sources: any[] = [
     {value: 'Costa Rica', viewValue: 'Costa Rica'},
     {value: 'HMEx', viewValue: 'HMEx'},
   ];
 
-  country: any[] = [
+  countrys: any[] = [
     {value: 'Nicaragua', viewValue: 'Nicaragua'},
     {value: 'Argentina', viewValue: 'Argentina'},
   ];
 
-  selectProduct: any[] = [
+  selectProducts: any[] = [
     {value: 'He 355K2Emb 4x6 Nbr 72 PP', viewValue: '113320 - He 355K2Emb 4x6 Nbr 72 PP'},
     {value: 'He 355Ti Can 96 PP', viewValue: ' 113321 - He 355Ti Can 96 PP'},
   ];
 
-  shipmentType: any[] = [
+  shipmentTypes: any[] = [
     {value: 'Truck', viewValue: 'Truck'},
     {value: 'Naval', viewValue: 'Naval'},
   ];
 
-  containerType: any[] = [
+  containerTypes: any[] = [
     {value: 'Truck', viewValue: 'Truck'},
     {value: 'Naval', viewValue: 'Naval'},
   ];
@@ -71,11 +74,13 @@ export class NuevaComponent implements OnInit {
 
   displayedColumns: string[] = ['sku','producto','etd','shipment','contenedors','contenedor','cantidad', 'icon'];
   dataSource = ELEMENT_DATA;
+  InMemoryDataService: any;
+  items: any;
 
  
 
 
-  constructor(private fb: FormBuilder) { 
+  constructor(private fb: FormBuilder, private memory: InMemoryDataService,private dropdownService: DropdownService) { 
 
 
 
@@ -110,7 +115,18 @@ export class NuevaComponent implements OnInit {
     
   }
 
-  ngOnInit(): void {
+  ngOnInit() {
+    this.dropdownService.getItems().subscribe(items => {
+      this.items = items;
+      console.log(items);
+    })
+  };
+
+
+  getItems(){
+    this.InMemoryDataService.getItems()
+    .subscribe((Items: any) => this.items = Items);
   }
 
+  
 }

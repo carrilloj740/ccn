@@ -23,7 +23,7 @@
             <mat-form-field class="ancho">
               <mat-label>Sold to</mat-label>
               <mat-select formControlName="soldTo">
-                <mat-option *ngFor="let soldTo of soldTo" [value]="soldTo.value">
+                <mat-option *ngFor="let soldTo of soldTos" [value]="soldTo.value">
                   {{soldTo.viewValue}}
                 </mat-option>
               </mat-select>
@@ -36,7 +36,7 @@
             <mat-form-field class="ancho">
               <mat-label>Source</mat-label>
               <mat-select formControlName="source">
-                <mat-option *ngFor="let source of source" [value]="source.value">
+                <mat-option *ngFor="let source of sources" [value]="source.value">
                   {{source.viewValue}}
                 </mat-option>
               </mat-select>
@@ -47,7 +47,7 @@
             <mat-form-field class="ancho">
               <mat-label>Ship to</mat-label>
               <mat-select formControlName="shipTo">
-                <mat-option *ngFor="let shipTo of shipTo" [value]="shipTo.value">
+                <mat-option *ngFor="let shipTo of shipTos" [value]="shipTo.value">
                   {{shipTo.viewValue}}
                 </mat-option>
               </mat-select>
@@ -66,7 +66,7 @@
             <mat-form-field class="ancho">
               <mat-label>Country</mat-label>
               <mat-select formControlName="country">
-                <mat-option *ngFor="let country of country" [value]="country.value">
+                <mat-option *ngFor="let country of countrys" [value]="country.value">
                   {{country.viewValue}}
                 </mat-option>
               </mat-select>
@@ -104,13 +104,12 @@
         </h1>
 
         <mat-grid-list cols="3" rowHeight="100px">
-          
           <mat-grid-tile [colspan]="1" [rowspan]="1">
-            <mat-form-field class="ancho">
-              <mat-label>Select Product</mat-label>
-              <mat-select formControlName="selectProduct">
-                <mat-option *ngFor="let selectProduct of selectProduct" [value]="selectProduct.value">
-                  {{selectProduct.viewValue}}
+            <mat-form-field appearance="fill">
+              <mat-label>Cars</mat-label>
+              <mat-select formControlName="product" (ngSubmit)="getItems()">
+                <mat-option *ngFor="let item of items" [value]="item.description">
+                  {{items.description}}
                 </mat-option>
               </mat-select>
             </mat-form-field>
@@ -150,7 +149,7 @@
             <mat-form-field class="ancho">
               <mat-label>Container Type</mat-label>
               <mat-select formControlName="containerType">
-                <mat-option *ngFor="let containerType of containerType" [value]="containerType.value">
+                <mat-option *ngFor="let containerType of containerTypes" [value]="containerType.value">
                   {{containerType.viewValue}}
                 </mat-option>
               </mat-select>
@@ -162,7 +161,7 @@
             <mat-form-field class="ancho">
               <mat-label>Shipment Type</mat-label>
               <mat-select formControlName="shipmentType">
-                <mat-option *ngFor="let shipmentType of shipmentType" [value]="shipmentType.value">
+                <mat-option *ngFor="let shipmentType of shipmentTypes" [value]="shipmentType.value">
                   {{shipmentType.viewValue}}
                 </mat-option>
               </mat-select>

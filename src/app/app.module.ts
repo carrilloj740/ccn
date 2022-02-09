@@ -14,6 +14,9 @@ import { SeguimientoComponent } from './components/seguimiento/seguimiento.compo
 import { LoginComponent } from './components/login/login.component';
 import { VerificacionComponent } from './components/verificacion/verificacion.component';
 import { MoreComponent } from './components/more/more.component';
+import { HttpClientModule } from '@angular/common/http';
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -32,8 +35,12 @@ import { MoreComponent } from './components/more/more.component';
     BrowserAnimationsModule,
     MaterialModule,
     ReactiveFormsModule,
+    HttpClientModule,
+    
   ],
-  providers: [],
+  providers: [
+
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
