@@ -1,6 +1,6 @@
 import { Component, OnInit, VERSION } from '@angular/core';
 import { MoreComponent } from 'src/app/components/more/more.component';
-import { InMemoryDataService } from '../../services/in-memory-data.service';
+
 
 @Component({
   selector: 'app-inicio',
