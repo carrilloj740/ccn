@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { Buffer } from 'buffer';
 
 import { HttpClient, HttpHeaders } from '@angular/common/http'
+import { Observable } from 'rxjs';
+
 
 
 @Injectable({
@@ -10,21 +12,29 @@ import { HttpClient, HttpHeaders } from '@angular/common/http'
 
 
 
+
 export class UsersService {
 
+  private url = "https://fa-euny-test-saasfaprod1.fa.ocs.oraclecloud.com/crmRestApi/resources/11.13.18.05/"; // URL to web api
 
+ private username = "roberto.chamorro@ccn.com.ni";
+ private password = "01CNN2021";
+ private auth = "Basic " + btoa(this.username + ":" + this.password)
 
   constructor(private http: HttpClient) {
     console.log('Servicio http');
   }
 
-
-  getProducts(): any {
-    const httpOptions = {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-        'Authorization': 'Basic ' + btoa('username:password')
-      })
-    }
+  getItems(): any {
+    return this.http.get(this.url + "products", {
+      headers: { Authorization: this.auth, },
+    });
   }
+
+  getCountrys(): any {
+    return this.http.get(this.url + "products", {
+      headers: { Authorization: this.auth, },
+    });
+  }
+
 }

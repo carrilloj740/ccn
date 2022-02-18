@@ -19,8 +19,6 @@ export class AppComponent implements OnInit {
   ngOnInit(): void {
       console.log('El componente se ha inicializado');
       
-      this.userService.getProducts()
-      .subscribe((response: any) => {this.userList = response});
+ 
   }
-    
 }

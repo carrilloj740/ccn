@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { MaterialModule } from 'src/app/material/material.module';
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -13,7 +14,7 @@ export class LoginComponent implements OnInit {
   form: FormGroup
   loading: boolean | undefined;
 
-  constructor(private fb: FormBuilder, private _snackBar: MatSnackBar, private router: Router) {
+  constructor(private fb: FormBuilder, private _snackBar: MatSnackBar, private router: Router,) {
     this.form = this.fb.group({
       usuario: ['', Validators.required],
       password: ['', Validators.required],
@@ -51,6 +52,9 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    
+
   }
+
 
 }

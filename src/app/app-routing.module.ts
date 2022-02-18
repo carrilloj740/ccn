@@ -10,7 +10,7 @@ const routes: Routes = [
   { path: '', redirectTo: 'verificacion', pathMatch: 'full'},
   {path:'verificacion', component: VerificacionComponent},
   { path:'login', component: LoginComponent },
-  {path: 'inicio', loadChildren:() => import('./components/inicio/inicio-routing.module').then(x => x.InicioRoutingModule)},
+  {path: 'inicio', component: InicioComponent},
   {path: 'nueva', component: NuevaComponent},
   {path: 'seguimiento', component: SeguimientoComponent},
   { path:'**', redirectTo: 'verificacion', pathMatch: 'full'}

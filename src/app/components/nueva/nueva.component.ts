@@ -28,8 +28,8 @@ const ELEMENT_DATA: PeriodicElement[] = [
 export class NuevaComponent implements OnInit {
 
   form: FormGroup;
-  userList: any = [];
-  productsList: any = [];
+  userList: any= [];
+  productsList: any =  [];
 
   shipTos: any[] = [
     { value: '19677 - Compañia Cervecera de Nicaragua, S.', viewValue: '19677 - Compañia Cervecera de Nicaragua, S.' },
@@ -74,7 +74,7 @@ export class NuevaComponent implements OnInit {
 
 
 
-  constructor(private fb: FormBuilder, private usersService: UsersService,){
+  constructor(private fb: FormBuilder, private usersService: UsersService,) {
     console.log('El componente se ha creado');
 
     this.form = this.fb.group({
@@ -102,14 +102,18 @@ export class NuevaComponent implements OnInit {
   }
 
   ngOnInit(): void {
-      console.log('El componente se ha inicializado');
-      
-      var  respuesta = this.usersService.getProducts()
-      .subscribe((response: any) => {
-      console.log(response);
-      });
-
-      
+    console.log("Inicializa");
+    this.getItems()
   }
 
+
+  getItems(){
+    this.usersService.getItems()
+    .subscribe((products: any) => this.productsList = products.items);
+  }
+
+  
+
 }
+
+
