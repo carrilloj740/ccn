@@ -1,35 +1,26 @@
 import { Component, OnInit } from '@angular/core';
-import { UsersService } from '../../services/users.service';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ApiService } from '../../services/api.service';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { AddService, Orden } from 'src/app/services/add.service';
 
 
-export interface PeriodicElement {
-  sku: number;
-  producto: string;
-  etd: number;
-  cantidad: number;
-  contenedor: string;
-  shipment: string;
-  icon: string;
-  contenedors: number
-}
 
-const ELEMENT_DATA: PeriodicElement[] = [
-  { sku: 113320, cantidad: 288, icon: 'icon', contenedors: 14, contenedor: 'Truck', producto: 'HE 355K2Emb', etd: 1.0079, shipment: 'Truck' },
-  { sku: 223456, cantidad: 1235, icon: 'icon', contenedors: 56, contenedor: 'Truck', producto: 'HE 355Ti 4x6', etd: 4.0026, shipment: 'Truck' },
 
-];
+
 
 @Component({
   selector: 'app-nueva',
   templateUrl: './nueva.component.html',
   styleUrls: ['./nueva.component.css']
 })
-export class NuevaComponent implements OnInit {
+export class NuevaComponent {
+
+
 
   form: FormGroup;
-  userList: any= [];
-  productsList: any =  [];
+  userList: any = [];
+  productsList: any = [
+   ]
 
   shipTos: any[] = [
     { value: '19677 - Compañia Cervecera de Nicaragua, S.', viewValue: '19677 - Compañia Cervecera de Nicaragua, S.' },
@@ -68,32 +59,45 @@ export class NuevaComponent implements OnInit {
 
 
 
-  displayedColumns: string[] = ['sku', 'producto', 'etd', 'shipment', 'contenedors', 'contenedor', 'cantidad', 'icon'];
-  dataSource = ELEMENT_DATA;
+
+
+  arrOrdenes: Orden[] | undefined;
+
+  listaOrdenes: any = {
+    descripcion: "Aquí va la primera descripción",
+    descripcion2: "Segunda descripción"
+  }
 
 
 
 
-  constructor(private fb: FormBuilder, private usersService: UsersService,) {
+
+
+
+  constructor(private fb: FormBuilder, private apiService: ApiService, private addService: AddService) {
+
+
+
+
     console.log('El componente se ha creado');
 
-    this.form = this.fb.group({
-      poNumber: ['', Validators.required],
-      shipTo: ['', Validators.required],
-      soldTo: ['', Validators.required],
-      source: ['', Validators.required],
-      country: ['', Validators.required],
-      containerType: ['', Validators.required],
-      shipmentType: ['', Validators.required],
-      selectProduct: ['', Validators.required],
-      pallets: ['', Validators.required],
-      incortem: ['', Validators.required],
-      loading: ['', Validators.required],
-      quantity: ['', Validators.required],
-      requestEta: ['', Validators.required],
-      requestEtd: ['', Validators.required],
-      orderLine: ['', Validators.required],
-      minimumOrder: ['', Validators.required],
+    this.form = new FormGroup({
+      poNumber: new FormControl(),
+      shipTo: new FormControl(),
+      soldTo: new FormControl(),
+      source: new FormControl(),
+      country: new FormControl(),
+      containerType: new FormControl(),
+      shipmentType: new FormControl(),
+      selectProduct: new FormControl(),
+      pallets: new FormControl(),
+      incortem: new FormControl(),
+      loading: new FormControl(),
+      quantity: new FormControl(),
+      requestEta: new FormControl(),
+      requestEtd: new FormControl(),
+      orderLine: new FormControl(),
+      minimumOrder: new FormControl(),
     })
   }
 
@@ -104,15 +108,22 @@ export class NuevaComponent implements OnInit {
   ngOnInit(): void {
     console.log("Inicializa");
     this.getItems()
+
+
   }
 
 
-  getItems(){
-    this.usersService.getItems()
-    .subscribe((products: any) => this.productsList = products.items);
+  getItems() {
+    this.apiService.getItems()
+      .subscribe((products: any) => this.productsList = products.items);
   }
 
-  
+  onSubmit() {
+    this.addService.agregarOrdenes$(this.form.value);
+    this.addService.getOrdenes$().subscribe(ordenes => {
+      this.arrOrdenes = ordenes;
+    });
+  }
 
 }
 

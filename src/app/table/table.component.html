@@ -1,0 +1,26 @@
+<div class="container">
+    <table *ngFor="let orden of arrOrdenes">
+        <tr>
+            <td><strong>SKU</strong></td>
+            <td><strong>Description</strong></td>
+            <td><strong>Quantity </strong></td>
+            <td><strong>Request ETD</strong></td>
+            <td><strong>Type Container</strong></td>
+            <td><strong># Containers</strong></td>
+      
+        </tr>
+      
+        <tr>
+            <td>{{orden.sku}}</td>
+            <td>{{orden.description}}</td>
+            <td>{{orden.quantity}}</td>
+            <td>{{orden.etd}}</td>
+            <td>{{orden.typeContainer}}</td>
+            <td>{{orden.quantityContainer}}</td>
+      
+        </tr>
+      
+      </table>
+      
+      
+</div>

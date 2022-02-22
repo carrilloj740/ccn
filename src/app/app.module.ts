@@ -15,7 +15,7 @@ import { LoginComponent } from './components/login/login.component';
 import { VerificacionComponent } from './components/verificacion/verificacion.component';
 import { MoreComponent } from './components/more/more.component';
 import { HttpClientModule } from '@angular/common/http';
-
+import { TableComponent } from './table/table.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +27,8 @@ import { HttpClientModule } from '@angular/common/http';
     LoginComponent,
     VerificacionComponent,
     MoreComponent,
+    TableComponent,
+    
     
   ],
   imports: [

@@ -47,6 +47,7 @@ table {
     cursor: pointer;
     transition: 0.3s ease-in-out;
     margin-left: 75%;
+    margin-top: 10px;
 
     }
 
@@ -56,3 +57,5 @@ table {
         border: 1px;
         border-color: #006a3a;
     }
+
+   

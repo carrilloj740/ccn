@@ -1,17 +1,16 @@
+<app-navbar></app-navbar>
 
-  <app-navbar></app-navbar>
 
 <mat-toolbar class="toolbar2">
   <h1 style="color: black; font-weight: 700;font-family: 'Montserrat', sans-serif;">New Order<mat-icon>shopping_cart
     </mat-icon>
   </h1>
 </mat-toolbar>
-
 <mat-card>
 
   <div class="container">
     <mat-card>
-      <form [formGroup]="form" (ngSubmit)="agregarOrden()">
+      <form [formGroup]="form" (ngSubmit)="onSubmit()">
         <mat-grid-list cols="3" rowHeight="100px">
           <mat-grid-tile [colspan]="1" [rowspan]="1">
             <mat-form-field class="ancho">
@@ -65,11 +64,11 @@
           <mat-grid-tile [colspan]="1" [rowspan]="1">
             <mat-form-field class="ancho">
               <mat-label>Country</mat-label>
-              <select matNativeControl name="select">
-                <option *ngFor="let user of userList">Name: {{user.completed}}</option>
-
-              </select>
-
+              <mat-select formControlName="country">
+                <mat-option *ngFor="let country of countrys" [value]="country.value">
+                  {{country.viewValue}}
+                </mat-option>
+              </mat-select>
             </mat-form-field>
           </mat-grid-tile>
 
@@ -77,7 +76,7 @@
           <mat-grid-tile [colspan]="1" [rowspan]="1">
             <mat-form-field class="ancho">
               <mat-label>Request ETD</mat-label>
-              <input matInput [matDatepicker]="picker" formControlName="requestEtd">
+              <input matInput [matDatepicker]="picker" formControlName="etd">
               <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
               <mat-datepicker #picker></mat-datepicker>
             </mat-form-field>
@@ -152,7 +151,7 @@
               <mat-label>Container Type</mat-label>
               <mat-select formControlName="containerType">
                 <mat-option *ngFor="let containerType of containerTypes" [value]="containerType.value">
-                  {{containerType.viewValue}}
+                  {{listaOrdenes.descripcion}}
                 </mat-option>
               </mat-select>
             </mat-form-field>
@@ -177,72 +176,34 @@
             </mat-form-field>
           </mat-grid-tile>
         </mat-grid-list>
+        <button class="button" mat-raised-button type="submit" value="enviar">Agregar</button>
 
 
-        <button type="submit" class="buttomancho buttomcolor" mat-raised-button [disabled]="form.invalid">Add</button>
-
+        <table *ngFor="let orden of arrOrdenes">
+          <tr>
+            <td><strong>SKU</strong></td>
+            <td><strong>Description</strong></td>
+            <td><strong>Quantity </strong></td>
+            <td><strong>Request ETD</strong></td>
+            <td><strong>Type Container</strong></td>
+            <td><strong># Containers</strong></td>
+  
+          </tr>
+  
+          <tr>
+            <td>{{orden.sku}}</td>
+            <td>{{orden.description}}</td>
+            <td>{{orden.quantity}}</td>
+            <td>{{orden.etd}}</td>
+            <td>{{orden.typeContainer}}</td>
+            <td>{{orden.quantityContainer}}</td>
+  
+          </tr>
+  
+        </table>
       </form>
       <br>
       <mat-divider></mat-divider>
 
-      <h1 style="margin-top: 15px;font-weight: 700;font-family: 'Montserrat', sans-serif;">Total Containers <img
-          class="icon" src="../assets/img/almacen.png"> </h1>
 
-
-      <table mat-table [dataSource]="dataSource" class="mat-elevation-z2">
-
-        <ng-container matColumnDef="sku">
-          <th mat-header-cell *matHeaderCellDef> SKU </th>
-          <td mat-cell *matCellDef="let element"> {{element.sku}} </td>
-        </ng-container>
-
-        <ng-container matColumnDef="producto">
-          <th mat-header-cell *matHeaderCellDef> Product description</th>
-          <td mat-cell *matCellDef="let element"> {{element.producto}} </td>
-        </ng-container>
-
-        <ng-container matColumnDef="etd">
-          <th mat-header-cell *matHeaderCellDef> ETD </th>
-          <td mat-cell *matCellDef="let element"> {{element.etd}} </td>
-        </ng-container>
-
-        <ng-container matColumnDef="cantidad">
-          <th mat-header-cell *matHeaderCellDef> Quantity </th>
-          <td mat-cell *matCellDef="let element"> {{element.cantidad}} </td>
-        </ng-container>
-
-
-        <ng-container matColumnDef="contenedor">
-          <th mat-header-cell *matHeaderCellDef> Type of Containers</th>
-          <td mat-cell *matCellDef="let element"> {{element.contenedor}} </td>
-        </ng-container>
-
-        <ng-container matColumnDef="contenedors">
-          <th mat-header-cell *matHeaderCellDef> # of Containers </th>
-          <td mat-cell *matCellDef="let element"> {{element.contenedors}} </td>
-        </ng-container>
-
-        <ng-container matColumnDef="icon">
-          <th mat-header-cell *matHeaderCellDef></th>
-          <td mat-cell *matCellDef="let element">
-            <mat-icon>delete</mat-icon>
-          </td>
-        </ng-container>
-
-        <ng-container matColumnDef="shipment">
-          <th mat-header-cell *matHeaderCellDef> Shipment number </th>
-          <td mat-cell *matCellDef="let element"> {{element.shipment}} </td>
-        </ng-container>
-
-        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-      </table>
-
-
-      <button type="submit" class="buttomancho buttomcolor" mat-raised-button [disabled]="form.invalid"
-        style="margin-top:50px;">Confirmar</button>
-    </mat-card>
-  </div>
-
-
-
+      

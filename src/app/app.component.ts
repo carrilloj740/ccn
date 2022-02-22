@@ -1,18 +1,18 @@
 import { Component, OnInit } from '@angular/core';
-import { UsersService } from './services/users.service';
+import { ApiService } from './services/api.service';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
-  providers: [UsersService],
+  providers: [ApiService],
 })
 export class AppComponent implements OnInit {
   title = 'consapi';
   userList: any = [];
   countryList: any = [];
   
-  constructor(private userService: UsersService){
+  constructor(private userService: ApiService){
     console.log('El componente se ha creado');
   }
 

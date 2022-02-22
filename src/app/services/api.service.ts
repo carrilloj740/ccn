@@ -13,7 +13,7 @@ import { Observable } from 'rxjs';
 
 
 
-export class UsersService {
+export class ApiService {
 
   private url = "https://fa-euny-test-saasfaprod1.fa.ocs.oraclecloud.com/crmRestApi/resources/11.13.18.05/"; // URL to web api
 
@@ -32,7 +32,7 @@ export class UsersService {
   }
 
   getCountrys(): any {
-    return this.http.get(this.url + "products", {
+    return this.http.get(this.url + "countrys", {
       headers: { Authorization: this.auth, },
     });
   }
