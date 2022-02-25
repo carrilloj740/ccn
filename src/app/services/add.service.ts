@@ -3,7 +3,7 @@ import { Observable, Subject } from 'rxjs';
 
 
 export interface Orden{
-  sku: number;
+  sku: any;
   description: string;
   etd: Date;
   email:string;
@@ -27,13 +27,22 @@ export class AddService {
     this.ordenes$ = new Subject();
    } 
 
-   agregarOrdenes$(pOrdenes: Orden){
-     this.ordenes.push(pOrdenes);
-     this.ordenes$.next(this.ordenes);
+   agregarOrdenes$(pOrden: Orden){
+    const sku = pOrden.sku.name + "/" + pOrden.sku.description
+    const split = sku.split("/")
+    console.log(split)
+    pOrden.sku = split[0]
+    pOrden.description = split[1]
+   console.log(pOrden)
 
-   }
+   this.ordenes.push(pOrden);
+    this.ordenes$.next(this.ordenes);
+
+  }
 
    getOrdenes$(): Observable<Orden[]>{
+  
      return this.ordenes$.asObservable();
    }
+
 }

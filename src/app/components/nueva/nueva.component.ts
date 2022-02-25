@@ -14,13 +14,13 @@ import { AddService, Orden } from 'src/app/services/add.service';
   styleUrls: ['./nueva.component.css']
 })
 export class NuevaComponent {
-
+  
+  arrOrdenes: Orden[] | undefined;
 
 
   form: FormGroup;
   userList: any = [];
-  productsList: any = [
-   ]
+  productsList: any = []
 
   shipTos: any[] = [
     { value: '19677 - Compañia Cervecera de Nicaragua, S.', viewValue: '19677 - Compañia Cervecera de Nicaragua, S.' },
@@ -59,28 +59,9 @@ export class NuevaComponent {
 
 
 
-
-
-  arrOrdenes: Orden[] | undefined;
-
-  listaOrdenes: any = {
-    descripcion: "Aquí va la primera descripción",
-    descripcion2: "Segunda descripción"
-  }
-
-
-
-
-
-
-
   constructor(private fb: FormBuilder, private apiService: ApiService, private addService: AddService) {
 
-
-
-
     console.log('El componente se ha creado');
-
     this.form = new FormGroup({
       poNumber: new FormControl(),
       shipTo: new FormControl(),
@@ -96,10 +77,17 @@ export class NuevaComponent {
       quantity: new FormControl(),
       requestEta: new FormControl(),
       requestEtd: new FormControl(),
-      orderLine: new FormControl(),
+      quantityContainer: new FormControl(),
       minimumOrder: new FormControl(),
+      sku: new FormControl(),
+      description: new FormControl()
     })
+
   }
+
+  listaProductos: any = []
+
+  productoSeleccionado = "";
 
   agregarOrden() {
     console.log(this.form);
@@ -108,8 +96,6 @@ export class NuevaComponent {
   ngOnInit(): void {
     console.log("Inicializa");
     this.getItems()
-
-
   }
 
 
@@ -118,13 +104,30 @@ export class NuevaComponent {
       .subscribe((products: any) => this.productsList = products.items);
   }
 
-  onSubmit() {
-    this.addService.agregarOrdenes$(this.form.value);
-    this.addService.getOrdenes$().subscribe(ordenes => {
-      this.arrOrdenes = ordenes;
-    });
+    onSubmit() {
+    console.log(1)
+     this.agregarOdenes(this.form.value);
+     console.log(3)
+     this.getOrdenes();
   }
 
+  agregarOdenes(values: any){
+    this.addService.agregarOrdenes$(values);
+  }
+
+
+  getOrdenes(){
+    this.addService.getOrdenes$().subscribe(ordenes => {
+      console.log(5)
+      console.log(ordenes)
+      this.arrOrdenes = ordenes;
+    }) 
+  }
+  /*this.addService.getOrdenes$().subscribe(ordenes => {
+    this.arrOrdenes = ordenes;
+  });*/
 }
+
+
 
 

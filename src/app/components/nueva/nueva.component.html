@@ -9,8 +9,7 @@
 <mat-card>
 
   <div class="container">
-    <mat-card>
-      <form [formGroup]="form" (ngSubmit)="onSubmit()">
+      <form [formGroup]="form" (ngSubmit)="agregarOrden()">
         <mat-grid-list cols="3" rowHeight="100px">
           <mat-grid-tile [colspan]="1" [rowspan]="1">
             <mat-form-field class="ancho">
@@ -76,7 +75,7 @@
           <mat-grid-tile [colspan]="1" [rowspan]="1">
             <mat-form-field class="ancho">
               <mat-label>Request ETD</mat-label>
-              <input matInput [matDatepicker]="picker" formControlName="etd">
+              <input matInput [matDatepicker]="picker" formControlName="requestEtd">
               <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
               <mat-datepicker #picker></mat-datepicker>
             </mat-form-field>
@@ -107,8 +106,8 @@
           <mat-grid-tile [colspan]="1" [rowspan]="1">
             <mat-form-field class="ancho">
               <mat-label>Select Product</mat-label>
-              <select matNativeControl name="select">
-                <option *ngFor="let product of productsList">{{product.Name}}</option>
+              <select matNativeControl name="select" formControlName="selectProduct">
+                <option *ngFor="let product of productsList" [ngValue]="product.Name">{{product.Name}}</option>
 
               </select>
 
@@ -127,7 +126,7 @@
           <mat-grid-tile [colspan]="1" [rowspan]="1">
             <mat-form-field class="ancho">
               <mat-label># of Containers(Order Line)</mat-label>
-              <input matInput type="number" formControlName="orderLine">
+              <input matInput type="number" formControlName="quantityContainer">
             </mat-form-field>
           </mat-grid-tile>
 
@@ -151,7 +150,7 @@
               <mat-label>Container Type</mat-label>
               <mat-select formControlName="containerType">
                 <mat-option *ngFor="let containerType of containerTypes" [value]="containerType.value">
-                  {{listaOrdenes.descripcion}}
+                  {{containerType.viewValue}}
                 </mat-option>
               </mat-select>
             </mat-form-field>
@@ -176,34 +175,7 @@
             </mat-form-field>
           </mat-grid-tile>
         </mat-grid-list>
+
         <button class="button" mat-raised-button type="submit" value="enviar">Agregar</button>
 
-
-        <table *ngFor="let orden of arrOrdenes">
-          <tr>
-            <td><strong>SKU</strong></td>
-            <td><strong>Description</strong></td>
-            <td><strong>Quantity </strong></td>
-            <td><strong>Request ETD</strong></td>
-            <td><strong>Type Container</strong></td>
-            <td><strong># Containers</strong></td>
-  
-          </tr>
-  
-          <tr>
-            <td>{{orden.sku}}</td>
-            <td>{{orden.description}}</td>
-            <td>{{orden.quantity}}</td>
-            <td>{{orden.etd}}</td>
-            <td>{{orden.typeContainer}}</td>
-            <td>{{orden.quantityContainer}}</td>
-  
-          </tr>
-  
-        </table>
-      </form>
-      <br>
-      <mat-divider></mat-divider>
-
-
-      
+        <app-table></app-table>
