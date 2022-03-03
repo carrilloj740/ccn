@@ -7,127 +7,61 @@ import { AddService, Orden } from 'src/app/services/add.service';
 
 
 
-
 @Component({
   selector: 'app-nueva',
   templateUrl: './nueva.component.html',
   styleUrls: ['./nueva.component.css']
 })
 export class NuevaComponent {
-  
-  arrOrdenes: Orden[] | undefined;
-
 
   form: FormGroup;
-  userList: any = [];
   productsList: any = []
+  constructor(private addService: AddService, private apiService : ApiService ) {
 
-  shipTos: any[] = [
-    { value: '19677 - Compañia Cervecera de Nicaragua, S.', viewValue: '19677 - Compañia Cervecera de Nicaragua, S.' },
-    { value: '60577 - Compañia Cervecera de Nicaragua, S.', viewValue: '60577 - Compañia Cervecera de Nicaragua, S.' },
-  ];
-
-  soldTos: any[] = [
-    { value: '19677 - Compañia Cervecera de Nicaragua, S.', viewValue: '19677 - Compañia Cervecera de Nicaragua, S.' },
-    { value: '60577 - Compañia Cervecera de Nicaragua, S.', viewValue: '60577 - Compañia Cervecera de Nicaragua, S.' },
-  ];
-
-  sources: any[] = [
-    { value: 'Costa Rica', viewValue: 'Costa Rica' },
-    { value: 'HMEx', viewValue: 'HMEx' },
-  ];
-
-  countrys: any[] = [
-    { value: 'Nicaragua', viewValue: 'Nicaragua' },
-    { value: 'Argentina', viewValue: 'Argentina' },
-  ];
-
-  /*selectProducts: any[] = [
-    {value: 'He 355K2Emb 4x6 Nbr 72 PP', viewValue: '113320 - He 355K2Emb 4x6 Nbr 72 PP'},
-    {value: 'He 355Ti Can 96 PP', viewValue: ' 113321 - He 355Ti Can 96 PP'},
-  ];*/
-
-  shipmentTypes: any[] = [
-    { value: 'Truck', viewValue: 'Truck' },
-    { value: 'Naval', viewValue: 'Naval' },
-  ];
-
-  containerTypes: any[] = [
-    { value: 'Truck', viewValue: 'Truck' },
-    { value: 'Naval', viewValue: 'Naval' },
-  ];
-
-
-
-  constructor(private fb: FormBuilder, private apiService: ApiService, private addService: AddService) {
-
-    console.log('El componente se ha creado');
     this.form = new FormGroup({
-      poNumber: new FormControl(),
-      shipTo: new FormControl(),
+      sku: new FormControl(),
+      description: new FormControl(),
+      etd: new FormControl(),
+      quantity: new FormControl(),
+      typeContainer: new FormControl(),
+      quantityContainer: new FormControl(),
+      poNbr: new FormControl(),
+      incortem: new FormControl(),
       soldTo: new FormControl(),
+      shipTo: new FormControl(),
       source: new FormControl(),
       country: new FormControl(),
-      containerType: new FormControl(),
-      shipmentType: new FormControl(),
-      selectProduct: new FormControl(),
-      pallets: new FormControl(),
-      incortem: new FormControl(),
       loading: new FormControl(),
-      quantity: new FormControl(),
-      requestEta: new FormControl(),
-      requestEtd: new FormControl(),
-      quantityContainer: new FormControl(),
       minimumOrder: new FormControl(),
-      sku: new FormControl(),
-      description: new FormControl()
+      pallets: new FormControl(),
+      eta: new FormControl(),
+      shipmentType: new FormControl(),
+      start: new FormControl(),
+      end: new FormControl(),
+
     })
 
   }
 
-  listaProductos: any = []
-
+  listaProductos: any = [];
   productoSeleccionado = "";
 
-  agregarOrden() {
-    console.log(this.form);
-  }
 
   ngOnInit(): void {
-    console.log("Inicializa");
     this.getItems()
   }
 
+  onSubmit() {
+    this.addService.agregarOrdenes$(this.form.value);
+    this.form.reset();
+
+  }
 
   getItems() {
     this.apiService.getItems()
       .subscribe((products: any) => this.productsList = products.items);
+    console.log(this.productsList)
   }
-
-    onSubmit() {
-    console.log(1)
-     this.agregarOdenes(this.form.value);
-     console.log(3)
-     this.getOrdenes();
-  }
-
-  agregarOdenes(values: any){
-    this.addService.agregarOrdenes$(values);
-  }
-
-
-  getOrdenes(){
-    this.addService.getOrdenes$().subscribe(ordenes => {
-      console.log(5)
-      console.log(ordenes)
-      this.arrOrdenes = ordenes;
-    }) 
-  }
-  /*this.addService.getOrdenes$().subscribe(ordenes => {
-    this.arrOrdenes = ordenes;
-  });*/
+  
 }
-
-
-
 

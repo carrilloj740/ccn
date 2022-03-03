@@ -27,15 +27,16 @@ export class AddService {
     this.ordenes$ = new Subject();
    } 
 
-   agregarOrdenes$(pOrden: Orden){
-    const sku = pOrden.sku.name + "/" + pOrden.sku.description
+   
+  agregarOrdenes$(pOrdenes: Orden) {
+    const sku = pOrdenes.sku.Name + "/" + pOrdenes.sku.Description
     const split = sku.split("/")
     console.log(split)
-    pOrden.sku = split[0]
-    pOrden.description = split[1]
-   console.log(pOrden)
+    pOrdenes.sku = split[0]
+    pOrdenes.description = split[1]
+    console.log(pOrdenes)
 
-   this.ordenes.push(pOrden);
+    this.ordenes.push(pOrdenes);
     this.ordenes$.next(this.ordenes);
 
   }
