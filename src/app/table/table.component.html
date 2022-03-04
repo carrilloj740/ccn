@@ -1,26 +1,68 @@
-<div class="container">
-      <table *ngFor="let orden  of arrOrdenes">
-        <tr>
-          <td><strong>SKU</strong></td>
-          <td><strong>Description</strong></td>
-          <td><strong>Quantity </strong></td>
-          <td><strong>Request ETD</strong></td>
-          <td><strong>Type Container</strong></td>
-          <td><strong># Containers</strong></td>
+
+
+    <h1 style="color: black; font-weight: 700;font-family: 'Montserrat', sans-serif;">Total Containers</h1>
+    <div class="container">
+    <table>
+      <tr class="top">
+        <td><strong>SKU</strong></td>
+        <td><strong>Description</strong></td>
+        <td><strong>Quantity </strong></td>
+        <td><strong>Request ETD</strong></td>
+        <td><strong>Type Container</strong></td>
+        <td><strong># Containers</strong></td>
   
-        </tr>
+      </tr>
   
-        <tr>
-          <td>{{orden.sku}} </td>
-          <td>{{orden.description}}</td>
-          <td>{{orden.quantity}}</td>
-          <td>{{orden.etd}}</td>
-          <td>{{orden.typeContainer}}</td>
-          <td>{{orden.quantityContainer}}</td>
-        </tr>
-  
-      </table>
-  
-  
+      <tr *ngFor="let orden  of arrOrdenes" >
+        <td>{{orden.sku}} </td>
+        <td>{{orden.description}}</td>
+        <td>{{orden.quantity}}</td>
+        <td>{{orden.etd}}</td>
+        <td>{{orden.typeContainer}}</td>
+        <td>{{orden.quantityContainer}}</td>
+      </tr>
+    </table>
+    <button  class="button2" mat-raised-button  routerLink="/seguimiento" value="Confirmar">Confirmar</button>
   </div>
-  
+
+
+
+<!--
+  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+  <ng-container matColumnDef="sku">
+    <th mat-header-cell *matHeaderCellDef> SKU </th>
+    <td mat-cell *matCellDef="let orden"> {{orden.sku}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="description">
+    <th mat-header-cell *matHeaderCellDef> Description </th>
+    <td mat-cell *matCellDef="let orden"> {{orden.description}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="quantity">
+    <th mat-header-cell *matHeaderCellDef> Quantity </th>
+    <td mat-cell *matCellDef="let orden"> {{orden.quantity}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="requestEtd">
+    <th mat-header-cell *matHeaderCellDef> Request ETD </th>
+    <td mat-cell *matCellDef="let orden"> {{orden.requestEtd}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="quantityContainer">
+    <th mat-header-cell *matHeaderCellDef> # Container </th>
+    <td mat-cell *matCellDef="let orden"> {{orden.quantityContainer}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="typeContainer">
+    <th mat-header-cell *matHeaderCellDef> Type container </th>
+    <td mat-cell *matCellDef="let orden"> {{orden.typeContainer}} </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *ngFor="let orden  of arrOrdenes"></tr>
+</table>
+
+
+-->

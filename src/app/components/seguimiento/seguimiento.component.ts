@@ -35,7 +35,6 @@ export class SeguimientoComponent implements OnInit {
   displayedColumns: string[] = ['vista', 'order_Number', 'sold_Number', 'sold_to', 'etd_solicitado', 'ETA_solicitada'];
   dataSource = new MatTableDataSource(ELEMENT_DATA);
 
-
   constructor (public dialog: MatDialog) { }
 
   openDialog(): void{

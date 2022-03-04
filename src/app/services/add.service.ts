@@ -4,12 +4,11 @@ import { Observable, Subject } from 'rxjs';
 
 export interface Orden{
   sku: any;
-  description: string;
-  etd: Date;
-  email:string;
-  quantity: string;
-  typeContainer: string;
-  quantityContainer: number;
+  description: any;
+  etd: any;
+  quantity: any;
+  typeContainer: any;
+  quantityContainer: any;
 
 }
 @Injectable({

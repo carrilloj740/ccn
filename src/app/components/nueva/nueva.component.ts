@@ -3,10 +3,6 @@ import { ApiService } from '../../services/api.service';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { AddService, Orden } from 'src/app/services/add.service';
 
-
-
-
-
 @Component({
   selector: 'app-nueva',
   templateUrl: './nueva.component.html',

@@ -31,8 +31,15 @@
                 <mat-form-field class="ancho">
                     <label>Incortem</label>
                     <select matNativeControl  formControlName="incortem">
-                        <option value="truck">Opcion 1</option>
-                        <option value="naval">Opcion 2</option>
+                        <option value="EXW">EXW</option>
+                        <option value="FCA">FCA</option>
+                        <option value="FAS">FAS</option>
+                        <option value="FOB">FOB</option>
+                        <option value="CFR">CFR</option>
+                        <option value="CIF">CIF</option>
+                        <option value="CTP">CTP</option>
+                        <option value="CIP">CIP</option>
+
                     </select>
                 </mat-form-field>
             </mat-grid-tile>
@@ -111,8 +118,13 @@
                 <mat-form-field class="ancho">
                     <label>Container Type</label>
                     <select matNativeControl  formControlName="typeContainer">
-                        <option value="truck">Truck</option>
-                        <option value="naval">Naval</option>
+                        <option value="truck">Dry</option>
+                        <option value="flatRack">Flat Rack</option>
+                        <option value="highCube">High Cube</option>
+                        <option value="openTop">Open Top</option>
+                        <option value="platform">Platform</option>
+                        <option value="fridge">Fridge</option>
+
                     </select>
                 </mat-form-field>
             </mat-grid-tile>
@@ -169,6 +181,8 @@
             <button mat-raised-button type="submit" value="Agregar" [disabled]="form.invalid">Agregar</button>
 
         </mat-grid-list>
+        <mat-divider></mat-divider>
+        <br>
     </form>
     <app-table></app-table>
 </div>
