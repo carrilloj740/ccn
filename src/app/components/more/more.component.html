@@ -1,21 +1,17 @@
-<h1>Tracking</h1>
+<!--
+
+  <h1>Número de Orden</h1>
 <mat-divider></mat-divider>
 
 <mat-stepper
   class="example-stepper"
   [orientation]="(stepperOrientation | async)!">
-  <mat-step [stepControl]="firstFormGroup" label="Received">
-    <form [formGroup]="firstFormGroup">
-      <mat-form-field>
-        <mat-label>Name</mat-label>
-        <input matInput placeholder="Last name, First name" formControlName="firstCtrl" required>
-      </mat-form-field>
-      <div>
-        <button mat-button matStepperNext>Next</button>
-      </div>
-    </form>
+  <mat-step [stepControl]="firstFormGroup" label="Orden Recibida" matStepperIcon="phone">
+    <div class="mdl-stepper-optional">Fecha: XX/XX/XXX</div>
+    <mat-icon>call_end</mat-icon>
   </mat-step>
-  <mat-step [stepControl]="secondFormGroup" label="Credit check">
+  
+  <mat-step [stepControl]="secondFormGroup" label="Orden Validada">
     <form [formGroup]="secondFormGroup">
       <mat-form-field>
         <mat-label>Address</mat-label>
@@ -28,7 +24,7 @@
       </div>
     </form>
   </mat-step>
-  <mat-step [stepControl]="thirdFormGroup" label="Inveterate">
+  <mat-step [stepControl]="thirdFormGroup" label="Orden en proceso">
     <form [formGroup]="thirdFormGroup">
       <mat-form-field >
         <mat-label>Phone number</mat-label>
@@ -41,7 +37,7 @@
     </form>
   </mat-step>
  
-  <mat-step [stepControl]="thirdFormGroup" label="Shipowner">
+  <mat-step [stepControl]="thirdFormGroup" label="Orden despachada">
     <form [formGroup]="thirdFormGroup">
       <mat-form-field >
         <mat-label>Phone number</mat-label>
@@ -54,31 +50,50 @@
     </form>
   </mat-step>
 
-  <mat-step [stepControl]="thirdFormGroup" label="Shipowner">
-    <form [formGroup]="thirdFormGroup">
-      <mat-form-field >
-        <mat-label>Phone number</mat-label>
-        <input matInput formControlName="thirdCtrl" placeholder="Ex. 12345678" required>
-      </mat-form-field>
-      <div>
-        <button mat-button matStepperPrevious>Back</button>
-        <button mat-button matStepperNext>Next</button>
-      </div>
-    </form>
-  </mat-step>
-
-  <mat-step [stepControl]="thirdFormGroup" label="Completed">
-    <form [formGroup]="thirdFormGroup">
-      <mat-form-field >
-        <mat-label>Phone number</mat-label>
-        <input matInput formControlName="thirdCtrl" placeholder="Ex. 12345678" required>
-      </mat-form-field>
-      <div>
-        <button mat-button matStepperPrevious>Back</button>
-        <button mat-button matStepperNext>Next</button>
-      </div>
-    </form>
-  </mat-step>
-</mat-stepper>
 
 <mat-divider></mat-divider>
+-->
+
+
+
+
+  <div class="mdl-card mdl-shadow--2dp">
+
+  <div class="mdl-card__supporting-text">
+
+    <div class="mdl-stepper-horizontal-alternative">
+      <div class="mdl-stepper-step active-step step-done">
+        <div class="mdl-stepper-circle"><span></span></div>
+        <div class="mdl-stepper-title">Orden Recibida</div>
+        <div class="mdl-stepper-optional">Fecha: XX/XX/XXX</div>
+        <div class="mdl-stepper-bar-left"></div>
+        <div class="mdl-stepper-bar-right"></div>
+      </div>
+      <div class="mdl-stepper-step active-step editable-step">
+        <div class="mdl-stepper-circle"><span>2</span></div>
+        <div class="mdl-stepper-title">Orden Validada</div>
+        <div class="mdl-stepper-optional">Fecha: XX/XX/XXX</div>
+        <div class="mdl-stepper-bar-left"></div>
+        <div class="mdl-stepper-bar-right"></div>
+      </div>
+      <div class="mdl-stepper-step active-step">
+        <div class="mdl-stepper-circle"><span>3</span></div>
+        <div class="mdl-stepper-title">Orden en proceso</div>
+        <div class="mdl-stepper-optional">Fecha inicio de procesa: XX/XX/XXX</div>
+        <div class="mdl-stepper-optional">Tiempo estimado de proceso: 30-45 días</div>
+
+        <div class="mdl-stepper-bar-left"></div>
+        <div class="mdl-stepper-bar-right"></div>
+      </div>
+      <div class="mdl-stepper-step active-step">
+        <div class="mdl-stepper-circle"><span>4</span></div>
+        <div class="mdl-stepper-title">Orden Despachada</div>
+        <div class="mdl-stepper-optional">Fecha: XX/XX/XX</div>
+        <div class="mdl-stepper-bar-left"></div>
+        <div class="mdl-stepper-bar-right"></div>
+      </div>
+    </div>
+
+  </div>
+
+</div>

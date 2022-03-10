@@ -13,7 +13,7 @@ import {map} from 'rxjs/operators';
 export class MoreComponent implements OnInit {
 
   firstFormGroup = this._formBuilder.group({
-    firstCtrl: ['', Validators.required],
+    OrdenRecibida: ['', Validators.required],
   });
   secondFormGroup = this._formBuilder.group({
     secondCtrl: ['', Validators.required],

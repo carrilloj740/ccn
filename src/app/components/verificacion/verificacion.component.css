@@ -3,16 +3,17 @@
     justify-content: center;
     height: 100%;
     align-items: center;
-    background-color: #f5f5f5;
     width: 100%;
-    background-image: url(https://www.ccn.com.ni/wp-content/uploads/2016/04/CCN032016-2-REDU-97-500x500.jpg);
-    background-size:100%;
-
+    background: url("src/assets/img/Bosque.png");
+    background-repeat: no-repeat;
+    background-size: 50% 100%;
 }
+
 
 .verificacion{
     width: 100%;
-    max-width: 330px;
+    max-width: 500px;
+    height: 250px;
     text-align: center;
     
 

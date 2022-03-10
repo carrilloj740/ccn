@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../../services/api.service';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { AddService, Orden } from 'src/app/services/add.service';
-
+import { Router } from '@angular/router';
+import { OrdenIn } from 'src/app/interfaces/ordenIn';
 @Component({
   selector: 'app-nueva',
   templateUrl: './nueva.component.html',
@@ -12,7 +13,7 @@ export class NuevaComponent {
 
   form: FormGroup;
   productsList: any = []
-  constructor(private addService: AddService, private apiService : ApiService ) {
+  constructor(private addService: AddService, private apiService: ApiService) {
 
     this.form = new FormGroup({
       sku: new FormControl(),
@@ -32,8 +33,6 @@ export class NuevaComponent {
       pallets: new FormControl(),
       eta: new FormControl(),
       shipmentType: new FormControl(),
-      start: new FormControl(),
-      end: new FormControl(),
 
     })
 
@@ -45,6 +44,7 @@ export class NuevaComponent {
 
   ngOnInit(): void {
     this.getItems()
+
   }
 
   onSubmit() {
@@ -58,6 +58,9 @@ export class NuevaComponent {
       .subscribe((products: any) => this.productsList = products.items);
     console.log(this.productsList)
   }
-  
+
+
 }
+
+
 

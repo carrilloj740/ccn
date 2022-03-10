@@ -3,7 +3,10 @@
     justify-content: center;
     height: 100%;
     align-items: center;
-    background: #006a3a;
+
+    background: url("src/assets/img/jungla.png"), url("src/assets/img/login2.png") right;
+    background-repeat: no-repeat;
+    background-size: 50% 100%;
 
 }
 

@@ -78,13 +78,10 @@
             <mat-grid-tile [colspan]="1" [rowspan]="1">
                 <mat-form-field class="ancho">
                     <mat-label>Request ETD</mat-label>
-                    <mat-date-range-input [rangePicker]="picker2">
-                      <input matStartDate placeholder="Start date" formControlName="etd" autocomplete="off">
-                      <input matEndDate placeholder="End date">
-                    </mat-date-range-input>
+                    <input matInput [matDatepicker]="picker2" formControlName="etd" autocomplete="off">
                     <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
-                    <mat-date-range-picker #picker2></mat-date-range-picker>
-                  </mat-form-field>
+                    <mat-datepicker #picker2></mat-datepicker>
+                </mat-form-field>
             </mat-grid-tile>
 
 
