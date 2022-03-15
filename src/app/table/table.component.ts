@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AddService, Orden } from '../services/add.service';
-
+import { Product } from '../components/nueva/Product';
 
 
 const ordenList: Orden[] = [
@@ -18,7 +18,7 @@ const ordenList: Orden[] = [
 
 export class TableComponent implements OnInit {
   
-  arrOrdenes: Orden[] | undefined;
+  productos: Product[] | undefined;
 
   displayedColumns: string[] = ['sku', 'description', 'quantity', 'requestEtd', 'typeContainer', 'quantityContainer' ];
   dataSource = ordenList;
@@ -27,8 +27,8 @@ export class TableComponent implements OnInit {
   constructor(private addService: AddService) { }
 
   ngOnInit(): void {
-    this.addService.getOrdenes$().subscribe(ordenes => {
-      this.arrOrdenes = ordenes;
+    this.addService.getProductos().subscribe(productos => {
+      this.productos = productos;
 
     });
 

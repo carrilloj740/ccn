@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
+import { Product } from '../components/nueva/Product';
 
 
 export interface Orden{
@@ -18,30 +19,27 @@ export interface Orden{
 export class AddService {
 
   
-  private ordenes: Orden[];
-  private ordenes$: Subject<Orden[]>;
+  productos: any[];
+  private productos$: Subject<any[]>;
 
   constructor() { 
-    this.ordenes = [];
-    this.ordenes$ = new Subject();
+    this.productos = [];
+    this.productos$ = new Subject();
    } 
 
    
-  agregarOrdenes$(pOrdenes: Orden) {
-    const sku = pOrdenes.sku.Name + "/" + pOrdenes.sku.Description
-    const split = sku.split("/")
-    console.log(split)
-    pOrdenes.sku = split[0]
-    pOrdenes.description = split[1]
-    console.log(pOrdenes)
-
-    this.ordenes.push(pOrdenes);
-    this.ordenes$.next(this.ordenes);
+  agregarProducto(producto: Product, etd: any) {
+    console.log(producto)
+    producto["etd"] = etd
+    this.productos.push(producto);
+    this.productos$.next(this.productos);
 
   }
 
-   getOrdenes$(): Observable<Orden[]>{
-     return this.ordenes$.asObservable();
+   getProductos(): Observable<Product[]>{
+     return this.productos$.asObservable();
    }
+
+   
 
 }

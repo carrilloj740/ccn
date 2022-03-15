@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatTableDataSource } from '@angular/material/table';
-import { MaterialModule } from 'src/app/material/material.module';
 import { MoreComponent } from 'src/app/components/more/more.component';
+import { AddService } from 'src/app/services/add.service';
 
 
 export interface PeriodicElement {
@@ -35,7 +35,7 @@ export class SeguimientoComponent implements OnInit {
   displayedColumns: string[] = ['vista', 'order_Number', 'sold_Number', 'sold_to', 'etd_solicitado', 'ETA_solicitada'];
   dataSource = new MatTableDataSource(ELEMENT_DATA);
 
-  constructor (public dialog: MatDialog) { }
+  constructor (public dialog: MatDialog, private addService: AddService) { }
 
   openDialog(): void{
     let dialogRef = this.dialog.open(MoreComponent, {

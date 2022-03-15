@@ -8,7 +8,8 @@
 <mat-card>
 
 <div class="container">
-    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <form [formGroup]="formHeader" (ngSubmit)="completarOrden()">
+
         <mat-grid-list cols="3" rowHeight="100px">
             <mat-grid-tile [colspan]="1" [rowspan]="1">
                 <mat-form-field class="ancho">
@@ -96,11 +97,13 @@
                 </mat-form-field>
             </mat-grid-tile>
         </mat-grid-list>
-
+    </form>
         <!-- Seleccion de producto-->
         <mat-divider></mat-divider>
         <h1 style="font-weight: 700;font-family: 'Montserrat', sans-serif; margin-top: 40px;">Product <mat-icon>inventory_2</mat-icon>
         </h1>
+        <form [formGroup]="formProduct" (ngSubmit)="onSubmitProducto()">
+
         <mat-grid-list cols="3" rowHeight="100px">
             <mat-grid-tile [colspan]="1" [rowspan]="1">
                 <mat-form-field class="ancho">
@@ -175,11 +178,13 @@
                 </mat-form-field>
             </mat-grid-tile>
 
-            <button mat-raised-button type="submit" value="Agregar" [disabled]="form.invalid">Agregar</button>
+            <button mat-raised-button type="submit" value="Agregar" [disabled]="formProduct.invalid">Add</button>
 
         </mat-grid-list>
         <mat-divider></mat-divider>
         <br>
     </form>
     <app-table></app-table>
+    <button  class="button2" mat-raised-button (click)="completarOrden()" routerLink="/seguimiento" value="Confirmar">Confirm</button>
+
 </div>

@@ -17,7 +17,7 @@
 /* Simple setup for this demo */
 
 .mdl-card {
-  width: 1000px;
+  width: 100%;
   min-height: 0;
   margin: 10px auto;
 }
@@ -92,7 +92,7 @@
 }
 
 .mdl-stepper-horizontal-alternative .mdl-stepper-step.step-done .mdl-stepper-circle:before {
-  content: "\2514";
+  content: "\15687";
 }
 
 .mdl-stepper-horizontal-alternative .mdl-stepper-step.step-done .mdl-stepper-circle *,
