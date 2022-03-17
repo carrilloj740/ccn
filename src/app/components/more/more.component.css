@@ -27,30 +27,24 @@
   padding: 0;
 }
 
-.mdl-stepper-horizontal-alternative .mdl-stepper-step {
-  width: 25%;
-  /* 100 / no_of_steps */
-}
 
 
 /* Begin actual mdl-stepper css styles */
 
 .mdl-stepper-horizontal-alternative {
   display: table;
-  width: 100%;
   margin: 0 auto;
 }
 
 .mdl-stepper-horizontal-alternative .mdl-stepper-step {
   display: table-cell;
   position: relative;
-  padding: 24px;
 }
 
-.mdl-stepper-horizontal-alternative .mdl-stepper-step:hover,
+/* .mdl-stepper-horizontal-alternative .mdl-stepper-step:hover,
 .mdl-stepper-horizontal-alternative .mdl-stepper-step:active {
   background-color: rgba(0, 0, 0, .06);
-}
+} */
 
 .mdl-stepper-horizontal-alternative .mdl-stepper-step:active {
   border-radius: 15% / 75%;
@@ -76,8 +70,8 @@
 }
 
 .mdl-stepper-horizontal-alternative .mdl-stepper-step .mdl-stepper-circle {
-  width: 24px;
-  height: 24px;
+  width: 50px;
+  height: 50px;
   margin: 0 auto;
   background-color: #9E9E9E;
   border-radius: 50%;
@@ -85,6 +79,7 @@
   line-height: 2em;
   font-size: 12px;
   color: white;
+  position: absolute;
 }
 
 .mdl-stepper-horizontal-alternative .mdl-stepper-step.active-step .mdl-stepper-circle {
@@ -163,4 +158,29 @@
   left: 0;
   right: 50%;
   margin-right: 20px;
+}
+
+.box1 {
+  width: 120px;
+  margin: 10px 50px;
+  padding: 20px;
+  font-size: italic;
+  background-color: #006a3a;
+  color: #000;
+  border-radius: 0.5rem;
+}
+
+matTooltip {
+  text-align: center;
+}
+
+h2{
+  align-items: center;
+  text-align: center;
+}
+
+
+.mat-badge-content {
+  background:#006a3a;
+  color: #ffff;
 }

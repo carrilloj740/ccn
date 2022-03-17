@@ -3,13 +3,13 @@
     <div class="login">
       <form [formGroup]="form" (ngSubmit)="ingresar()">
         <img src="../assets/index.png" width="85%" style="margin-top: 10px;">
-        <h1 style="font-weight: 700;font-family: 'Montserrat', sans-serif;">Login</h1>
-        <mat-form-field class="ancho" style="font-weight: 500;font-family: 'Montserrat', sans-serif;">
+        <h1 style="font-weight: 700;font-family: 'Poppins', sans-serif;">Login</h1>
+        <mat-form-field class="ancho" style="font-weight: 300;font-family: 'Poppins', sans-serif;">
           <mat-label>User</mat-label>
           <input type="text" matInput autocomplete="off" formControlName="usuario">
         </mat-form-field>
         <mat-form-field class="ancho">
-          <mat-label style="font-weight: 500;font-family: 'Montserrat', sans-serif;">Password</mat-label>
+          <mat-label style="font-weight: 500;font-family: 'Poppins', sans-serif;">Password</mat-label>
           <input type="password" matInput autocomplete="off" formControlName="password">
         </mat-form-field>
         <section class="password-infos">
@@ -17,11 +17,11 @@
             <input type="checkbox">
             <span>Remember password</span>
           </div>
-          <a href="#" style="font-weight: 500;font-family: 'Montserrat', sans-serif;">Forgot your password </a>
+          <a href="#" style="font-weight: 500;font-family: 'Poppins', sans-serif;">Forgot your password </a>
         </section>
         <br>
         <button type="submit" class="buttomancho buttomcolor" mat-raised-button color="primary"
-          [disabled]="form.invalid" style="font-weight: 700;font-family: 'Montserrat', sans-serif;">Login</button>
+          [disabled]="form.invalid" style="font-weight: 700;font-family: 'Poppins', sans-serif;">Login</button>
         <hr style="margin-top: 50px;">
         <footer>
           <span>You do not have an account? <a href="#"> Register</a></span>

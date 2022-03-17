@@ -4,7 +4,6 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { DOCUMENT } from '@angular/common';
 import { Inject } from '@angular/core';
-import { MaterialModule } from 'src/app/material/material.module';
 
 @Component({
   selector: 'app-verificacion',

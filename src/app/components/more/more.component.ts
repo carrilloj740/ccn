@@ -4,11 +4,19 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Observable } from 'rxjs';
 import {map} from 'rxjs/operators';
+import { STEPPER_GLOBAL_OPTIONS } from '@angular/cdk/stepper';
 
 @Component({
   selector: 'app-more',
   templateUrl: './more.component.html',
-  styleUrls: ['./more.component.css']
+  styleUrls: ['./more.component.css'],
+  providers: [{
+    provide: STEPPER_GLOBAL_OPTIONS, 
+    useValue: { 
+      showError: true,
+      displayDefaultIndicatorType: false 
+  }
+  }]
 })
 export class MoreComponent implements OnInit {
 

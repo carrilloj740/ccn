@@ -1,5 +1,4 @@
-<!--
-
+<!-- 
   <h1>Número de Orden</h1>
 <mat-divider></mat-divider>
 
@@ -52,46 +51,61 @@
 
 
 <mat-divider></mat-divider>
--->
+
+ -->
 
 
-
-
-  <div class="mdl-card mdl-shadow--2dp">
-
+<div class="mdl-card mdl-shadow--2dp">
   <div class="mdl-card__supporting-text">
-
+    <h2>Number of order</h2>
     <div class="mdl-stepper-horizontal-alternative">
-      <div class="mdl-stepper-step active-step step-done">
-        <div class="mdl-stepper-circle"><span></span></div>
-        <div class="mdl-stepper-title">Orden Recibida</div>
-        <div class="mdl-stepper-optional">Fecha: XX/XX/XXX</div>
-        <div class="mdl-stepper-bar-left"></div>
-        <div class="mdl-stepper-bar-right"></div>
+      <div class="mdl-stepper-bar-right"></div>
+      <div class="mdl-stepper-step active-step step-done ">
+        <div mat-raised-button class="box1 " matBadge="✔" matBadgeSize="large" matBadgeColor="warn"
+          matTooltip="Su orden ha sido ingresada">
+          <img src="../assets/img/portapapeles.png" width="70px" style="margin-left: 25px;">
+        </div>
+        <div class="mdl-stepper-title">
+          <h3>Order Received</h3>
+        </div>
+        <div class="mdl-stepper-optional">Date: XX/XX/XXX</div>
       </div>
-      <div class="mdl-stepper-step active-step editable-step">
-        <div class="mdl-stepper-circle"><span>2</span></div>
-        <div class="mdl-stepper-title">Orden Validada</div>
-        <div class="mdl-stepper-optional">Fecha: XX/XX/XXX</div>
-        <div class="mdl-stepper-bar-left"></div>
-        <div class="mdl-stepper-bar-right"></div>
-      </div>
-      <div class="mdl-stepper-step active-step">
-        <div class="mdl-stepper-circle"><span>3</span></div>
-        <div class="mdl-stepper-title">Orden en proceso</div>
-        <div class="mdl-stepper-optional">Fecha inicio de procesa: XX/XX/XXX</div>
-        <div class="mdl-stepper-optional">Tiempo estimado de proceso: 30-45 días</div>
 
-        <div class="mdl-stepper-bar-left"></div>
-        <div class="mdl-stepper-bar-right"></div>
+      <div class="mdl-stepper-step active-step step-done">
+
+        <div class="box1">
+          <img src="../assets/img/package.png" width="85px" style="margin-left: 20px;">
+        </div>
+        <div class="mdl-stepper-title">
+          <h3> Order Validated</h3>
+        </div>
+        <div class="mdl-stepper-optional">Date: XX/XX/XXX</div>
       </div>
-      <div class="mdl-stepper-step active-step">
-        <div class="mdl-stepper-circle"><span>4</span></div>
-        <div class="mdl-stepper-title">Orden Despachada</div>
-        <div class="mdl-stepper-optional">Fecha: XX/XX/XX</div>
-        <div class="mdl-stepper-bar-left"></div>
-        <div class="mdl-stepper-bar-right"></div>
+
+      <div class="mdl-stepper-step active-step step-done">
+
+        <div class="box1">
+          <img src="../assets/img/return-box.png" width="70px" style="margin-left: 30px;">
+        </div>
+        <div class="mdl-stepper-title">
+          <h3>Order in process</h3>
+        </div>
+        <div class="mdl-stepper-optional">Date: XX/XX/XXX </div>
+        <div class="mdl-stepper-optional">Estimated process time:30-45 days</div>
+        <br>
       </div>
+
+      <div class="mdl-stepper-step active-step step-done">
+
+        <div class="box1" style="align-items: center;">
+          <img src="../assets/img/truck.png" width="70px" style="margin-left: 30px;">
+        </div>
+        <div class="mdl-stepper-title">
+          <h3>Order shipped</h3>
+        </div>
+        <div class="mdl-stepper-optional">Fecha: XX/XX/XXX</div>
+      </div>
+
     </div>
 
   </div>
