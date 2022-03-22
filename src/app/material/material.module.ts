@@ -21,6 +21,7 @@ import {MatDialogModule} from '@angular/material/dialog';
 import { MatSelectCountryModule } from '@angular-material-extensions/select-country';
 import {MatBadgeModule} from '@angular/material/badge';
 import {MatTooltipModule} from '@angular/material/tooltip';
+import {CdkStepperModule} from '@angular/cdk/stepper';
 
 
 @NgModule({
@@ -47,7 +48,8 @@ import {MatTooltipModule} from '@angular/material/tooltip';
     MatDialogModule,
     MatSelectCountryModule,
     MatBadgeModule,
-    MatTooltipModule
+    MatTooltipModule,
+    CdkStepperModule
   ],
 
   exports: [
@@ -71,7 +73,8 @@ import {MatTooltipModule} from '@angular/material/tooltip';
     MatDialogModule,
     MatSelectCountryModule,
     MatBadgeModule,
-    MatTooltipModule
+    MatTooltipModule,
+    CdkStepperModule
   ]
 })
 export class MaterialModule { }

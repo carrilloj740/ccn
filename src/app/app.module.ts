@@ -13,9 +13,9 @@ import { NuevaComponent } from './components/nueva/nueva.component';
 import { SeguimientoComponent } from './components/seguimiento/seguimiento.component';
 import { LoginComponent } from './components/login/login.component';
 import { VerificacionComponent } from './components/verificacion/verificacion.component';
-import { MoreComponent } from './components/more/more.component';
 import { HttpClientModule } from '@angular/common/http';
 import { TableComponent } from './table/table.component';
+import { DetailsComponent } from './details/details.component';
 
 @NgModule({
   declarations: [
@@ -26,8 +26,8 @@ import { TableComponent } from './table/table.component';
     SeguimientoComponent,
     LoginComponent,
     VerificacionComponent,
-    MoreComponent,
     TableComponent,
+    DetailsComponent,
     
     
   ],

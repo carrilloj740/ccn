@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatTableDataSource } from '@angular/material/table';
-import { MoreComponent } from 'src/app/components/more/more.component';
+import { DetailsComponent } from 'src/app/details/details.component';
 import { AddService } from 'src/app/services/add.service';
 
 
@@ -38,7 +38,7 @@ export class SeguimientoComponent implements OnInit {
   constructor (public dialog: MatDialog, private addService: AddService) { }
 
   openDialog(): void{
-    let dialogRef = this.dialog.open(MoreComponent, {
+    let dialogRef = this.dialog.open(DetailsComponent, {
     });
 
     dialogRef.afterClosed().subscribe(result =>{

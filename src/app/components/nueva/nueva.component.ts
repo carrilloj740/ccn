@@ -55,7 +55,7 @@ export class NuevaComponent {
   }
 
   onSubmitProducto() {
-    const sku = this.formProduct.value.sku.Name + "/" + this.formProduct.value.sku.Description
+    const sku = this.formProduct.value.sku.ItemNumber + "/" + this.formProduct.value.sku.Description
     const split = sku.split("/")
     this.addService.agregarProducto(new Product(split[0],split[1],this.formProduct.value.quantity,this.formProduct.value.typeContainer,this.formProduct.value.quantityContainer,this.formProduct.value.loading,this.formProduct.value.minimumOrder,this.formProduct.value.pallets,this.formProduct.value.shipmentType), this.formHeader.value.etd);
     this.formProduct.reset();

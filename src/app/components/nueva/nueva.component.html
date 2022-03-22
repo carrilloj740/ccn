@@ -109,7 +109,7 @@
                 <mat-form-field class="ancho">
                     <label> Select Product</label>
                     <select matNativeControl name="select" required formControlName="sku">
-                        <option *ngFor="let product of productsList" [ngValue]="product">{{product.Name}} {{product.Description}}</option>
+                        <option *ngFor="let product of productsList" [ngValue]="product">{{product.ItemNumber}} {{product.Description}}</option>
                       </select>
                 </mat-form-field>
             </mat-grid-tile>
