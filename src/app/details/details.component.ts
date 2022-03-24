@@ -1,11 +1,17 @@
-import { CdkStepper } from '@angular/cdk/stepper';
+import { CdkStepper, STEPPER_GLOBAL_OPTIONS } from '@angular/cdk/stepper';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-details',
   templateUrl: './details.component.html',
   styleUrls: ['./details.component.css'],
-  providers: [{ provide: CdkStepper, useExisting: DetailsComponent }]
+  providers: [{
+    provide: STEPPER_GLOBAL_OPTIONS, 
+    useValue: { 
+        showError: true,
+        displayDefaultIndicatorType: false 
+    }
+  }]
 
 })
 export class DetailsComponent implements OnInit {

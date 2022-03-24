@@ -21,6 +21,7 @@
   min-height: 0;
   margin: 10px auto;
   
+  
 }
 
 .mdl-card__supporting-text {
@@ -92,7 +93,7 @@
 }
 
 .mdl-stepper-horizontal-alternative .mdl-stepper-step.step-done .mdl-stepper-circle:before {
-  content: "\15687";
+  content: "\15627";
 }
 
 .mdl-stepper-horizontal-alternative .mdl-stepper-step.step-done .mdl-stepper-circle *,
@@ -175,13 +176,13 @@
   color: #000;
   border-radius: 1rem;
   top: 10px;
+
+  flex-direction: column;
+
 }
 
 
 
-h2{
-  text-align: center;
-}
 
 .mat-badge-content {
   background: #2eaf6a;
@@ -191,4 +192,12 @@ h2{
 ::ng-deep .mat-step-header .mat-step-icon-selected {
   background-color:#006a3a; 
 
+}
+
+h3{
+  color: black; font-weight: 700;font-family: 'Poppins', sans-serif;
+}
+
+.mdl-stepper-optional{
+  color: black; font-weight: 600;font-family: 'Poppins', sans-serif;
 }

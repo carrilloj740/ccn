@@ -20,7 +20,8 @@ export class ApiService {
  private username = "roberto.chamorro@ccn.com.ni";
  private password = "01CNN2021";
  private auth = "Basic " + btoa(this.username + ":" + this.password)
-
+ private partyNumber = sessionStorage.getItem('partyNumber')
+ 
   constructor(private http: HttpClient) {
     console.log('Servicio http');
   }
@@ -37,5 +38,9 @@ export class ApiService {
     });
   }
 
-
+  getAccountInfo(): any{
+    return this.http.get(this.url+ "accounts/" + (this.partyNumber),{
+      headers: {Authorization: this.auth},
+    })
+  }
 }

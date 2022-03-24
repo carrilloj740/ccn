@@ -6,30 +6,40 @@ import { DOCUMENT } from '@angular/common';
 import { Inject } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 
+
 @Component({
   selector: 'app-verificacion',
   templateUrl: './verificacion.component.html',
-  styleUrls: ['./verificacion.component.css']
+  styleUrls: ['./verificacion.component.css'],
+
 })
+
 export class VerificacionComponent implements OnInit {
   form: FormGroup;
+  date : any;
 
   minDate: Date | undefined;
   maxDate: Date | undefined;
   loading: boolean | undefined;
   login= "/login"
+  formBuilder: any;
   constructor(private fb : FormBuilder,private snackBar: MatSnackBar, private router: Router,@Inject(DOCUMENT) private document: Document) { 
     
     this.form= this.fb.group({
-      Date: new FormControl()
-
+      verification: new FormControl(this.minDate),
+     
     })
-    const currentYear = new Date().getFullYear();
-    this.minDate = new Date(currentYear - 90, 0, 1);
-    this.maxDate = new Date(currentYear - 18, 11, 20);
+    
+    this.minDate = new Date(1910, 4, 12); 
+    this.maxDate = new Date(2003, 4, 22)
+
+    
   }
   
-
+  studentForm = this.fb.group({
+    sessionStDate: ['', Validators.required],
+  }); 
+  
   openSnackBar(mensaje: string){
     this.snackBar.open(mensaje,'',{
       duration: 3000
@@ -40,6 +50,8 @@ export class VerificacionComponent implements OnInit {
   validar(){
     console.log(this.form.value);
   }
+  
+  
   ngOnInit(): void {
     
   }
@@ -51,6 +63,15 @@ export class VerificacionComponent implements OnInit {
       this.router.navigate(['login']);
     }, 1500);
   }
+
+  getErrorMessage() {
+    if (this.form.hasError('required')) {
+      return 'You must enter a value';
+    }
+
+    return this.form.hasError('email') ? 'Not a valid age' : '';
+  }
+  
   
 }
 

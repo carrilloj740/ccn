@@ -51,6 +51,7 @@ export class NuevaComponent {
 
   ngOnInit(): void {
     this.getItems()
+     this.apiService.getAccountInfo().subscribe((account : any) => console.log(account)) 
 
   }
 

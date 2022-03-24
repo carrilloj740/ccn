@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { MaterialModule } from 'src/app/material/material.module';
+import { Injectable } from '@angular/core';
 
 @Component({
   selector: 'app-login',
@@ -14,7 +15,9 @@ export class LoginComponent implements OnInit {
   form: FormGroup
   loading: boolean | undefined;
 
-  constructor(private fb: FormBuilder, private _snackBar: MatSnackBar, private router: Router,) {
+  constructor(
+   
+    private fb: FormBuilder, private _snackBar: MatSnackBar, private router: Router,) {
     this.form = this.fb.group({
       usuario: ['', Validators.required],
       password: ['', Validators.required],
@@ -26,6 +29,7 @@ export class LoginComponent implements OnInit {
     console.log(this.form.value);
     const usuario = this.form.value.usuario;
     const password = this.form.value.password;
+
     if (usuario == 'admin' && password == 'admin') {
       //Redireccionamos al dashboard
       this.fakeLoading();
@@ -52,7 +56,7 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    
+    sessionStorage.setItem("partyNumber","1Yp")
 
   }
 

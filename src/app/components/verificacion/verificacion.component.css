@@ -52,3 +52,15 @@
     color: #006a3a;
 }
 
+.diver {
+    display: flex;
+  }
+  .input {
+    border: none;
+    background: none;
+    padding: 0;
+    outline: none;
+    font: inherit;
+    text-align: center;
+    color: currentColor;
+  }
