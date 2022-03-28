@@ -8,8 +8,6 @@ import { InicioComponent } from './inicio.component';
 
 const routes: Routes = [
 {path:'', component: InicioComponent, children:[
-  
-
 ]},
 ];
 

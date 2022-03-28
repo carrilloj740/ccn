@@ -7,7 +7,7 @@ import { SeguimientoComponent } from './components/seguimiento/seguimiento.compo
 import { VerificacionComponent } from './components/verificacion/verificacion.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'verificacion', pathMatch: 'full'},
+  {path: '', redirectTo: 'verificacion', pathMatch: 'full'},
   {path:'verificacion', component: VerificacionComponent},
   {path:'login', component: LoginComponent },
   {path: 'inicio', component: InicioComponent},

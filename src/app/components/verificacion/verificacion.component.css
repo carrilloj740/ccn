@@ -13,31 +13,19 @@
 .verificacion{
     width: 100%;
     max-width: 500px;
-    height: 250px;
+    height: 30%;
     text-align: center;
-    
 
 }
 
 .buttomancho{
     width: 35%;
     background-color: #006a3a;
-    left: 33%;
 }
 
 
 
 
-.ancho{
-    width: 5px;
-}
-
-.derecha{
-    left: 30%;
-    width: 30%;
-    background-color: #006a3a;
-    color: #ffff;
- }
 
 
  .card{
@@ -64,3 +52,8 @@
     text-align: center;
     color: currentColor;
   }
+
+.inputverification{
+    width: 25%;
+    margin-left: 5%;
+}

@@ -15,30 +15,21 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 })
 
 export class VerificacionComponent implements OnInit {
-  form: FormGroup;
-  date : any;
 
-  minDate: Date | undefined;
-  maxDate: Date | undefined;
+  form: FormGroup;
   loading: boolean | undefined;
   login= "/login"
   formBuilder: any;
   constructor(private fb : FormBuilder,private snackBar: MatSnackBar, private router: Router,@Inject(DOCUMENT) private document: Document) { 
     
-    this.form= this.fb.group({
-      verification: new FormControl(this.minDate),
-     
+    this.form = new FormGroup({
+      day: new FormControl(),
+      month: new FormControl(),
+      year: new FormControl(),
     })
-    
-    this.minDate = new Date(1910, 4, 12); 
-    this.maxDate = new Date(2003, 4, 22)
-
     
   }
   
-  studentForm = this.fb.group({
-    sessionStDate: ['', Validators.required],
-  }); 
   
   openSnackBar(mensaje: string){
     this.snackBar.open(mensaje,'',{
