@@ -1,4 +1,4 @@
-.body{
+.body {
     display: flex;
     justify-content: center;
     height: 100%;
@@ -10,40 +10,39 @@
 }
 
 
-.verificacion{
+.verificacion {
     width: 100%;
-    max-width: 500px;
-    height: 30%;
+    max-width: 100%;
+    height: 40%;
     text-align: center;
-
 }
 
-.buttomancho{
+.buttomancho {
     width: 35%;
     background-color: #006a3a;
+    margin-top: 5%;
+}
+
+        
+.card {
+    box-shadow: 0px 2px 4px 2px rgba(0, 0, 0, 0.2);
+    width: 30%;
+    height: 35%;
+
 }
 
 
 
-
-
-
- .card{
-    box-shadow: 0px 2px 4px 2px rgba(0, 0, 0, 0.2);
-
- }
-
-
-
- button:hover {
+button:hover {
     background: #fff;
     color: #006a3a;
 }
 
 .diver {
     display: flex;
-  }
-  .input {
+}
+
+.input {
     border: none;
     background: none;
     padding: 0;
@@ -51,9 +50,9 @@
     font: inherit;
     text-align: center;
     color: currentColor;
-  }
+}
 
-.inputverification{
+.inputverification {
     width: 25%;
     margin-left: 5%;
 }

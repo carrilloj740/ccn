@@ -32,12 +32,7 @@ export class ApiService {
     });
   }
 
-  getCountrys(): any {
-    return this.http.get(this.url + "countrys", {
-      headers: { Authorization: this.auth, },
-    });
-  }
-
+ 
   getAccountInfo(): any{
     return this.http.get(this.url+ "accounts/" + (this.partyNumber),{
       headers: {Authorization: this.auth},

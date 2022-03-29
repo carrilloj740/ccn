@@ -1,62 +1,63 @@
- <div class="mdl-card mdl-shadow-2dp">
+<div class="mdl-card mdl-shadow-2dp">
   <div class="mdl-card-supporting-text" style="text-align: center;">
-   
+
     <h1 style="color: black; font-weight: 700;font-family: 'Poppins', sans-serif;">Number of Order</h1>
 
-    <div class="mdl-stepper-horizontal-alternative" >
+    <div class="mdl-stepper-horizontal-alternative" #stepper>
 
- 
-          <div class="mdl-stepper-step active-step step-done ">
-            <div mat-raised-button class="box1 " matBadge="✔" matBadgeSize="large" matBadgeColor="warn"
-              matTooltip="Your order has been entered">
-              <img src="../assets/img/order.png" width="100%">
-            </div>
-            <div class="mdl-stepper-title">
-              <h3>Order Received</h3>
-            </div>
-            <div class="mdl-stepper-optional">Date: XX/XX/XXX</div>
-          </div>
 
-          <span>&ndash; &ndash; &ndash; &ndash;</span>
+      <div class="mdl-stepper-step active-step step-done ">
+        <div mat-raised-button class="box1 " matBadge="✔" matBadgeSize="large" matBadgeColor="warn"
+          matTooltip="Your order has been entered">
+          <img src="../assets/img/order.png" width="100%">
+        </div>
+        <div class="mdl-stepper-title">
+          <h3>Order Received</h3>
+        </div>
+        <div class="mdl-stepper-optional">Date: XX/XX/XXX</div>
+      </div>
 
-          <div class="mdl-stepper-step active-step step-done">
+      <span>&ndash;</span>
 
-            <div class="box1"matBadge="✔" matBadgeSize="large"  matTooltip="Your order has been validated" >
-              <img src="../assets/img/package.png" width="100%" >
-            </div>
-            <div class="mdl-stepper-title">
-              <h3  > Order Validated</h3>
-            </div>
-            <div class="mdl-stepper-optional">Date: XX/XX/XXX</div>
-          </div>
+      <div class="mdl-stepper-step active-step step-done">
 
-          <span>&ndash; &ndash; &ndash; &ndash;</span>
+        <div class="box1" matBadge="✔" matBadgeSize="large" matTooltip="Your order has been validated">
+          <img src="../assets/img/package.png" width="100%">
+        </div>
+        <div class="mdl-stepper-title">
+          <h3> Order Validated</h3>
+        </div>
+        <div class="mdl-stepper-optional">Date: XX/XX/XXX</div>
+      </div>
 
-        
-          <div class="mdl-stepper-step active-step step-done">
-            <div class="box1"  matBadge="✔" matBadgeSize="large" matTooltip="Your order is in process">
-              <img src="../assets/img/return-box.png" width="100%" >
-            </div>
-            <div class="mdl-stepper-title">
-              <h3>Order in process</h3>
-            </div>
-            <div class="mdl-stepper-optional">Date: XX/XX/XXX </div>
-            <div class="mdl-stepper-optional">Estimated process time: 30-45 days</div>
-            <br>
-          </div>
-     
-          <span>&ndash; &ndash; &ndash; &ndash;</span>
+      <span>&ndash;</span>
 
-          <div class="mdl-stepper-step active-step step-done">
-            <div class="box1"  matBadge="✔" matBadgeSize="large"  style="align-items: center;" matTooltip="Your order has been shipped">
-              <img src="../assets/img/truck.png" width="100%" >
-            </div>
-            <div class="mdl-stepper-title">
-              <h3>Order shipped</h3>
-            </div>
-            <div class="mdl-stepper-optional">Date: XX/XX/XXX</div>
-          </div>
-   
+
+      <div class="mdl-stepper-step active-step step-done">
+        <div class="box1" matBadge="✔" matBadgeSize="large" matTooltip="Your order is in process">
+          <img src="../assets/img/return-box.png" width="100%">
+        </div>
+        <div class="mdl-stepper-title">
+          <h3>Order in process</h3>
+        </div>
+        <div class="mdl-stepper-optional">Date: XX/XX/XXX </div>
+        <div class="mdl-stepper-optional">Estimated process time: 30-45 days</div>
+        <br>
+      </div>
+
+      <span>&ndash;</span>
+
+      <div class="mdl-stepper-step active-step step-done">
+        <div class="box1" matBadge="✔" matBadgeSize="large" style="align-items: center;"
+          matTooltip="Your order has been shipped">
+          <img src="../assets/img/truck.png" width="100%">
+        </div>
+        <div class="mdl-stepper-title">
+          <h3>Order shipped</h3>
+        </div>
+        <div class="mdl-stepper-optional">Date: XX/XX/XXX</div>
+      </div>
+
 
     </div>
 
@@ -64,7 +65,7 @@
 
 </div>
 
- <!-- <mat-horizontal-stepper linear>
+<!-- <mat-horizontal-stepper linear>
   <mat-step label="Step 1" [completed]="true"  state="registerIcon">
     <ng-template matStepLabel matStepperIcon="registerIcon">
     

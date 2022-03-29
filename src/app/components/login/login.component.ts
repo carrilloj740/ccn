@@ -11,7 +11,8 @@ import { Injectable } from '@angular/core';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-
+  
+  hide = true;
   form: FormGroup
   loading: boolean | undefined;
 

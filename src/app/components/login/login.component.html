@@ -8,10 +8,17 @@
           <mat-label>User</mat-label>
           <input type="text" matInput autocomplete="off" formControlName="usuario">
         </mat-form-field>
+
+    
+
         <mat-form-field class="ancho">
-          <mat-label style="font-weight: 500;font-family: 'Poppins', sans-serif;">Password</mat-label>
-          <input type="password" matInput autocomplete="off" formControlName="password">
+          <mat-label>Enter your password</mat-label>
+          <input matInput [type]="hide ? 'password' : 'text'" formControlName="password">
+          <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+            <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+          </button>
         </mat-form-field>
+
         <section class="password-infos">
           <div>
             <input type="checkbox">
@@ -19,9 +26,10 @@
           </div>
           <a target="_blank" href="https://fa-euny-test-saasfaprod1.fa.ocs.oraclecloud.com/hcmCore/faces/ForgotPassword?backUrl=https%3A%2F%2Ffa-euny-test-saasfaprod1.fa.ocs.oraclecloud.com%2FhcmUI%2FadfAuthentication%3Flevel%3DFORM%26success_url%3D%252FhcmUI%252FadfAuthentication" style="font-weight: 500;font-family: 'Poppins', sans-serif;">Forgot your password </a>
         </section>
+
         <br>
         <button type="submit" class="buttomancho buttomcolor" mat-raised-button color="primary"
-          routerLink="/login" style="font-weight: 700;font-family: 'Poppins', sans-serif;">Login</button>
+          routerLink="/login" style="font-weight: 700;font-family: 'Poppins', sans-serif;" [disabled]="form.invalid">Login</button>
         <hr style="margin-top: 50px;">
         <footer>
           <span>You do not have an account? <a href="#"> Register</a></span>

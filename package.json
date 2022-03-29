@@ -25,6 +25,7 @@
     "angular-dob": "^0.2.1",
     "cleave.js": "^1.6.0",
     "moment": "^2.29.1",
+    "ngx-age-validator": "^0.1.0",
     "rxjs": "~6.6.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.11.4"
