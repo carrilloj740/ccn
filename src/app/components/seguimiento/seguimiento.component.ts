@@ -30,26 +30,23 @@ const ELEMENT_DATA: PeriodicElement[] = [
 })
 
 
-
 export class SeguimientoComponent implements OnInit {
   displayedColumns: string[] = ['vista', 'order_Number', 'sold_Number', 'sold_to', 'etd_solicitado', 'ETA_solicitada'];
   dataSource = new MatTableDataSource(ELEMENT_DATA);
 
-  constructor (public dialog: MatDialog, private addService: AddService) { }
+  constructor(public dialog: MatDialog, private addService: AddService) { }
 
-  openDialog(): void{
+  openDialog(): void {
     let dialogRef = this.dialog.open(DetailsComponent, {
     });
 
-    dialogRef.afterClosed().subscribe(result =>{
+    dialogRef.afterClosed().subscribe(result => {
       console.log('Thedialog was closed');
     });
   }
 
   ngOnInit(): void {
   }
-
- 
 
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;

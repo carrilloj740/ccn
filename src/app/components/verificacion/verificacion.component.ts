@@ -17,7 +17,7 @@ import {NgxAgeValidator} from "ngx-age-validator";
 
 export class VerificacionComponent implements OnInit {
   title = 'ngx-age-validator-demo';
- 
+  buttonDisabled: boolean = true;
   ageFormControl = new FormControl()
   form: FormGroup;
   loading: boolean | undefined;
