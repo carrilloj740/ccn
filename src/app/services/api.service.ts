@@ -38,4 +38,13 @@ export class ApiService {
       headers: {Authorization: this.auth},
     })
   }
+
+  getShipTo(): any{
+    return this.http.get(this.url + "", {
+      headers: { Authorization: this.auth, },
+    });
+  }
+
+
+
 }

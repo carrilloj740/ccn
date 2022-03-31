@@ -16,6 +16,7 @@ export class NuevaComponent {
   formHeader: FormGroup;
   formProduct: FormGroup;
   productsList: any = []
+  
   constructor(private addService: AddService, private apiService: ApiService) {
 
     this.formHeader = new FormGroup({
