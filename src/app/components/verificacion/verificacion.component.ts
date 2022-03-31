@@ -52,9 +52,12 @@ export class VerificacionComponent implements OnInit {
  
       const controlErrors: ValidationErrors | null = this.ageFormControl.errors;
       if (controlErrors != null) {
+        this.buttonDisabled = true
         Object.keys(controlErrors).forEach(keyError => {
           console.log(' keyError: ' + keyError + ', err value: ', controlErrors[keyError]);
         });
+      } else {
+        this.buttonDisabled = false
       }
  
     })

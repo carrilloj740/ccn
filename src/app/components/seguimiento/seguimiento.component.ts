@@ -18,6 +18,7 @@ export interface PeriodicElement {
 const ELEMENT_DATA: PeriodicElement[] = [
   { vista: 1, order_Number: 2345456, sold_Number: 6546435, sold_to: 'Wilmer Barrios', etd_solicitado: '2021-12-11', ETA_solicitada: '2022-03-12' },
   { vista: 1, order_Number: 2564350, sold_Number: 2343445, sold_to: 'Ariel Leivi', etd_solicitado: '2021-03-11', ETA_solicitada: '2022-10-10' },
+  { vista: 1, order_Number: 2564350, sold_Number: 2343445, sold_to: 'Ariel Leivi', etd_solicitado: '2021-03-11', ETA_solicitada: '2022-10-10' },
 
 ];
 
