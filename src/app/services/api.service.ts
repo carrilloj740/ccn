@@ -32,19 +32,11 @@ export class ApiService {
     });
   }
 
- 
+
   getAccountInfo(): any{
     return this.http.get(this.url+ "accounts/" + (this.partyNumber),{
       headers: {Authorization: this.auth},
     })
   }
-
-  getShipTo(): any{
-    return this.http.get(this.url + "", {
-      headers: { Authorization: this.auth, },
-    });
-  }
-
-
 
 }

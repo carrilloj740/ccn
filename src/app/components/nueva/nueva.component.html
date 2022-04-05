@@ -85,17 +85,6 @@
                 </mat-form-field>
             </mat-grid-tile>
 
-
-
-            <mat-grid-tile [colspan]="1" [rowspan]="1">
-                <mat-form-field class="ancho">
-                    <label>Country</label>
-                    <select matNativeControl  formControlName="country">
-                        <option value="truck">Opcion 1</option>
-                        <option value="naval">Opcion 2</option>
-                    </select>
-                </mat-form-field>
-            </mat-grid-tile>
         </mat-grid-list>
     </form>
         <!-- Seleccion de producto-->
@@ -178,7 +167,7 @@
                 </mat-form-field>
             </mat-grid-tile>
 
-            <button mat-raised-button type="submit" value="Agregar" [disabled]="formProduct.invalid">Add</button>
+            <button mat-raised-button type="submit" value="Agregar"  [disabled]="formProduct.invalid">Add</button>
 
         </mat-grid-list>
         <mat-divider></mat-divider>
