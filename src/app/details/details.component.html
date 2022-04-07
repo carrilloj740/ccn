@@ -1,111 +1,67 @@
-<div class="mdl-card mdl-shadow-2dp">
-  <div class="mdl-card-supporting-text" style="text-align: center;">
+ <div class="mdl-card mdl-shadow-2dp">
+  <div class="mdl-card-supporting-text" style="text-align: center;" *ngFor="let tile of tiles">
 
-    <h1 style="color: black; font-weight: 700;font-family: 'Poppins', sans-serif;">Number of Order</h1>
+
+    <h1>Number of Order</h1>
+    <h2>{{tile.orderNbr}}</h2>
 
     <div class="mdl-stepper-horizontal-alternative" #stepper>
-
 
       <div class="mdl-stepper-step active-step step-done ">
         <div mat-raised-button class="box1 " matBadge="✔" matBadgeSize="large" matBadgeColor="warn"
           matTooltip="Your order has been entered">
           <img src="../assets/img/order.png" width="100%">
+
         </div>
         <div class="mdl-stepper-title">
           <h3>Order Received</h3>
         </div>
-        <div class="mdl-stepper-optional">Date: XX/XX/XXX</div>
+        <div class="mdl-stepper-optional">Date: {{tile.received}}</div>
       </div>
 
       <span>&ndash;</span>
 
-      <div class="mdl-stepper-step active-step step-done">
-
-        <div class="box1" matBadge="✔" matBadgeSize="large" matTooltip="Your order has been validated">
+      <div class="mdl-stepper-step active-step step-done opacity">
+        <div class="box1 " matBadge="✔" matBadgeSize="large" matTooltip="Your order has been validated">
           <img src="../assets/img/package.png" width="100%">
         </div>
         <div class="mdl-stepper-title">
           <h3> Order Validated</h3>
         </div>
-        <div class="mdl-stepper-optional">Date: XX/XX/XXX</div>
+        <div class="mdl-stepper-optional">Date: {{tile.validate}}</div>
       </div>
 
       <span>&ndash;</span>
 
 
-      <div class="mdl-stepper-step active-step step-done">
-        <div class="box1" matBadge="✔" matBadgeSize="large" matTooltip="Your order is in process">
+      <div class="mdl-stepper-step active-step step-done opacity">
+        <div class="box1" matTooltip="Your order is in process">
           <img src="../assets/img/return-box.png" width="100%">
         </div>
         <div class="mdl-stepper-title">
           <h3>Order in process</h3>
         </div>
-        <div class="mdl-stepper-optional">Date: XX/XX/XXX </div>
+        <div class="mdl-stepper-optional">Date: {{tile.process}}</div>
         <div class="mdl-stepper-optional">Estimated process time: 30-45 days</div>
         <br>
       </div>
 
+
       <span>&ndash;</span>
 
-      <div class="mdl-stepper-step active-step step-done">
-        <div class="box1" matBadge="✔" matBadgeSize="large" style="align-items: center;"
-          matTooltip="Your order has been shipped">
+
+      <div class="mdl-stepper-step active-step step-done opacity">
+        <div class="box1" style="align-items: center;" matTooltip="Your order has been shipped">
           <img src="../assets/img/truck.png" width="100%">
         </div>
         <div class="mdl-stepper-title">
           <h3>Order shipped</h3>
         </div>
-        <div class="mdl-stepper-optional">Date: XX/XX/XXX</div>
+        <div class="mdl-stepper-optional">Date: {{tile.shipped}}</div>
       </div>
-
 
     </div>
 
   </div>
 
-</div>
-
-<!-- <mat-horizontal-stepper linear>
-  <mat-step label="Step 1" [completed]="true"  state="registerIcon">
-    <ng-template matStepLabel matStepperIcon="registerIcon">
-    
-    </ng-template>
-    <div>
-    <h2 style="margin-top: 20px;">Order Received</h2>
-    </div>
-  </mat-step>
-
-  <mat-step state="registerIcon">
-    <ng-template matStepLabel matStepperIcon="registerIcon">
-
-    </ng-template>
-    <div>
-      <h2>Order Validated</h2>
-    </div>
-  </mat-step>
-
-  <mat-step state="return-box">
-    <ng-template matStepLabel matStepperIcon="return-box">
-
-    </ng-template>
-    <h2>Order in process</h2>
-  </mat-step>
-  
-
-  <mat-step state="registerIcon">
-    <ng-template matStepLabel matStepperIcon="registerIcon">
-      
-    </ng-template>
-    <h2>Order Shipped</h2>
-  </mat-step>
-
-
-  <ng-template matStepperIcon="registerIcon">
-    <img src="https://codeible.com/assets/images/icons/codible_256.png" width="50px">
-</ng-template>
-
-<ng-template matStepperIcon="return-box">
-  <img style="border-radius: 1vh;" src="../assets/img/orderaprob.png" width="80px">
-</ng-template>
-
-</mat-horizontal-stepper>  -->
+</div> 

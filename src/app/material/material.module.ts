@@ -22,6 +22,7 @@ import { MatSelectCountryModule } from '@angular-material-extensions/select-coun
 import {MatBadgeModule} from '@angular/material/badge';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import {CdkStepperModule} from '@angular/cdk/stepper';
+import {MatProgressBarModule} from '@angular/material/progress-bar';
 
 
 @NgModule({
@@ -49,7 +50,8 @@ import {CdkStepperModule} from '@angular/cdk/stepper';
     MatSelectCountryModule,
     MatBadgeModule,
     MatTooltipModule,
-    CdkStepperModule
+    CdkStepperModule,
+    MatProgressBarModule
   ],
 
   exports: [
@@ -74,7 +76,8 @@ import {CdkStepperModule} from '@angular/cdk/stepper';
     MatSelectCountryModule,
     MatBadgeModule,
     MatTooltipModule,
-    CdkStepperModule
+    CdkStepperModule,
+    MatProgressBarModule
   ]
 })
 export class MaterialModule { }

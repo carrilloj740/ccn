@@ -1,18 +1,4 @@
-/* 
-.example-stepper {
-    margin-top: 8px;
 
-  }
-  
-  .mat-form-field {
-    margin-top: 16px;
-  }
-
-
-  ::ng-deep .mat-step-header .mat-step-icon-selected {
-    background-color: #006a3a; 
- }
-*/
 
 
   .mdl-card {
@@ -23,9 +9,7 @@
     
   }
   
-
-
-
+ 
 
 .mdl-card__supporting-text {
   width: 100%;
@@ -42,17 +26,19 @@
 .mdl-stepper-horizontal-alternative .mdl-stepper-step {
   display: table-cell;
   position: relative;
+
 }
 
 /* .mdl-stepper-horizontal-alternative .mdl-stepper-step:hover,
 .mdl-stepper-horizontal-alternative .mdl-stepper-step:active {
   background-color: rgba(0, 0, 0, .06);
-} */
+} 
 
+/* Al darle clic
 .mdl-stepper-horizontal-alternative .mdl-stepper-step:active {
   border-radius: 10% / 75%;
   background-color: #BDBDBD;
-}
+} */
 
 .mdl-stepper-horizontal-alternative .mdl-stepper-step:first-child:active {
   border-top-left-radius: 0;
@@ -65,7 +51,7 @@
 }
 
 .mdl-stepper-horizontal-alternative .mdl-stepper-step:hover .mdl-stepper-circle {
-  background-color: #757575;
+  background-color: #ff0000;
 
 
 }
@@ -91,7 +77,7 @@
 }
 
 .mdl-stepper-horizontal-alternative .mdl-stepper-step.active-step .mdl-stepper-circle {
-  background-color: #006a3a;
+  background-color: #727272;
 
 }
 
@@ -117,6 +103,7 @@
 
 .mdl-stepper-horizontal-alternative .mdl-stepper-step.editable-step .mdl-stepper-circle:before {
   content: "\e88a";
+
 }
 
 .mdl-stepper-horizontal-alternative .mdl-stepper-step .mdl-stepper-title {
@@ -170,19 +157,31 @@
   margin-right: 20px;
 }
 
-.box1 {
+.box1{
   width: 100px;
   margin: 10px 50px;
   padding: 20px;
   font-size: italic;
-  background-color: #006a3a;
+  background-color: #006a3a ;
   color: #000;
   border-radius: 1rem;
   top: 10px;
   flex-direction: column;
+  
 }
 
-
+.box1::after{
+  width: 100px;
+  margin: 10px 50px;
+  padding: 20px;
+  font-size: italic;
+  background-color: #555555;
+  color: #000;
+  border-radius: 1rem;
+  top: 10px;
+  flex-direction: column;
+  
+}
 
 
 .mat-badge-content {
@@ -195,7 +194,7 @@
 
 }
 
-h3{
+h1{
   color: black; font-weight: 700;font-family: 'Poppins', sans-serif;
 }
 
@@ -203,4 +202,20 @@ h3{
   color: black; font-weight: 600;font-family: 'Poppins', sans-serif;
 }
 
-    
+h2{
+  color: black; font-weight: 600;font-family: 'Poppins', sans-serif;
+}
+
+
+
+.opacity  {
+  filter:alpha(opacity=50);
+  -moz-opacity: 0.5;
+  opacity: 0.5;
+}
+
+.opacity:hover {
+filter:alpha(opacity=100);
+-moz-opacity: 1.0;
+opacity: 1.0;
+}

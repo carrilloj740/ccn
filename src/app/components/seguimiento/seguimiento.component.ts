@@ -7,6 +7,9 @@ import { AddService } from 'src/app/services/add.service';
 import { Router } from '@angular/router';
 import { Location } from '@angular/common';
 
+
+
+
 export interface PeriodicElement {
   vista: number,
   order_Number: number,
@@ -40,7 +43,7 @@ export class SeguimientoComponent implements OnInit {
 
   constructor(public dialog: MatDialog, private addService: AddService, public _router: Router, public _location: Location) { }
 
-
+ 
 
   openDialog(): void {
     let dialogRef = this.dialog.open(DetailsComponent, {
