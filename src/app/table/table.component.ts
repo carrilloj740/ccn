@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { AddService, Orden } from '../services/add.service';
 import { Product } from '../components/nueva/Product';
+import { MatTableDataSource } from '@angular/material/table';
+
 
 
 const ordenList: Orden[] = [
@@ -22,7 +24,6 @@ export class TableComponent implements OnInit {
 
   displayedColumns: string[] = ['sku', 'description', 'quantity', 'requestEtd', 'typeContainer', 'quantityContainer' ];
   dataSource = ordenList;
-
 
   constructor(private addService: AddService) { }
 

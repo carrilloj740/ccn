@@ -19,7 +19,7 @@ export class ApiService {
 
  private username = "roberto.chamorro@ccn.com.ni";
  private password = "01CNN2021";
- private auth = "Basic" + btoa(this.username + ":" + this.password)
+ private auth = "Basic " + btoa(this.username + ":" + this.password)
  private partyNumber = sessionStorage.getItem('partyNumber')
  
   constructor(private http: HttpClient) {

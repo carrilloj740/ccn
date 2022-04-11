@@ -17,14 +17,18 @@ export interface PeriodicElement {
   sold_to: string,
   etd_solicitado: string,
   ETA_solicitada: string,
-  icon: string
-
+  icon: string,
+  received:string,
+  validate:string,
+  process:string,
+  shipped:string,
+  estado:string,
 }
 
 const ELEMENT_DATA: PeriodicElement[] = [
-  { vista: 1, order_Number: 2345456, sold_Number: 6546435, sold_to: 'Wilmer Barrios', etd_solicitado: '2021-12-11', ETA_solicitada: '2022-03-12', icon: 'aca' },
-  { vista: 1, order_Number: 2564350, sold_Number: 2343445, sold_to: 'Ariel Leivi', etd_solicitado: '2021-03-11', ETA_solicitada: '2022-10-10', icon: 'aca' },
-  { vista: 1, order_Number: 3223132, sold_Number: 2343445, sold_to: 'Jose Carrillo', etd_solicitado: '2021-05-17', ETA_solicitada: '2022-12-11', icon: 'aca' },
+  { vista: 1, order_Number: 2345456, sold_Number: 6546435, sold_to: 'Wilmer Barrios', etd_solicitado: '2021-12-11', ETA_solicitada: '2022-03-12', icon: 'aca', received: ' 16-05-22', validate: '25-07-22', process: '17-07-22', shipped: '01-05-22', estado:'validate'},
+  { vista: 1, order_Number: 2564350, sold_Number: 2343445, sold_to: 'Ariel Leivi', etd_solicitado: '2021-03-11', ETA_solicitada: '2022-10-10', icon: 'aca', received: ' 02-12-22', validate: '15-08-22', process: '07-07-22', shipped: '22-05-22', estado:'validate' },
+  { vista: 1, order_Number: 3223132, sold_Number: 2343445, sold_to: 'Jose Carrillo', etd_solicitado: '2021-05-17', ETA_solicitada: '2022-12-11', icon: 'aca', received: ' 30-08-22', validate: '05-03-22', process: '10-07-22', shipped: '30-011-22', estado:'validate' },
 
 ];
 
@@ -45,8 +49,11 @@ export class SeguimientoComponent implements OnInit {
 
  
 
-  openDialog(): void {
+  openDialog(element:any): void {
+    console.log(element)
     let dialogRef = this.dialog.open(DetailsComponent, {
+
+      data: {orden: element }
     });
 
     dialogRef.afterClosed().subscribe(result => {

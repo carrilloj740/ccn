@@ -1,4 +1,4 @@
-
+/* 
 table td {
   width: 10%;
   text-align: center;
@@ -43,4 +43,9 @@ button:hover {
 
 h1{
   margin-right: 50px;
+} */
+
+
+table {
+  width: 100%;
 }

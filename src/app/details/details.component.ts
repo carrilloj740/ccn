@@ -1,13 +1,13 @@
 import { CdkStepper, STEPPER_GLOBAL_OPTIONS } from '@angular/cdk/stepper';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
+import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 export interface tracking {
   received: string;
   validate: string;
   process: string;
   shipped: string;
-  orderNbr:number;
-
+  estado: string;
 }
 
 
@@ -30,21 +30,35 @@ export interface tracking {
 
 export class DetailsComponent implements OnInit {
 
-
-  tiles: tracking[] = [
-    { received: ' 12-05-22', validate: '25-05-22', process: '27-07-22', shipped: '30-05-22', orderNbr: 32231322022,},
-  ];
-
-  myVar = false
+  ordenNumero: number = 132;
+  estadoReceived: string = '';
+  process: string = '';
+  validate: string = '';
+  received: string = '';
+  shipped: string = '';
+  tile = {} as tracking
 
   selectedIndex: number | undefined;
   onClick(index: number): void {
     this.selectedIndex = index;
 
   }
-  constructor() { }
+
+  constructor(@Inject(MAT_DIALOG_DATA) public data: { orden: any }) {
+
+    this.tile['received'] = data.orden.received
+    console.info(data)
+    this.received = data.orden.received
+    this.process = data.orden.process
+    this.validate = data.orden.validate
+    this.ordenNumero = data.orden.order_Number
+    this.shipped = data.orden.shipped
+    
+    if (this.tile.estado == 'validate') this.estadoReceived = '✔';
+  }
 
   ngOnInit(): void {
+
   }
 
 }
