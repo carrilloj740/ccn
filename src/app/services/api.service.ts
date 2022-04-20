@@ -21,7 +21,7 @@ export class ApiService {
  private password = "Anik2580";
  private auth = "Basic " + btoa(this.username + ":" + this.password)
  private partyNumber = sessionStorage.getItem('partyNumber')
- 
+
   constructor(private http: HttpClient) {
     console.log('Servicio http');
   }
@@ -38,6 +38,8 @@ export class ApiService {
       headers: { 'Authorization': this.auth, 'Content-Type': "application/vnd.oracle.adf.resourcecollection+json"},
     })
   }
+
+  
 
   getShoppingCart(): any {
     return this.http.get(this.url + "__ORACO__ShoppingCart_c", {

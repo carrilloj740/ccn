@@ -58,7 +58,6 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
     sessionStorage.setItem("partyNumber","1Yp")
-    
   }
 
 

@@ -18,7 +18,7 @@ export class NuevaComponent {
   formHeader: FormGroup;
   formProduct: FormGroup;
   productsList: any = []
-
+  
   constructor(private fb: FormBuilder, private addService: AddService, private apiService: ApiService, private tableComponent: TableComponent,) {
 
     this.formHeader = new FormGroup({
@@ -54,7 +54,6 @@ export class NuevaComponent {
   ngOnInit(): void {
     // this.getItems()
     this.getItemPrices()
-
   }
 
   onSubmitProducto() {
@@ -70,6 +69,7 @@ export class NuevaComponent {
     console.log(this.productsList)
   }
 
+ 
   getItemPrices() {
     this.apiService.getAccountInfo().subscribe((account: any) => {
       console.log(account)
