@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
 import { Product } from '../components/nueva/Product';
+import { TableComponent } from '../table/table.component';
 
 
 export interface Orden{
@@ -10,7 +11,7 @@ export interface Orden{
   quantity: any;
   typeContainer: any;
   quantityContainer: any;
-
+ 
 }
 @Injectable({
   providedIn: 'root'
@@ -33,7 +34,7 @@ export class AddService {
     producto["etd"] = etd
     this.productos.push(producto);
     this.productos$.next(this.productos);
-
+    
   }
 
    getProductos(): Observable<Product[]>{

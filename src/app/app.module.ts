@@ -29,7 +29,6 @@ import { DetailsComponent } from './details/details.component';
     TableComponent,
     DetailsComponent,
     
-    
   ],
   imports: [
     BrowserModule,
@@ -41,7 +40,7 @@ import { DetailsComponent } from './details/details.component';
  
   ],
   providers: [
-
+  TableComponent
   ],
   bootstrap: [AppComponent]
 })

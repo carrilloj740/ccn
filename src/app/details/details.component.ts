@@ -46,8 +46,6 @@ export class DetailsComponent implements OnInit {
 
   constructor(@Inject(MAT_DIALOG_DATA) public data: { orden: any }) {
 
-    this.tile['received'] = data.orden.received
-    console.info(data)
     this.received = data.orden.received
     this.process = data.orden.process
     this.validate = data.orden.validate

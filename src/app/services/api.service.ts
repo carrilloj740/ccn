@@ -17,8 +17,8 @@ export class ApiService {
 
   private url = "https://fa-euny-test-saasfaprod1.fa.ocs.oraclecloud.com/crmRestApi/resources/11.13.18.05/"; // URL to web api
 
- private username = "roberto.chamorro@ccn.com.ni";
- private password = "01CNN2021";
+ private username = "jorge.argibay@serkes1.com";
+ private password = "Anik2580";
  private auth = "Basic " + btoa(this.username + ":" + this.password)
  private partyNumber = sessionStorage.getItem('partyNumber')
  
@@ -50,4 +50,16 @@ export class ApiService {
       headers: { Authorization: this.auth, },
     });
   }
+
+  getPrice(priceBook : number): any {
+    return this.http.get(this.url + "priceBookHeaders/" + priceBook +"/child/PriceBookItem", {
+      headers: { 'Authorization': this.auth, 'Content-Type': "application/vnd.oracle.adf.resourcecollection+json"},
+    });
+  }
+  getPriceList(priceBook: number): any {
+    return this.http.get(this.url + "priceBookHeaders/" + priceBook , {
+      headers: { 'Authorization': this.auth, 'Content-Type': "application/vnd.oracle.adf.resourcecollection+json"},
+    });
+  }
+
 }

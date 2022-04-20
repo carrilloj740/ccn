@@ -50,6 +50,16 @@ h3 {
 }
 
 .picker {
-    background: #006a3a;
+    background: var(--primary);
     color: #ffffff;
 }
+
+ ::ng-deep .mat-datepicker-toggle{
+    color: var(--primary);
+ }
+ 
+ ::ng-deep .mat-calendar-body-selected {
+    background-color: var(--primary);
+    color: #fff;
+}
+

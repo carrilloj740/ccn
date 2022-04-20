@@ -6,6 +6,8 @@ import { Router } from '@angular/router';
 import { OrdenIn } from 'src/app/interfaces/ordenIn';
 import { Product } from './Product';
 import { Order } from './Order';
+import { TableComponent } from 'src/app/table/table.component';
+
 @Component({
   selector: 'app-nueva',
   templateUrl: './nueva.component.html',
@@ -16,11 +18,10 @@ export class NuevaComponent {
   formHeader: FormGroup;
   formProduct: FormGroup;
   productsList: any = []
-  
-  constructor(private addService: AddService, private apiService: ApiService) {
+
+  constructor(private fb: FormBuilder, private addService: AddService, private apiService: ApiService, private tableComponent: TableComponent,) {
 
     this.formHeader = new FormGroup({
-   
       etd: new FormControl(),
       poNbr: new FormControl(),
       incortem: new FormControl(),
@@ -51,15 +52,15 @@ export class NuevaComponent {
 
 
   ngOnInit(): void {
-    this.getItems()
-      // this.apiService.getAccountInfo().subscribe((account : any) => console.log(account)) 
+    // this.getItems()
+    this.getItemPrices()
+
   }
 
   onSubmitProducto() {
-    const sku = this.formProduct.value.sku.ItemNumber + "/" + this.formProduct.value.sku.Description
-    const split = sku.split("/")
-    this.addService.agregarProducto(new Product(split[0],split[1],this.formProduct.value.quantity,this.formProduct.value.typeContainer,this.formProduct.value.quantityContainer,this.formProduct.value.loading,this.formProduct.value.minimumOrder,this.formProduct.value.pallets,this.formProduct.value.shipmentType), this.formHeader.value.etd);
+    this.addService.agregarProducto(new Product(this.formProduct.value.sku.ItemNumber, this.formProduct.value.sku.ItemDescription, this.formProduct.value.quantity, this.formProduct.value.typeContainer, this.formProduct.value.quantityContainer, this.formProduct.value.loading, this.formProduct.value.minimumOrder, this.formProduct.value.pallets, this.formProduct.value.shipmentType), this.formHeader.value.etd);
     this.formProduct.reset();
+
 
   }
 
@@ -69,8 +70,25 @@ export class NuevaComponent {
     console.log(this.productsList)
   }
 
-  completarOrden(){
-    console.log(new Order(this.formHeader.value.poNbr, this.formHeader.value.shipTo, this.formHeader.value.incortem, this.formHeader.value.soldTo,this.formHeader.value.source,this.formHeader.value.eta, this.formHeader.value.etd, this.formHeader.value.country,this.addService.productos))
+  getItemPrices() {
+    this.apiService.getAccountInfo().subscribe((account: any) => {
+      console.log(account)
+      this.apiService.getPriceList(account.OrganizationDEO___ORACO__PriceBook_Id_c).subscribe((priceBookInfo: any) => {
+        console.log(priceBookInfo)
+        if (priceBookInfo.StatusCode == 'ACTIVE') {
+          this.apiService.getPrice(account.OrganizationDEO___ORACO__PriceBook_Id_c).subscribe((priceItems: any) => {
+            console.log(priceItems)
+            this.productsList = priceItems.items
+          })
+        }
+      })
+    })
+  }
+
+
+  completarOrden() {
+    console.log(new Order(this.formHeader.value.poNbr, this.formHeader.value.shipTo, this.formHeader.value.incortem, this.formHeader.value.soldTo, this.formHeader.value.source, this.formHeader.value.eta, this.formHeader.value.etd, this.formHeader.value.country, this.addService.productos))
+
   }
 
   // this.addService.getOrdenes$().subscribe(ordenes => {

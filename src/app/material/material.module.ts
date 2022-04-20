@@ -23,8 +23,6 @@ import {MatBadgeModule} from '@angular/material/badge';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import {CdkStepperModule} from '@angular/cdk/stepper';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
-
-
 @NgModule({
   declarations: [],
   imports: [
@@ -51,7 +49,8 @@ import {MatProgressBarModule} from '@angular/material/progress-bar';
     MatBadgeModule,
     MatTooltipModule,
     CdkStepperModule,
-    MatProgressBarModule
+    MatProgressBarModule,
+    
   ],
 
   exports: [
@@ -77,7 +76,8 @@ import {MatProgressBarModule} from '@angular/material/progress-bar';
     MatBadgeModule,
     MatTooltipModule,
     CdkStepperModule,
-    MatProgressBarModule
+    MatProgressBarModule,
+    
   ]
 })
 export class MaterialModule { }

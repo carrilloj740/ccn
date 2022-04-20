@@ -1,14 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { AddService, Orden } from '../services/add.service';
 import { Product } from '../components/nueva/Product';
-import { MatTableDataSource } from '@angular/material/table';
+import { NuevaComponent } from '../components/nueva/nueva.component';
 
-
-
-const ordenList: Orden[] = [
-  {sku: '', description: '', etd : '',  quantity: '', typeContainer: '', quantityContainer: ''},
-  
-];
+let ordenList: Orden[] = [];
 
 @Component({
   selector: 'app-table',
@@ -20,11 +15,13 @@ const ordenList: Orden[] = [
 
 export class TableComponent implements OnInit {
   
-  productos: Product[] | undefined;
-
+  
+  productos: Product[] = [];
   displayedColumns: string[] = ['sku', 'description', 'quantity', 'requestEtd', 'typeContainer', 'quantityContainer' ];
-  dataSource = ordenList;
+  dataSource = [...this.productos];
 
+  //  @ViewChild('productoTable', {static : true}) productoTable!: MatTable<any>;
+  
   constructor(private addService: AddService) { }
 
   ngOnInit(): void {
@@ -34,4 +31,7 @@ export class TableComponent implements OnInit {
     });
 
   }
+
+ 
+  
 }

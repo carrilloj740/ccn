@@ -1,15 +1,37 @@
-
-    <h1 style="color: black; font-weight: 700;font-family: 'Poppins', sans-serif;">Total Containers</h1>
+<table class="styled-table">
+  <thead>
+      <tr class="top">
+        <th><strong>SKU</strong></th>
+        <th><strong>Description</strong></th>
+        <th><strong>Quantity </strong></th>
+        <th><strong>Request ETD</strong></th>
+        <th><strong>Type Container</strong></th>
+        <th><strong># Containers</strong></th>
+      </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let product  of productos" >
+      <td>{{product.sku}} </td>
+      <td>{{product.description}}</td>
+      <td>{{product.quantity}}</td>
+      <td>{{product.etd}}</td>
+      <td>{{product.typeContainer}}</td>
+      <td>{{product.quantityContainer}}</td>
+    </tr>
+     
+  </tbody>
+</table>
+     
+     <!-- <h1 style="color: black; font-weight: 700;font-family: 'Poppins', sans-serif;">Total Containers</h1>
     <div class="container">
     <table>
       <tr class="top">
-        <td><strong>SKU</strong></td>
-        <td><strong>Description</strong></td>
-        <td><strong>Quantity </strong></td>
-        <td><strong>Request ETD</strong></td>
-        <td><strong>Type Container</strong></td>
-        <td><strong># Containers</strong></td>
-  
+        <th><strong>SKU</strong></th>
+        <th><strong>Description</strong></th>
+        <th><strong>Quantity </strong></th>
+        <th><strong>Request ETD</strong></th>
+        <th><strong>Type Container</strong></th>
+        <th><strong># Containers</strong></th>
       </tr>
   
       <tr *ngFor="let product  of productos" >
@@ -21,12 +43,10 @@
         <td>{{product.quantityContainer}}</td>
       </tr>
     </table>
-  </div> 
-
- 
+  </div> -->
 
 
-  <!-- <table mat-table [dataSource]="dataSource" class="mat-elevation-z2" >
+  <!-- <table mat-table [dataSource]="productos" class="mat-elevation-z2" >
 
   <ng-container matColumnDef="sku">
     <th mat-header-cell *matHeaderCellDef> SKU. </th>
@@ -58,6 +78,8 @@
     <td mat-cell *matCellDef="let product"> {{product.quantityContainer}} </td>
   </ng-container>
 
+
   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-  <tr mat-row *matRowDef="let product  of productos; columns: displayedColumns;"></tr>
-</table> -->
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>
+ -->
