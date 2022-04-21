@@ -1,40 +1,19 @@
-.ancho {
-  width: 55%;
-  height: 50%;
-  position: absolute;
-  top: 100px;
-  left: 10%;
-}
-
-.anchofoto {
-  width: 50%;
-
-}
-
-.cardfoto {
-  width: 100%;
-}
-
 .card {
   width: 60%;
   top: 150px;
   left: 20%;
   background: #ddf3e7;
   box-shadow: 0px 2px 4px 2px rgba(0, 0, 0, 0.2);
-  height: 30% ;
-  
+  height: 30%;
 }
 
-h2{
-  font-weight: 300;font-family: 'Poppins', sans-serif;  
+h2 {
+  font-weight: 300;
+  font-family: 'Poppins', sans-serif;
 }
 
-.titlecolor {
-  color: #0D0743;
-}
-
-.row{
-margin-top: 7%;
+.row {
+  margin-top: 7%;
 }
 
 
@@ -54,13 +33,11 @@ margin-top: 7%;
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
-  
-
 }
 
-h2{
-font-weight: 500;font-family: 'Poppins', sans-serif;
-width: 100%;
-text-align: center;
+h2 {
+  font-weight: 500;
+  font-family: 'Poppins', sans-serif;
+  width: 100%;
+  text-align: center;
 }
-

@@ -52,7 +52,6 @@ export class NuevaComponent {
 
 
   ngOnInit(): void {
-    // this.getItems()
     this.getItemPrices()
   }
 
@@ -90,11 +89,6 @@ export class NuevaComponent {
     console.log(new Order(this.formHeader.value.poNbr, this.formHeader.value.shipTo, this.formHeader.value.incortem, this.formHeader.value.soldTo, this.formHeader.value.source, this.formHeader.value.eta, this.formHeader.value.etd, this.formHeader.value.country, this.addService.productos))
 
   }
-
-  // this.addService.getOrdenes$().subscribe(ordenes => {
-  //   this.arrOrdenes = ordenes;
-
-  // });
 
 }
 

@@ -26,12 +26,12 @@ export class ApiService {
     console.log('Servicio http');
   }
 
+
   getItems(): any {
     return this.http.get(this.url + "products", {
       headers: { 'Authorization': this.auth, 'Content-Type': "application/vnd.oracle.adf.resourcecollection+json"},
     });
   }
-
 
   getAccountInfo(): any{
     return this.http.get(this.url+ "accounts/" + (this.partyNumber),{
@@ -39,8 +39,12 @@ export class ApiService {
     })
   }
 
+  getAddressAccount(): any{
+    return this.http.get(this.url+ "accounts/" + (this.partyNumber) + "/child/Address/",{
+      headers: { 'Authorization': this.auth, 'Content-Type': "application/vnd.oracle.adf.resourcecollection+json"},
+    })
+  }
   
-
   getShoppingCart(): any {
     return this.http.get(this.url + "__ORACO__ShoppingCart_c", {
       headers: { Authorization: this.auth},
