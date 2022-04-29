@@ -39,12 +39,13 @@ export class ApiService {
     })
   }
 
-  getAddressAccount(): any{
+
+  getListAddress(): any{
     return this.http.get(this.url+ "accounts/" + (this.partyNumber) + "/child/Address/",{
       headers: { 'Authorization': this.auth, 'Content-Type': "application/vnd.oracle.adf.resourcecollection+json"},
     })
   }
-  
+
   getShoppingCart(): any {
     return this.http.get(this.url + "__ORACO__ShoppingCart_c", {
       headers: { Authorization: this.auth},

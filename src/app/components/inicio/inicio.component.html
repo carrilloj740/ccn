@@ -1,35 +1,134 @@
 <app-navbar></app-navbar>
 
 <router-outlet></router-outlet>
-<div class="body">
-  
-  <mat-card class="card" style="border-radius: 15px;">
+<!-- 
+
+ <div class="body">
+   <mat-card class="card" style="border-radius: 15px;">
     <mat-grid-list cols="2" rowHeight="2:1">
       <mat-grid-tile class="stat">
-        <section class="py-3 ">
           <div class="container">
             <div class="row" style="text-align: center;">
-              <div class="col-lg-9">
-                <h1 style="font-weight: 700;font-family: 'Poppins', sans-serif;">
+                <h1>
                   <mat-icon>account_balance_wallet</mat-icon> Amount available
                 </h1>
-                <h2>$100.000</h2>
-              </div>
+                <div class="Details" style="font-size: 25;">$100.000</div>
             </div>
           </div>
-        </section>
       </mat-grid-tile>
       <mat-grid-tile>
         <div class="row" style="text-align: center;">
           <h1 style="font-weight: 700;font-family: 'Poppins', sans-serif;"><img class="icon"
               src="../assets/img/almacen.png"> Warehouse amount </h1>
-          <h2>Warehouse 2: $30.000</h2>
-          <h2>Warehouse 3: $20.000</h2>
-          <h2>Warehouse 1: $50.000</h2>
+          <div class="Details">Warehouse 1: $50.000</div><br>
+          <div class="Details">Warehouse 2: $30.000</div><br>
+          <div class="Details">Warehouse 3: $20.000</div><br>
         </div>
       </mat-grid-tile>
     </mat-grid-list>
   </mat-card>
+</div> 
 
-  <img src="../assets/img/12.png" class="publicidad">
+
+ -->
+
+
+<div class='container'>
+  <div class='window'>
+    <div class='order-info'>
+      <div class='order-info-content'>
+        <h2 style="margin-top: 25%;">Amount available</h2>
+        <div  style="margin-top: 9%;"></div>
+        <table class='order-table' >
+          <tbody>
+            <tr >
+              <!-- <td><img src='https://dl.dropboxusercontent.com/s/sim84r2xfedj99n/%24_32.JPG' class='full-width'></img>
+              </td> -->
+              <td>
+                 <span class='thin2'>Total amount available</span>
+                <br> <br> <br>
+              </td>
+
+            </tr>
+            <tr>
+              <td>
+                <div class='price2'><span>{{amount.totalAmount}}</span></div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <div class='line'></div>
+
+      </div>
+    </div>
+
+      <!-- Segunda zona -->
+    <div class='credit-info'>
+      <div class='credit-info-content'>
+        <h2>Warehouse amount</h2>
+        <div class='line'></div>
+        <table class='order-table'>
+          <tbody>
+            <tr>
+              <!-- <td><img src='https://dl.dropboxusercontent.com/s/sim84r2xfedj99n/%24_32.JPG' class='full-width'></img>
+              </td> -->
+              <td>
+                 <br><span class='thin'>Warehouse 1</span>
+                <br> <br>
+              </td>
+
+            </tr>
+            <tr>
+              <td>
+                <div class='price'>{{amount.wareHouse1}}</div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div class='line'></div>
+        <table class='order-table'>
+          <tbody>
+            <tr>
+              <!-- <td><img src='https://dl.dropboxusercontent.com/s/sim84r2xfedj99n/%24_32.JPG' class='full-width'></img>
+              </td> -->
+              <td>
+                <br> <span class='thin'>Warehouse 2</span>
+                <br> <br>
+              </td>
+
+            </tr>
+            <tr>
+              <td>
+                <div class='price'>{{amount.wareHouse3}}</div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <div class='line'></div>
+        <table class='order-table'>
+          <tbody>
+            <tr>
+              <!-- <td><img src='https://dl.dropboxusercontent.com/s/sim84r2xfedj99n/%24_32.JPG' class='full-width'></img>
+              </td> -->
+              <td>
+                <br> <span class='thin'>Warehouse 3</span>
+                <br> <br>
+              </td>
+
+            </tr>
+            <tr>
+              <td>
+                <div class='price'>{{amount.wareHouse3}}</div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <div class='line'></div>
+      </div>
+
+    </div>
+  </div>
 </div>
+
+<img src="../assets/img/12.png" class="publicidad">

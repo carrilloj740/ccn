@@ -7,9 +7,6 @@ import { AddService } from 'src/app/services/add.service';
 import { Router } from '@angular/router';
 import { Location } from '@angular/common';
 
-
-
-
 export interface PeriodicElement {
   vista: number,
   order_Number: number,

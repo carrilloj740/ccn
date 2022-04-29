@@ -4,6 +4,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { MaterialModule } from 'src/app/material/material.module';
 import { Injectable } from '@angular/core';
+import { ApiService } from 'src/app/services/api.service';
 
 @Component({
   selector: 'app-login',
@@ -18,7 +19,7 @@ export class LoginComponent implements OnInit {
 
   constructor(
    
-    private fb: FormBuilder, private _snackBar: MatSnackBar, private router: Router,) {
+    private fb: FormBuilder, private _snackBar: MatSnackBar, private router: Router,private apiService: ApiService) {
     this.form = this.fb.group({
       usuario: ['', Validators.required],
       password: ['', Validators.required],
@@ -54,11 +55,13 @@ export class LoginComponent implements OnInit {
     setTimeout(() => {
       this.router.navigate(['inicio'])
     }, 1500);
+    this.apiService.getAccountInfo().subscribe((account: any) => {
+      console.log(account)
+    })
   }
 
   ngOnInit(): void {
     sessionStorage.setItem("partyNumber","1Yp")
   }
-
 
 }

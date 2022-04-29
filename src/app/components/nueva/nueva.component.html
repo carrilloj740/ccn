@@ -5,8 +5,8 @@
         </mat-icon>
     </h1>
 </mat-toolbar>
-<mat-card>
 
+<mat-card>
     <div class="container">
         <form [formGroup]="formHeader" (ngSubmit)="completarOrden()">
 
@@ -19,11 +19,19 @@
                 </mat-grid-tile>
 
                 <mat-grid-tile [colspan]="1" [rowspan]="1">
-                    <mat-form-field class="ancho">
+                    <!-- <mat-form-field class="ancho">
                         <label>Ship to</label>
                         <select matNativeControl formControlName="shipTo">
-                            <option>Opcion 1</option>
+                            <option *ngFor="let address of addressesList" [ngValue]="address.FormattedAddress">{{address.FormattedAddress}} </option>
                         </select>
+                    </mat-form-field>  -->
+                    <mat-form-field class="ancho">
+                        <mat-label>Ship to</mat-label>
+                        <mat-select matNativeControl formControlName="shipTo">
+                            <mat-option *ngFor="let address of addressesList" [value]="address.FormattedAddress">
+                                {{address.FormattedAddress}}
+                            </mat-option>
+                        </mat-select>
                     </mat-form-field>
                 </mat-grid-tile>
 
@@ -39,33 +47,32 @@
                             <option value="CIF">CIF</option>
                             <option value="CTP">CTP</option>
                             <option value="CIP">CIP</option>
-
                         </select>
                     </mat-form-field>
                 </mat-grid-tile>
 
                 <mat-grid-tile [colspan]="1" [rowspan]="1">
+
                     <mat-form-field class="ancho">
-                        <label>Sold to</label>
-                        <select matNativeControl formControlName="soldTo">
-                            <option value="truck">Opcion 1</option>
-                            <option value="naval">Opcion 2</option>
-                        </select>
+                        <mat-label>Sold To</mat-label>
+                        <mat-select>
+                            <mat-option *ngFor="let address of addressesList" formControlName="soldTo"
+                                [value]="address.FormattedAddress">
+                                {{address.FormattedAddress}}
+                            </mat-option>
+                        </mat-select>
                     </mat-form-field>
                 </mat-grid-tile>
-
-
 
                 <mat-grid-tile [colspan]="1" [rowspan]="1">
                     <mat-form-field class="ancho">
                         <label>Source</label>
                         <select matNativeControl formControlName="source">
-                            <option value="truck">Opcion 1</option>
-                            <option value="naval">Opcion 2</option>
+                            <option value="CostaRica">Costa Rica</option>
+                            <option value="HMEX">HMEX</option>
                         </select>
                     </mat-form-field>
                 </mat-grid-tile>
-
 
                 <mat-grid-tile [colspan]="1" [rowspan]="1">
                     <mat-form-field class="ancho">
@@ -98,10 +105,15 @@
                 <mat-grid-tile [colspan]="1" [rowspan]="1">
                     <mat-form-field class="ancho">
                         <label> Select Product</label>
-                        <select matNativeControl name="select" required formControlName="sku">
-                            <option *ngFor="let product of productsList" [ngValue]="product">{{product.ItemDescription}}
-                                - ${{product.ListPrice}}</option>
-                        </select>
+
+                        <mat-select matNativeControl name="select" required formControlName="sku">
+                            <mat-option *ngFor="let product of productsList" [value]="product">
+                                {{product.ItemDescription}}
+                                - ${{product.ListPrice}}
+                            </mat-option>
+                        </mat-select>
+
+
                     </mat-form-field>
                 </mat-grid-tile>
 
@@ -136,10 +148,12 @@
                     </mat-form-field>
                 </mat-grid-tile>
 
+
                 <mat-grid-tile [colspan]="1" [rowspan]="1">
                     <mat-form-field class="ancho">
                         <mat-label>Minimum Order</mat-label>
-                        <input matInput type="number" formControlName="minimumOrder" autocomplete="off">
+                        <input matInput value="1" type="number">
+                        <!-- <input  matInput  type="number" formControlName="minimumOrder"autocomplete="off" > -->
                     </mat-form-field>
                 </mat-grid-tile>
 
@@ -177,6 +191,7 @@
         </form>
         <app-table></app-table>
         <button class="button2" mat-raised-button (click)="completarOrden()" routerLink="/seguimiento"
-            value="Confirmar">Confirm</button>
+            value="Confirmar">Confirm
+        </button>
 
     </div>

@@ -8,6 +8,7 @@ import { Product } from './Product';
 import { Order } from './Order';
 import { TableComponent } from 'src/app/table/table.component';
 
+
 @Component({
   selector: 'app-nueva',
   templateUrl: './nueva.component.html',
@@ -15,10 +16,13 @@ import { TableComponent } from 'src/app/table/table.component';
 })
 export class NuevaComponent {
 
+
+  buttonDisabled: boolean = true;
   formHeader: FormGroup;
   formProduct: FormGroup;
   productsList: any = []
-  
+  addressesList: any = []
+
   constructor(private fb: FormBuilder, private addService: AddService, private apiService: ApiService, private tableComponent: TableComponent,) {
 
     this.formHeader = new FormGroup({
@@ -38,7 +42,7 @@ export class NuevaComponent {
       typeContainer: new FormControl(),
       quantity: new FormControl(),
       loading: new FormControl(),
-      minimumOrder: new FormControl(),
+      minimumOrder: new FormControl(1, Validators.min(1)),
       quantityContainer: new FormControl(),
       pallets: new FormControl(),
       shipmentType: new FormControl(),
@@ -53,6 +57,8 @@ export class NuevaComponent {
 
   ngOnInit(): void {
     this.getItemPrices()
+    this.getAddress()
+
   }
 
   onSubmitProducto() {
@@ -62,13 +68,19 @@ export class NuevaComponent {
 
   }
 
+  getAddress() {
+    this.apiService.getListAddress()
+      .subscribe((address: any) => this.addressesList = address.items);
+    console.log(this.addressesList)
+  }
+
   getItems() {
     this.apiService.getItems()
       .subscribe((products: any) => this.productsList = products.items);
     console.log(this.productsList)
   }
 
- 
+
   getItemPrices() {
     this.apiService.getAccountInfo().subscribe((account: any) => {
       console.log(account)
@@ -87,10 +99,7 @@ export class NuevaComponent {
 
   completarOrden() {
     console.log(new Order(this.formHeader.value.poNbr, this.formHeader.value.shipTo, this.formHeader.value.incortem, this.formHeader.value.soldTo, this.formHeader.value.source, this.formHeader.value.eta, this.formHeader.value.etd, this.formHeader.value.country, this.addService.productos))
-
+    console.log(this.formHeader.value)
   }
 
 }
-
-
-
