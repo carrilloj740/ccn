@@ -54,10 +54,9 @@
                 <mat-grid-tile [colspan]="1" [rowspan]="1">
 
                     <mat-form-field class="ancho">
-                        <mat-label>Sold To</mat-label>
-                        <mat-select>
-                            <mat-option *ngFor="let address of addressesList" formControlName="soldTo"
-                                [value]="address.FormattedAddress">
+                        <mat-label>Sold to</mat-label>
+                        <mat-select matNativeControl formControlName="soldTo">
+                            <mat-option *ngFor="let address of addressesList" [value]="address.FormattedAddress">
                                 {{address.FormattedAddress}}
                             </mat-option>
                         </mat-select>
@@ -195,3 +194,4 @@
         </button>
 
     </div>
+

@@ -1,9 +1,16 @@
 <mat-toolbar class="toolbar">
-  <img  class="logo" src="../assets/logo.png" routerLink="/inicio">
+  <img class="logo" src="../assets/logo.png" routerLink="/inicio">
   <span class="example-spacer"></span>
-  <button style= "font-weight: 700;font-family: 'Poppins', sans-serif;" class="icon" mat-button routerLink="/inicio"> <mat-icon>home</mat-icon> Home</button>
-  <button style= "font-weight: 700;font-family: 'Poppins', sans-serif;" class="icon" mat-button routerLink="/nueva"><mat-icon>shopping_cart</mat-icon>New Order</button>
-  <button style= "font-weight: 700;font-family: 'Poppins', sans-serif;" class="icon" mat-button routerLink="/seguimiento"><mat-icon>location_on</mat-icon>Tracking</button>
+  <button style="font-weight: 700;font-family: 'Poppins', sans-serif;" class="icon" mat-button routerLink="/inicio">
+    <mat-icon>home</mat-icon> Home
+  </button>
+  <button style="font-weight: 700;font-family: 'Poppins', sans-serif;" class="icon" mat-button routerLink="/nueva">
+    <mat-icon>shopping_cart</mat-icon>New Order
+  </button>
+  <button style="font-weight: 700;font-family: 'Poppins', sans-serif;" class="icon" mat-button
+    routerLink="/seguimiento">
+    <mat-icon>location_on</mat-icon>Tracking
+  </button>
   <span class="example-spacer"></span>
 
   <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
@@ -14,12 +21,12 @@
       <span>Profile</span>
     </button>
     <button mat-menu-item routerLink="/login">
-      <span >Sign out</span>
+      <span>Sign out</span>
     </button>
     <button mat-menu-item disabled>
       <span>Opcion 2</span>
     </button>
   </mat-menu>
-  
- 
+
+
 </mat-toolbar>
