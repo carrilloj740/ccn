@@ -9,8 +9,6 @@
           <input type="text" matInput autocomplete="off" formControlName="usuario">
         </mat-form-field>
 
-    
-
         <mat-form-field class="ancho">
           <mat-label>Enter your password</mat-label>
           <input matInput [type]="hide ? 'password' : 'text'" formControlName="password">
@@ -24,7 +22,7 @@
             <input type="checkbox">
             <span>Remember password</span>
           </div>
-          <a target="_blank" href="https://fa-euny-test-saasfaprod1.fa.ocs.oraclecloud.com/hcmCore/faces/ForgotPassword?backUrl=https%3A%2F%2Ffa-euny-test-saasfaprod1.fa.ocs.oraclecloud.com%2FhcmUI%2FadfAuthentication%3Flevel%3DFORM%26success_url%3D%252FhcmUI%252FadfAuthentication" style="font-weight: 500;font-family: 'Poppins', sans-serif;">Forgot your password </a>
+          <a routerLink="/forgotPassword">Forgot your password </a>
         </section>
 
         <br>

@@ -16,6 +16,7 @@ import { VerificacionComponent } from './components/verificacion/verificacion.co
 import { HttpClientModule } from '@angular/common/http';
 import { TableComponent } from './table/table.component';
 import { DetailsComponent } from './details/details.component';
+import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { DetailsComponent } from './details/details.component';
     VerificacionComponent,
     TableComponent,
     DetailsComponent,
+    ForgotPasswordComponent,
     
   ],
   imports: [

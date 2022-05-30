@@ -1,13 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { ApiService } from '../../services/api.service';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators, FormsModule  } from '@angular/forms';
 import { AddService, Orden } from 'src/app/services/add.service';
 import { Router } from '@angular/router';
 import { OrdenIn } from 'src/app/interfaces/ordenIn';
 import { Product } from './Product';
 import { Order } from './Order';
 import { TableComponent } from 'src/app/table/table.component';
-
+import { logicFilling } from './logic';
 
 @Component({
   selector: 'app-nueva',
@@ -16,12 +16,20 @@ import { TableComponent } from 'src/app/table/table.component';
 })
 export class NuevaComponent {
 
+  logic: logicFilling = {
+    pallets:0,
+    quantity:0,
 
+  };
+
+  selected = 'Truck';
+  shipmentType: string = ''
   buttonDisabled: boolean = true;
   formHeader: FormGroup;
   formProduct: FormGroup;
   productsList: any = []
   addressesList: any = []
+  textoPrueba : string | undefined;
 
   constructor(private fb: FormBuilder, private addService: AddService, private apiService: ApiService, private tableComponent: TableComponent,) {
 
@@ -50,7 +58,8 @@ export class NuevaComponent {
     })
 
   }
-
+  
+ 
   listaProductos: any = [];
   productoSeleccionado = "";
 
@@ -58,9 +67,21 @@ export class NuevaComponent {
   ngOnInit(): void {
     this.getItemPrices()
     this.getAddress()
+    
+  }
+  
+  numeroMagico():any{
+    return 5
 
   }
-
+  // calcularPallets(): void{
+  //   let pallets  = this.logic.pallets
+  //   let quantity = this.logic.quantity
+  //   pallets = quantity / 20
+  //   this.logic.pallets = pallets
+  //   console.log(this.logic.pallets)
+  // }
+ 
   onSubmitProducto() {
     this.addService.agregarProducto(new Product(this.formProduct.value.sku.ItemNumber, this.formProduct.value.sku.ItemDescription, this.formProduct.value.quantity, this.formProduct.value.typeContainer, this.formProduct.value.quantityContainer, this.formProduct.value.loading, this.formProduct.value.minimumOrder, this.formProduct.value.pallets, this.formProduct.value.shipmentType), this.formHeader.value.etd);
     this.formProduct.reset();

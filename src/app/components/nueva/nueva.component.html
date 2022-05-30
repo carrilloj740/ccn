@@ -1,5 +1,4 @@
 <app-navbar></app-navbar>
-
 <mat-toolbar class="toolbar2">
     <h1 style="color: black; font-weight: 700;font-family: 'Poppins', sans-serif;">New Order<mat-icon>shopping_cart
         </mat-icon>
@@ -94,6 +93,10 @@
             </mat-grid-list>
         </form>
         <!-- Seleccion de producto-->
+
+
+
+
         <mat-divider></mat-divider>
         <h1 style="font-weight: 700;font-family: 'Poppins', sans-serif; margin-top: 40px;">Product <mat-icon>inventory_2
             </mat-icon>
@@ -118,24 +121,21 @@
 
                 <mat-grid-tile [colspan]="1" [rowspan]="1">
                     <mat-form-field class="ancho">
-                        <label>Container Type</label>
-                        <select matNativeControl formControlName="typeContainer">
-                            <option value="truck">Dry</option>
-                            <option value="flatRack">Flat Rack</option>
-                            <option value="highCube">High Cube</option>
-                            <option value="openTop">Open Top</option>
-                            <option value="platform">Platform</option>
-                            <option value="fridge">Fridge</option>
-
-                        </select>
+                        <label>Shipment Type</label>
+                        <mat-select [(ngModel)]="shipmentType" matNativeControl required formControlName="shipmentType">
+                            <mat-option value="truck">Truck</mat-option>
+                            <mat-option value="maritime">Maritime</mat-option>
+                        </mat-select>
                     </mat-form-field>
                 </mat-grid-tile>
+
 
 
                 <mat-grid-tile [colspan]="1" [rowspan]="1">
                     <mat-form-field class="ancho">
                         <mat-label>Quantity in case </mat-label>
-                        <input matInput type="number" formControlName="quantity" autocomplete="off">
+                        <input [(ngModel)]="logic.pallets" matInput type="number" formControlName="quantity"
+                            autocomplete="off">
                     </mat-form-field>
                 </mat-grid-tile>
 
@@ -147,12 +147,10 @@
                     </mat-form-field>
                 </mat-grid-tile>
 
-
                 <mat-grid-tile [colspan]="1" [rowspan]="1">
                     <mat-form-field class="ancho">
                         <mat-label>Minimum Order</mat-label>
-                        <input matInput value="1" type="number">
-                        <!-- <input  matInput  type="number" formControlName="minimumOrder"autocomplete="off" > -->
+                        <input matInput type="number" formControlName="minimumOrder" autocomplete="off">
                     </mat-form-field>
                 </mat-grid-tile>
 
@@ -168,30 +166,50 @@
                 <mat-grid-tile [colspan]="1" [rowspan]="1">
                     <mat-form-field class="ancho">
                         <mat-label>Pallets</mat-label>
-                        <input matInput type="number" formControlName="pallets" autocomplete="off">
+                        <input id="pallets" [(ngModel)]="logic.pallets" matInput type="number" formControlName="pallets"
+                            autocomplete="off">
                     </mat-form-field>
                 </mat-grid-tile>
 
+
                 <mat-grid-tile [colspan]="1" [rowspan]="1">
                     <mat-form-field class="ancho">
-                        <label>Shipment Type</label>
-                        <select matNativeControl required formControlName="shipmentType">
-                            <option value="truck">Truck</option>
-                            <option value="naval">Naval</option>
-                        </select>
+                        <label>Container Type</label>
+                        <!--<select matNativeControl formControlName="typeContainer">
+                            <option value="20"> T1-20</option>
+                            <option value="40">T2-40</option>
+                            <option value="40HC">M1-40' HC(High Cube)</option>
+                            <option value="45HC">M2-45' HC(High Cube)</option>
+                        </select>  -->
+                        <mat-select matNativeControl formControlName="typeContainer">
+                            <mat-option *ngIf="shipmentType == 'truck'" value="20"> T1-20</mat-option>
+                            <mat-option *ngIf="shipmentType == 'truck'" value="40">T2-40</mat-option>
+                            <mat-option *ngIf="shipmentType == 'maritime'" value="40HC">M1-40' HC(High Cube)
+                            </mat-option>
+                            <mat-option *ngIf="shipmentType == 'maritime'" value="45HC">M2-45' HC(High Cube)
+                            </mat-option>
+                        </mat-select>
                     </mat-form-field>
                 </mat-grid-tile>
 
                 <button mat-raised-button type="submit" value="Agregar" [disabled]="formProduct.invalid">Add</button>
 
+                
+
             </mat-grid-list>
             <mat-divider></mat-divider>
+
             <br>
         </form>
         <app-table></app-table>
-        <button class="button2" mat-raised-button (click)="completarOrden()" routerLink="/seguimiento"
+        <button class="button2" mat-raised-button (click)="completarOrden()" routerLink="/inicio/seguimiento"
             value="Confirmar">Confirm
         </button>
 
     </div>
 
+    <!-- <form oninput="resultado.value=parseInt(valor1.value)/parseInt(valor2.value)">
+        <input type="number" id="valor1" value="0"> /
+        <input type="number" id="valor2" value="0"> =
+        <output name="resultado" for="valor1 valor2"></output>
+    </form> -->

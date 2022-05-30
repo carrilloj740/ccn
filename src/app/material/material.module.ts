@@ -23,6 +23,7 @@ import {MatBadgeModule} from '@angular/material/badge';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import {CdkStepperModule} from '@angular/cdk/stepper';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
+import { FormsModule } from '@angular/forms'; // <-- NgModel lives here
 @NgModule({
   declarations: [],
   imports: [
@@ -50,6 +51,7 @@ import {MatProgressBarModule} from '@angular/material/progress-bar';
     MatTooltipModule,
     CdkStepperModule,
     MatProgressBarModule,
+    FormsModule
     
   ],
 
@@ -77,6 +79,7 @@ import {MatProgressBarModule} from '@angular/material/progress-bar';
     MatTooltipModule,
     CdkStepperModule,
     MatProgressBarModule,
+    FormsModule
     
   ]
 })
