@@ -65,19 +65,23 @@ export class NuevaComponent {
   ngOnInit(): void {
     this.getItemPrices()
     this.getAddress()
-    // this.getAccountInfo().subscribe()
-    // this.getItemShoppingCart(this.account.OrganizationDEO___ORACO__ShoppingCart_Id_c)
-    console.log(this.account)
+    this.getAccountShoppingCart()
   }
 
-  getAccountInfo(){
-    this.apiService.getAccountInfo().subscribe((account:any) => this.account = account)
+  getAccountShoppingCart() {
+    this.apiService.getAccountInfo().subscribe((account: any) => {
+      this.account = account
+      console.log(account)
+      this.getItemShoppingCart(account["OrganizationDEO___ORACO__ShoppingCart_Id_c"])
+    })
   }
 
   getItemShoppingCart(shoppingCartId: any) {
     this.apiService.getShoppingCartItems(shoppingCartId)
-      .subscribe((shoppingCart: any) => this.shoppingCartList = shoppingCart.items);
-    console.log(this.shoppingCartList)
+      .subscribe((shoppingCart: any) => {
+        this.shoppingCartList = shoppingCart.items
+        console.log(this.shoppingCartList)
+      });
   }
 
   postShoppingCartItem() {
