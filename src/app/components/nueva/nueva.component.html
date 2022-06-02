@@ -175,12 +175,7 @@
                 <mat-grid-tile [colspan]="1" [rowspan]="1">
                     <mat-form-field class="ancho">
                         <label>Container Type</label>
-                        <!--<select matNativeControl formControlName="typeContainer">
-                            <option value="20"> T1-20</option>
-                            <option value="40">T2-40</option>
-                            <option value="40HC">M1-40' HC(High Cube)</option>
-                            <option value="45HC">M2-45' HC(High Cube)</option>
-                        </select>  -->
+                      
                         <mat-select matNativeControl formControlName="typeContainer">
                             <mat-option *ngIf="shipmentType == 'truck'" value="20"> T1-20</mat-option>
                             <mat-option *ngIf="shipmentType == 'truck'" value="40">T2-40</mat-option>
@@ -207,9 +202,3 @@
         </button>
 
     </div>
-
-    <!-- <form oninput="resultado.value=parseInt(valor1.value)/parseInt(valor2.value)">
-        <input type="number" id="valor1" value="0"> /
-        <input type="number" id="valor2" value="0"> =
-        <output name="resultado" for="valor1 valor2"></output>
-    </form> -->

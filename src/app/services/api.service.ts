@@ -17,10 +17,10 @@ export class ApiService {
 
   private url = "https://fa-euny-test-saasfaprod1.fa.ocs.oraclecloud.com/crmRestApi/resources/11.13.18.05/"; // URL to web api
 
- private username = "jorge.argibay@serkes1.com";
- private password = "Anik2580";
- private auth = "Basic " + btoa(this.username + ":" + this.password)
- private partyNumber = sessionStorage.getItem('partyNumber')
+  private username = "jorge.argibay@serkes1.com";
+  private password = "Anik2580";
+  private auth = "Basic " + btoa(this.username + ":" + this.password)
+  private partyNumber = sessionStorage.getItem('partyNumber')
 
   constructor(private http: HttpClient) {
     console.log('Servicio http');
@@ -29,43 +29,48 @@ export class ApiService {
 
   getItems(): any {
     return this.http.get(this.url + "products", {
-      headers: { 'Authorization': this.auth, 'Content-Type': "application/vnd.oracle.adf.resourcecollection+json"},
+      headers: { 'Authorization': this.auth, 'Content-Type': "application/vnd.oracle.adf.resourcecollection+json" },
     });
   }
 
-  getAccountInfo(): any{
-    return this.http.get(this.url+ "accounts/" + (this.partyNumber),{
-      headers: { 'Authorization': this.auth, 'Content-Type': "application/vnd.oracle.adf.resourcecollection+json"},
+  getAccountInfo(): any {
+    return this.http.get(this.url + "accounts/" + (this.partyNumber), {
+      headers: { 'Authorization': this.auth, 'Content-Type': "application/vnd.oracle.adf.resourcecollection+json" },
     })
   }
 
 
-  getListAddress(): any{
-    return this.http.get(this.url+ "accounts/" + (this.partyNumber) + "/child/Address/",{
-      headers: { 'Authorization': this.auth, 'Content-Type': "application/vnd.oracle.adf.resourcecollection+json"},
+  getListAddress(): any {
+    return this.http.get(this.url + "accounts/" + (this.partyNumber) + "/child/Address/", {
+      headers: { 'Authorization': this.auth, 'Content-Type': "application/vnd.oracle.adf.resourcecollection+json" },
     })
   }
 
-  getShoppingCart(): any {
-    return this.http.get(this.url + "__ORACO__ShoppingCart_c", {
-      headers: { Authorization: this.auth},
+  getShoppingCartItems(shoppingCartId: any) {
+    return this.http.get(this.url + "__ORACO__ShoppingCartDSD_c/" + (shoppingCartId) + "child/__ORACO__ShoppingCartItemCollection_c", {
+      headers: { Authorization: this.auth },
     });
   }
 
-  postShoppingCart(): any {
-    return this.http.post(this.url + "__ORACO__ShoppingCart_c", {
+  postShoppingCartItem(shoppingCartId: any, productoId: any, cantidad: any): any {
+    return this.http.post(this.url + "__ORACO__ShoppingCartDSD_c/" + (shoppingCartId) + "child/__ORACO__ShoppingCartItemCollection_c", {
       headers: { Authorization: this.auth, },
+      body: {
+        "__ORACO__Product_Id_c": productoId,
+        "__ORACO__Quantity_c": cantidad
+      }
+
     });
   }
 
-  getPrice(priceBook : number): any {
-    return this.http.get(this.url + "priceBookHeaders/" + priceBook +"/child/PriceBookItem", {
-      headers: { 'Authorization': this.auth, 'Content-Type': "application/vnd.oracle.adf.resourcecollection+json"},
+  getPrice(priceBook: number): any {
+    return this.http.get(this.url + "priceBookHeaders/" + priceBook + "/child/PriceBookItem", {
+      headers: { 'Authorization': this.auth, 'Content-Type': "application/vnd.oracle.adf.resourcecollection+json" },
     });
   }
   getPriceList(priceBook: number): any {
-    return this.http.get(this.url + "priceBookHeaders/" + priceBook , {
-      headers: { 'Authorization': this.auth, 'Content-Type': "application/vnd.oracle.adf.resourcecollection+json"},
+    return this.http.get(this.url + "priceBookHeaders/" + priceBook, {
+      headers: { 'Authorization': this.auth, 'Content-Type': "application/vnd.oracle.adf.resourcecollection+json" },
     });
   }
 

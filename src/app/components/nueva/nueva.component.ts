@@ -1,6 +1,6 @@
 import { Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { ApiService } from '../../services/api.service';
-import { FormBuilder, FormControl, FormGroup, Validators, FormsModule  } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators, FormsModule } from '@angular/forms';
 import { AddService, Orden } from 'src/app/services/add.service';
 import { Router } from '@angular/router';
 import { OrdenIn } from 'src/app/interfaces/ordenIn';
@@ -17,9 +17,8 @@ import { logicFilling } from './logic';
 export class NuevaComponent {
 
   logic: logicFilling = {
-    pallets:0,
-    quantity:0,
-
+    pallets: 0,
+    quantity: 0,
   };
 
   selected = 'Truck';
@@ -29,7 +28,7 @@ export class NuevaComponent {
   formProduct: FormGroup;
   productsList: any = []
   addressesList: any = []
-  textoPrueba : string | undefined;
+  shoppingCartList: any = []
 
   constructor(private fb: FormBuilder, private addService: AddService, private apiService: ApiService, private tableComponent: TableComponent,) {
 
@@ -54,39 +53,39 @@ export class NuevaComponent {
       quantityContainer: new FormControl(),
       pallets: new FormControl(),
       shipmentType: new FormControl(),
-
     })
 
   }
-  
- 
+
+
   listaProductos: any = [];
   productoSeleccionado = "";
-
+  account: any = {}
 
   ngOnInit(): void {
     this.getItemPrices()
     this.getAddress()
-    
+    // this.getAccountInfo().subscribe()
+    // this.getItemShoppingCart(this.account.OrganizationDEO___ORACO__ShoppingCart_Id_c)
+    console.log(this.account)
   }
-  
-  numeroMagico():any{
-    return 5
 
+  getAccountInfo(){
+    this.apiService.getAccountInfo().subscribe((account:any) => this.account = account)
   }
-  // calcularPallets(): void{
-  //   let pallets  = this.logic.pallets
-  //   let quantity = this.logic.quantity
-  //   pallets = quantity / 20
-  //   this.logic.pallets = pallets
-  //   console.log(this.logic.pallets)
-  // }
- 
+
+  getItemShoppingCart(shoppingCartId: any) {
+    this.apiService.getShoppingCartItems(shoppingCartId)
+      .subscribe((shoppingCart: any) => this.shoppingCartList = shoppingCart.items);
+    console.log(this.shoppingCartList)
+  }
+
+  postShoppingCartItem() {
+  }
+
   onSubmitProducto() {
     this.addService.agregarProducto(new Product(this.formProduct.value.sku.ItemNumber, this.formProduct.value.sku.ItemDescription, this.formProduct.value.quantity, this.formProduct.value.typeContainer, this.formProduct.value.quantityContainer, this.formProduct.value.loading, this.formProduct.value.minimumOrder, this.formProduct.value.pallets, this.formProduct.value.shipmentType), this.formHeader.value.etd);
     this.formProduct.reset();
-
-
   }
 
   getAddress() {
@@ -100,7 +99,6 @@ export class NuevaComponent {
       .subscribe((products: any) => this.productsList = products.items);
     console.log(this.productsList)
   }
-
 
   getItemPrices() {
     this.apiService.getAccountInfo().subscribe((account: any) => {
@@ -117,10 +115,10 @@ export class NuevaComponent {
     })
   }
 
-
   completarOrden() {
     console.log(new Order(this.formHeader.value.poNbr, this.formHeader.value.shipTo, this.formHeader.value.incortem, this.formHeader.value.soldTo, this.formHeader.value.source, this.formHeader.value.eta, this.formHeader.value.etd, this.formHeader.value.country, this.addService.productos))
     console.log(this.formHeader.value)
   }
-
 }
+
+

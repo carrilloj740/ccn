@@ -11,8 +11,8 @@ export interface Orden{
   quantity: any;
   typeContainer: any;
   quantityContainer: any;
- 
 }
+
 @Injectable({
   providedIn: 'root'
 })
@@ -34,7 +34,6 @@ export class AddService {
     producto["etd"] = etd
     this.productos.push(producto);
     this.productos$.next(this.productos);
-    
   }
 
    getProductos(): Observable<Product[]>{

@@ -7,6 +7,7 @@ import { ApiService } from './services/api.service';
   styleUrls: ['./app.component.css'],
   providers: [ApiService],
 })
+
 export class AppComponent implements OnInit {
   title = 'consapi';
   userList: any = [];
@@ -18,7 +19,6 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): void {
       console.log('El componente se ha inicializado');
-      
- 
   }
+
 }
