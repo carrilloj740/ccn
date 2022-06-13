@@ -16,6 +16,8 @@ import { logicFilling } from './logic';
 })
 export class NuevaComponent {
 
+  selectedProduct ={"InvItemId":0, "ItemNumber":"","ItemDescripcion":""};
+
   logic: logicFilling = {
     pallets: 0,
     quantity: 0,
@@ -71,8 +73,12 @@ export class NuevaComponent {
   getAccountShoppingCart() {
     this.apiService.getAccountInfo().subscribe((account: any) => {
       this.account = account
-      console.log(account)
-      this.getItemShoppingCart(account["OrganizationDEO___ORACO__ShoppingCart_Id_c"])
+      if(account["OrganizationDEO___ORACO__ShoppingCart_Id_c"] != null){
+        this.getItemShoppingCart(account["OrganizationDEO___ORACO__ShoppingCart_Id_c"])
+      } else{
+        //TODO: LOGICA PARA CREAR CARRITO POSTITEMSHOPPINGCART
+        this.getItemShoppingCart(account["OrganizationDEO___ORACO__ShoppingCart_Id_c"])
+      }
     })
   }
 
@@ -84,11 +90,14 @@ export class NuevaComponent {
       });
   }
 
-  postShoppingCartItem() {
+ 
+  
+  postCreateShoppingCart(){
   }
+  
 
   onSubmitProducto() {
-    this.addService.agregarProducto(new Product(this.formProduct.value.sku.ItemNumber, this.formProduct.value.sku.ItemDescription, this.formProduct.value.quantity, this.formProduct.value.typeContainer, this.formProduct.value.quantityContainer, this.formProduct.value.loading, this.formProduct.value.minimumOrder, this.formProduct.value.pallets, this.formProduct.value.shipmentType), this.formHeader.value.etd);
+    this.addService.agregarProducto(this.account["OrganizationDEO___ORACO__ShoppingCart_Id_c"],new Product(this.selectedProduct.InvItemId,this.formProduct.value.sku.ItemNumber, this.formProduct.value.sku.ItemDescription, this.formProduct.value.quantity, this.formProduct.value.typeContainer, this.formProduct.value.quantityContainer, this.formProduct.value.loading, this.formProduct.value.minimumOrder, this.formProduct.value.pallets, this.formProduct.value.shipmentType), this.formHeader.value.etd);
     this.formProduct.reset();
   }
 
@@ -123,6 +132,7 @@ export class NuevaComponent {
     console.log(new Order(this.formHeader.value.poNbr, this.formHeader.value.shipTo, this.formHeader.value.incortem, this.formHeader.value.soldTo, this.formHeader.value.source, this.formHeader.value.eta, this.formHeader.value.etd, this.formHeader.value.country, this.addService.productos))
     console.log(this.formHeader.value)
   }
+
 }
 
 

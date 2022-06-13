@@ -2,9 +2,10 @@ import { Injectable } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
 import { Product } from '../components/nueva/Product';
 import { TableComponent } from '../table/table.component';
+import { ApiService } from './api.service';
 
 
-export interface Orden{
+export interface Orden {
   sku: any;
   description: any;
   etd: any;
@@ -19,27 +20,36 @@ export interface Orden{
 
 export class AddService {
 
-  
+
   productos: any[];
   private productos$: Subject<any[]>;
 
-  constructor() { 
+  constructor(private apiService: ApiService) {
     this.productos = [];
     this.productos$ = new Subject();
-   } 
+  }
 
-   
-  agregarProducto(producto: Product, etd: any) {
-    console.log(producto)
+
+  agregarProducto(shoppingCartId: any, producto: Product, etd: any) {
     producto["etd"] = etd
     this.productos.push(producto);
     this.productos$.next(this.productos);
+    console.log(shoppingCartId, producto.id)
+    this.apiService.postShoppingCartItem(shoppingCartId, producto.id, 20).suscribe({
+      next: (data: any) => {
+        console.log(data)
+      },
+      error: (err: any) => {
+        console.log(err)
+      }}
+     
+    )
   }
 
-   getProductos(): Observable<Product[]>{
-     return this.productos$.asObservable();
-   }
+  getProductos(): Observable<Product[]> {
+    return this.productos$.asObservable();
+  }
 
-   
+
 
 }

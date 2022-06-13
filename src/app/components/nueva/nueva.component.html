@@ -108,7 +108,7 @@
                     <mat-form-field class="ancho">
                         <label> Select Product</label>
 
-                        <mat-select matNativeControl name="select" required formControlName="sku">
+                        <mat-select matNativeControl name="select" required formControlName="sku" (ngModelChange)="selectedProduct = $event" (ngModel)="productsList">
                             <mat-option *ngFor="let product of productsList" [value]="product">
                                 {{product.ItemDescription}}
                                 - ${{product.ListPrice}}

@@ -21,6 +21,20 @@ export class ApiService {
   private password = "Anik2580";
   private auth = "Basic " + btoa(this.username + ":" + this.password)
   private partyNumber = sessionStorage.getItem('partyNumber')
+  private contenedor = {
+    "EMPID": 4,
+    "TPCON": "T",
+    "CODCON": 1,
+    "TXTCON": "T1",
+    "LMTMINP": 200,
+    "LMTMAXP": 400,
+    "LMTMINV": 20,
+    "LMTMAXV": 40,
+    "LMTMINB": 10,
+    "LMTMAXB": 20,
+    "CMBMINP": 4,
+    "CMBMAXP": 8
+  }
 
   constructor(private http: HttpClient) {
     console.log('Servicio http');
@@ -74,4 +88,5 @@ export class ApiService {
     });
   }
 
+  
 }

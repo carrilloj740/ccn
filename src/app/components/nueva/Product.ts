@@ -1,4 +1,5 @@
 export class Product {
+    id:number
     sku: string;
     description: string;
     quantity: number;
@@ -10,7 +11,8 @@ export class Product {
     shipmentType: string;
     etd: any;
 
-    constructor(sku: string, description: string, quantity: number, typeContainer: string, quantityContainer: number, loading: number, minimumOrder: number, pallets: number, shipmentType: string) {
+    constructor(id:number,sku: string, description: string, quantity: number, typeContainer: string, quantityContainer: number, loading: number, minimumOrder: number, pallets: number, shipmentType: string) {
+        this.id=id;
         this.sku = sku;
         this.description = description;
         this.quantity = quantity;
