@@ -62,18 +62,17 @@ export class ApiService {
 
   getShoppingCartItems(shoppingCartId: any) {
     return this.http.get(this.url + "__ORACO__ShoppingCartDSD_c/" + (shoppingCartId) + "/child/__ORACO__ShoppingCartItemCollection_c", {
-      headers: { Authorization: this.auth },
+      headers: { 'Authorization': this.auth },
     });
   }
 
   postShoppingCartItem(shoppingCartId: any, productoId: any, cantidad: any): any {
-    return this.http.post(this.url + "__ORACO__ShoppingCartDSD_c/" + (shoppingCartId) + "/child/__ORACO__ShoppingCartItemCollection_c", {
-      headers: { Authorization: this.auth, },
-      body: {
-        "__ORACO__Product_Id_c": productoId,
-        "__ORACO__Quantity_c": cantidad
-      }
-
+    const body = {
+      "__ORACO__Product_Id_c": productoId,
+      "__ORACO__Quantity_c": cantidad
+    }
+    return this.http.post(this.url + "__ORACO__ShoppingCartDSD_c/" + (shoppingCartId) + "/child/__ORACO__ShoppingCartItemCollection_c", body, {
+      headers: { 'Authorization': this.auth},
     });
   }
 
@@ -88,5 +87,5 @@ export class ApiService {
     });
   }
 
-  
+
 }

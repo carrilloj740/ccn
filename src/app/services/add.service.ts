@@ -35,7 +35,7 @@ export class AddService {
     this.productos.push(producto);
     this.productos$.next(this.productos);
     console.log(shoppingCartId, producto.id)
-    this.apiService.postShoppingCartItem(shoppingCartId, producto.id, 20).suscribe({
+    this.apiService.postShoppingCartItem(shoppingCartId, producto.id, 20).subscribe({
       next: (data: any) => {
         console.log(data)
       },
