@@ -14,9 +14,12 @@ import { Observable } from 'rxjs';
 
 
 export class ApiService {
+  shoppingCartId(shoppingCartId: any) {
+    throw new Error('Method not implemented.');
+  }
 
+  public account  = {} as any;
   private url = "https://fa-euny-test-saasfaprod1.fa.ocs.oraclecloud.com/crmRestApi/resources/11.13.18.05/"; // URL to web api
-
   private username = "jorge.argibay@serkes1.com";
   private password = "Anik2580";
   private auth = "Basic " + btoa(this.username + ":" + this.password)

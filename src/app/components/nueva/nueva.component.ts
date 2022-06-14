@@ -16,7 +16,7 @@ import { logicFilling } from './logic';
 })
 export class NuevaComponent {
 
-  selectedProduct ={"InvItemId":0, "ItemNumber":"","ItemDescripcion":""};
+  selectedProduct = { "InvItemId": 0, "ItemNumber": "", "ItemDescripcion": "" };
 
   logic: logicFilling = {
     pallets: 0,
@@ -62,23 +62,20 @@ export class NuevaComponent {
 
   listaProductos: any = [];
   productoSeleccionado = "";
-  account: any = {}
 
   ngOnInit(): void {
     this.getItemPrices()
     this.getAddress()
     this.getAccountShoppingCart()
+
   }
 
   getAccountShoppingCart() {
     this.apiService.getAccountInfo().subscribe((account: any) => {
-      this.account = account
-      if(account["OrganizationDEO___ORACO__ShoppingCart_Id_c"] != null){
-        this.getItemShoppingCart(account["OrganizationDEO___ORACO__ShoppingCart_Id_c"])
-      } else{
-        //TODO: LOGICA PARA CREAR CARRITO POSTITEMSHOPPINGCART
-        this.getItemShoppingCart(account["OrganizationDEO___ORACO__ShoppingCart_Id_c"])
-      }
+      // this.apiService.account = account
+      // TODO: unificar llamada del getAccountInfo
+      console.log(account)
+      this.getItemShoppingCart(account["OrganizationDEO___ORACO__ShoppingCart_Id_c"])
     })
   }
 
@@ -90,14 +87,11 @@ export class NuevaComponent {
       });
   }
 
- 
-  
-  postCreateShoppingCart(){
+  postCreateShoppingCart() {
   }
-  
 
   onSubmitProducto() {
-    this.addService.agregarProducto(this.account["OrganizationDEO___ORACO__ShoppingCart_Id_c"],new Product(this.selectedProduct.InvItemId,this.formProduct.value.sku.ItemNumber, this.formProduct.value.sku.ItemDescription, this.formProduct.value.quantity, this.formProduct.value.typeContainer, this.formProduct.value.quantityContainer, this.formProduct.value.loading, this.formProduct.value.minimumOrder, this.formProduct.value.pallets, this.formProduct.value.shipmentType), this.formHeader.value.etd);
+    this.addService.agregarProducto(this.apiService.account["OrganizationDEO___ORACO__ShoppingCart_Id_c"], new Product(this.selectedProduct.InvItemId, this.formProduct.value.sku.ItemNumber, this.formProduct.value.sku.ItemDescription, this.formProduct.value.quantity, this.formProduct.value.typeContainer, this.formProduct.value.quantityContainer, this.formProduct.value.loading, this.formProduct.value.minimumOrder, this.formProduct.value.pallets, this.formProduct.value.shipmentType), this.formHeader.value.etd);
     this.formProduct.reset();
   }
 
@@ -116,7 +110,9 @@ export class NuevaComponent {
   getItemPrices() {
     this.apiService.getAccountInfo().subscribe((account: any) => {
       console.log(account)
+      this.apiService.account = account
       this.apiService.getPriceList(account.OrganizationDEO___ORACO__PriceBook_Id_c).subscribe((priceBookInfo: any) => {
+        this.tableComponent.getShoppingCartList(this.apiService.account["OrganizationDEO___ORACO__ShoppingCart_Id_c"])
         console.log(priceBookInfo)
         if (priceBookInfo.StatusCode == 'ACTIVE') {
           this.apiService.getPrice(account.OrganizationDEO___ORACO__PriceBook_Id_c).subscribe((priceItems: any) => {

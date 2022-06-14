@@ -1,204 +1,201 @@
 <app-navbar></app-navbar>
 <mat-toolbar class="toolbar2">
-    <h1 style="color: black; font-weight: 700;font-family: 'Poppins', sans-serif;">New Order<mat-icon>shopping_cart
-        </mat-icon>
-    </h1>
+  <h1 style="color: black; font-weight: 700;font-family: 'Poppins', sans-serif;">New Order<mat-icon>shopping_cart
+    </mat-icon>
+  </h1>
 </mat-toolbar>
 
 <mat-card>
-    <div class="container">
-        <form [formGroup]="formHeader" (ngSubmit)="completarOrden()">
+  <div class="container">
+    <form [formGroup]="formHeader" (ngSubmit)="completarOrden()">
 
-            <mat-grid-list cols="3" rowHeight="100px">
-                <mat-grid-tile [colspan]="1" [rowspan]="1">
-                    <mat-form-field class="ancho">
-                        <mat-label>My PO Number</mat-label>
-                        <input matInput formControlName="poNbr" autocomplete="off">
-                    </mat-form-field>
-                </mat-grid-tile>
+      <mat-grid-list cols="3" rowHeight="100px">
+        <mat-grid-tile [colspan]="1" [rowspan]="1">
+          <mat-form-field class="ancho">
+            <mat-label>My PO Number</mat-label>
+            <input matInput formControlName="poNbr" autocomplete="off">
+          </mat-form-field>
+        </mat-grid-tile>
 
-                <mat-grid-tile [colspan]="1" [rowspan]="1">
-                    <!-- <mat-form-field class="ancho">
+        <mat-grid-tile [colspan]="1" [rowspan]="1">
+          <!-- <mat-form-field class="ancho">
                         <label>Ship to</label>
                         <select matNativeControl formControlName="shipTo">
                             <option *ngFor="let address of addressesList" [ngValue]="address.FormattedAddress">{{address.FormattedAddress}} </option>
                         </select>
                     </mat-form-field>  -->
-                    <mat-form-field class="ancho">
-                        <mat-label>Ship to</mat-label>
-                        <mat-select matNativeControl formControlName="shipTo">
-                            <mat-option *ngFor="let address of addressesList" [value]="address.FormattedAddress">
-                                {{address.FormattedAddress}}
-                            </mat-option>
-                        </mat-select>
-                    </mat-form-field>
-                </mat-grid-tile>
+          <mat-form-field class="ancho">
+            <mat-label>Ship to</mat-label>
+            <mat-select matNativeControl formControlName="shipTo">
+              <mat-option *ngFor="let address of addressesList" [value]="address.FormattedAddress">
+                {{address.FormattedAddress}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </mat-grid-tile>
 
-                <mat-grid-tile [colspan]="1" [rowspan]="1">
-                    <mat-form-field class="ancho">
-                        <label>Incortem</label>
-                        <select matNativeControl formControlName="incortem">
-                            <option value="EXW">EXW</option>
-                            <option value="FCA">FCA</option>
-                            <option value="FAS">FAS</option>
-                            <option value="FOB">FOB</option>
-                            <option value="CFR">CFR</option>
-                            <option value="CIF">CIF</option>
-                            <option value="CTP">CTP</option>
-                            <option value="CIP">CIP</option>
-                        </select>
-                    </mat-form-field>
-                </mat-grid-tile>
+        <mat-grid-tile [colspan]="1" [rowspan]="1">
+          <mat-form-field class="ancho">
+            <label>Incortem</label>
+            <select matNativeControl formControlName="incortem">
+              <option value="EXW">EXW</option>
+              <option value="FCA">FCA</option>
+              <option value="FAS">FAS</option>
+              <option value="FOB">FOB</option>
+              <option value="CFR">CFR</option>
+              <option value="CIF">CIF</option>
+              <option value="CTP">CTP</option>
+              <option value="CIP">CIP</option>
+            </select>
+          </mat-form-field>
+        </mat-grid-tile>
 
-                <mat-grid-tile [colspan]="1" [rowspan]="1">
+        <mat-grid-tile [colspan]="1" [rowspan]="1">
 
-                    <mat-form-field class="ancho">
-                        <mat-label>Sold to</mat-label>
-                        <mat-select matNativeControl formControlName="soldTo">
-                            <mat-option *ngFor="let address of addressesList" [value]="address.FormattedAddress">
-                                {{address.FormattedAddress}}
-                            </mat-option>
-                        </mat-select>
-                    </mat-form-field>
-                </mat-grid-tile>
+          <mat-form-field class="ancho">
+            <mat-label>Sold to</mat-label>
+            <mat-select matNativeControl formControlName="soldTo">
+              <mat-option *ngFor="let address of addressesList" [value]="address.FormattedAddress">
+                {{address.FormattedAddress}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </mat-grid-tile>
 
-                <mat-grid-tile [colspan]="1" [rowspan]="1">
-                    <mat-form-field class="ancho">
-                        <label>Source</label>
-                        <select matNativeControl formControlName="source">
-                            <option value="CostaRica">Costa Rica</option>
-                            <option value="HMEX">HMEX</option>
-                        </select>
-                    </mat-form-field>
-                </mat-grid-tile>
+        <mat-grid-tile [colspan]="1" [rowspan]="1">
+          <mat-form-field class="ancho">
+            <label>Source</label>
+            <select matNativeControl formControlName="source">
+              <option value="CostaRica">Costa Rica</option>
+              <option value="HMEX">HMEX</option>
+            </select>
+          </mat-form-field>
+        </mat-grid-tile>
 
-                <mat-grid-tile [colspan]="1" [rowspan]="1">
-                    <mat-form-field class="ancho">
-                        <mat-label>Request ETA</mat-label>
-                        <input matInput [matDatepicker]="picker" formControlName="eta" autocomplete="off">
-                        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-                        <mat-datepicker #picker></mat-datepicker>
-                    </mat-form-field>
-                </mat-grid-tile>
+        <mat-grid-tile [colspan]="1" [rowspan]="1">
+          <mat-form-field class="ancho">
+            <mat-label>Request ETA</mat-label>
+            <input matInput [matDatepicker]="picker" formControlName="eta" autocomplete="off">
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>
+        </mat-grid-tile>
 
-                <mat-grid-tile [colspan]="1" [rowspan]="1">
-                    <mat-form-field class="ancho">
-                        <mat-label>Request ETD</mat-label>
-                        <input matInput [matDatepicker]="picker2" formControlName="etd" autocomplete="off">
-                        <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
-                        <mat-datepicker #picker2></mat-datepicker>
-                    </mat-form-field>
-                </mat-grid-tile>
+        <mat-grid-tile [colspan]="1" [rowspan]="1">
+          <mat-form-field class="ancho">
+            <mat-label>Request ETD</mat-label>
+            <input matInput [matDatepicker]="picker2" formControlName="etd" autocomplete="off">
+            <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+            <mat-datepicker #picker2></mat-datepicker>
+          </mat-form-field>
+        </mat-grid-tile>
 
-            </mat-grid-list>
-        </form>
-        <!-- Seleccion de producto-->
+      </mat-grid-list>
+    </form>
+    <!-- Seleccion de producto-->
 
+    <mat-divider></mat-divider>
+    <h1 style="font-weight: 700;font-family: 'Poppins', sans-serif; margin-top: 40px;">Product <mat-icon>inventory_2
+      </mat-icon>
+    </h1>
+    <form [formGroup]="formProduct" (ngSubmit)="onSubmitProducto()">
 
+      <mat-grid-list cols="3" rowHeight="100px">
+        <mat-grid-tile [colspan]="1" [rowspan]="1">
+          <mat-form-field class="ancho">
+            <label> Select Product</label>
 
-
-        <mat-divider></mat-divider>
-        <h1 style="font-weight: 700;font-family: 'Poppins', sans-serif; margin-top: 40px;">Product <mat-icon>inventory_2
-            </mat-icon>
-        </h1>
-        <form [formGroup]="formProduct" (ngSubmit)="onSubmitProducto()">
-
-            <mat-grid-list cols="3" rowHeight="100px">
-                <mat-grid-tile [colspan]="1" [rowspan]="1">
-                    <mat-form-field class="ancho">
-                        <label> Select Product</label>
-
-                        <mat-select matNativeControl name="select" required formControlName="sku" (ngModelChange)="selectedProduct = $event" (ngModel)="productsList">
-                            <mat-option *ngFor="let product of productsList" [value]="product">
-                                {{product.ItemDescription}}
-                                - ${{product.ListPrice}}
-                            </mat-option>
-                        </mat-select>
+            <mat-select matNativeControl name="select" required formControlName="sku"
+              (ngModelChange)="selectedProduct = $event" (ngModel)="productsList">
+              <mat-option *ngFor="let product of productsList" [value]="product">
+                {{product.ItemDescription}}
+                - ${{product.ListPrice}}
+              </mat-option>
+            </mat-select>
 
 
-                    </mat-form-field>
-                </mat-grid-tile>
+          </mat-form-field>
+        </mat-grid-tile>
 
-                <mat-grid-tile [colspan]="1" [rowspan]="1">
-                    <mat-form-field class="ancho">
-                        <label>Shipment Type</label>
-                        <mat-select [(ngModel)]="shipmentType" matNativeControl required formControlName="shipmentType">
-                            <mat-option value="truck">Truck</mat-option>
-                            <mat-option value="maritime">Maritime</mat-option>
-                        </mat-select>
-                    </mat-form-field>
-                </mat-grid-tile>
+        <mat-grid-tile [colspan]="1" [rowspan]="1">
+          <mat-form-field class="ancho">
+            <label>Shipment Type</label>
+            <mat-select [(ngModel)]="shipmentType" matNativeControl required formControlName="shipmentType">
+              <mat-option value="truck">Truck</mat-option>
+              <mat-option value="maritime">Maritime</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </mat-grid-tile>
 
 
 
-                <mat-grid-tile [colspan]="1" [rowspan]="1">
-                    <mat-form-field class="ancho">
-                        <mat-label>Quantity in case </mat-label>
-                        <input [(ngModel)]="logic.pallets" matInput type="number" formControlName="quantity"
-                            autocomplete="off">
-                    </mat-form-field>
-                </mat-grid-tile>
+        <mat-grid-tile [colspan]="1" [rowspan]="1">
+          <mat-form-field class="ancho">
+            <mat-label>Quantity in case </mat-label>
+            <input [(ngModel)]="logic.pallets" matInput type="number" formControlName="quantity" autocomplete="off">
+          </mat-form-field>
+        </mat-grid-tile>
 
 
-                <mat-grid-tile [colspan]="1" [rowspan]="1">
-                    <mat-form-field class="ancho">
-                        <mat-label>Loading</mat-label>
-                        <input matInput type="number" formControlName="loading" autocomplete="off">
-                    </mat-form-field>
-                </mat-grid-tile>
+        <mat-grid-tile [colspan]="1" [rowspan]="1">
+          <mat-form-field class="ancho">
+            <mat-label>Loading</mat-label>
+            <input matInput type="number" formControlName="loading" autocomplete="off">
+          </mat-form-field>
+        </mat-grid-tile>
 
-                <mat-grid-tile [colspan]="1" [rowspan]="1">
-                    <mat-form-field class="ancho">
-                        <mat-label>Minimum Order</mat-label>
-                        <input matInput type="number" formControlName="minimumOrder" autocomplete="off">
-                    </mat-form-field>
-                </mat-grid-tile>
-
-
-                <mat-grid-tile [colspan]="1" [rowspan]="1">
-                    <mat-form-field class="ancho">
-                        <mat-label># of Container</mat-label>
-                        <input matInput type="number" formControlName="quantityContainer" autocomplete="off">
-                    </mat-form-field>
-                </mat-grid-tile>
+        <mat-grid-tile [colspan]="1" [rowspan]="1">
+          <mat-form-field class="ancho">
+            <mat-label>Minimum Order</mat-label>
+            <input matInput type="number" formControlName="minimumOrder" autocomplete="off">
+          </mat-form-field>
+        </mat-grid-tile>
 
 
-                <mat-grid-tile [colspan]="1" [rowspan]="1">
-                    <mat-form-field class="ancho">
-                        <mat-label>Pallets</mat-label>
-                        <input id="pallets" [(ngModel)]="logic.pallets" matInput type="number" formControlName="pallets"
-                            autocomplete="off">
-                    </mat-form-field>
-                </mat-grid-tile>
+        <mat-grid-tile [colspan]="1" [rowspan]="1">
+          <mat-form-field class="ancho">
+            <mat-label># of Container</mat-label>
+            <input matInput type="number" formControlName="quantityContainer" autocomplete="off">
+          </mat-form-field>
+        </mat-grid-tile>
 
 
-                <mat-grid-tile [colspan]="1" [rowspan]="1">
-                    <mat-form-field class="ancho">
-                        <label>Container Type</label>
-                      
-                        <mat-select matNativeControl formControlName="typeContainer">
-                            <mat-option *ngIf="shipmentType == 'truck'" value="20"> T1-20</mat-option>
-                            <mat-option *ngIf="shipmentType == 'truck'" value="40">T2-40</mat-option>
-                            <mat-option *ngIf="shipmentType == 'maritime'" value="40HC">M1-40' HC(High Cube)
-                            </mat-option>
-                            <mat-option *ngIf="shipmentType == 'maritime'" value="45HC">M2-45' HC(High Cube)
-                            </mat-option>
-                        </mat-select>
-                    </mat-form-field>
-                </mat-grid-tile>
+        <mat-grid-tile [colspan]="1" [rowspan]="1">
+          <mat-form-field class="ancho">
+            <mat-label>Pallets</mat-label>
+            <input id="pallets" [(ngModel)]="logic.pallets" matInput type="number" formControlName="pallets"
+              autocomplete="off">
+          </mat-form-field>
+        </mat-grid-tile>
 
-                <button mat-raised-button type="submit" value="Agregar" [disabled]="formProduct.invalid">Add</button>
 
-                
+        <mat-grid-tile [colspan]="1" [rowspan]="1">
+          <mat-form-field class="ancho">
+            <label>Container Type</label>
 
-            </mat-grid-list>
-            <mat-divider></mat-divider>
+            <mat-select matNativeControl formControlName="typeContainer">
+              <mat-option *ngIf="shipmentType == 'truck'" value="20"> T1-20</mat-option>
+              <mat-option *ngIf="shipmentType == 'truck'" value="40">T2-40</mat-option>
+              <mat-option *ngIf="shipmentType == 'maritime'" value="40HC">M1-40' HC(High Cube)
+              </mat-option>
+              <mat-option *ngIf="shipmentType == 'maritime'" value="45HC">M2-45' HC(High Cube)
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </mat-grid-tile>
 
-            <br>
-        </form>
-        <app-table></app-table>
-        <button class="button2" mat-raised-button (click)="completarOrden()" routerLink="/inicio/seguimiento"
-            value="Confirmar">Confirm
-        </button>
+        <button mat-raised-button type="submit" value="Agregar" [disabled]="formProduct.invalid">Add</button>
 
-    </div>
+
+
+      </mat-grid-list>
+      <mat-divider></mat-divider>
+
+      <br>
+    </form>
+    <app-table></app-table>
+    <button class="button2" mat-raised-button (click)="completarOrden()" routerLink="/inicio/seguimiento"
+      value="Confirmar">Confirm
+    </button>
+
+  </div>
