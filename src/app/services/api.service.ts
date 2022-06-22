@@ -18,7 +18,7 @@ export class ApiService {
     throw new Error('Method not implemented.');
   }
 
-  public account  = {} as any;
+  public account = {} as any;
   private url = "https://fa-euny-test-saasfaprod1.fa.ocs.oraclecloud.com/crmRestApi/resources/11.13.18.05/"; // URL to web api
   private username = "jorge.argibay@serkes1.com";
   private password = "Anik2580";
@@ -56,6 +56,11 @@ export class ApiService {
     })
   }
 
+  getAccountChange(): any {
+    return this.http.get(this.url + "accounts/" + (this.partyNumber) + "/child/Relationship/", {
+      headers: { 'Authorization': this.auth, 'Content-Type': "application/vnd.oracle.adf.resourcecollection+json" },
+    })
+  }
 
   getListAddress(): any {
     return this.http.get(this.url + "accounts/" + (this.partyNumber) + "/child/Address/", {
@@ -75,7 +80,7 @@ export class ApiService {
       "__ORACO__Quantity_c": cantidad
     }
     return this.http.post(this.url + "__ORACO__ShoppingCartDSD_c/" + (shoppingCartId) + "/child/__ORACO__ShoppingCartItemCollection_c", body, {
-      headers: { 'Authorization': this.auth},
+      headers: { 'Authorization': this.auth },
     });
   }
 

@@ -1,5 +1,6 @@
 import { Component, OnInit, VERSION } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
+import { NavbarComponent } from '../navbar/navbar.component';
 
 
 export interface Amount {
@@ -25,11 +26,9 @@ export class InicioComponent implements OnInit {
   };
 
 
-  constructor() { }
-
+  constructor(){}
 
   ngOnInit() {
-
   }
 
 }
