@@ -60,8 +60,19 @@ export class LoginComponent implements OnInit {
     })
   }
 
+  getAntiCSRFToken() {
+    this.apiService.getAntiCSRFToken().subscribe((res:any) => {
+      this.apiService.anticsrfToken = res.xsrftoken
+      console.log(res)
+      this.apiService.getOracleLogin(res.xsrftoken).subscribe((res:any)=>{
+        console.log(res)
+      })
+    })
+  }
+
   ngOnInit(): void {
     sessionStorage.setItem("partyNumber","1Yp")
+    this.getAntiCSRFToken()
   }
 
 }

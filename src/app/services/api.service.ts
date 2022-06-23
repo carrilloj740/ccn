@@ -20,10 +20,13 @@ export class ApiService {
 
   public account = {} as any;
   private url = "https://fa-euny-test-saasfaprod1.fa.ocs.oraclecloud.com/crmRestApi/resources/11.13.18.05/"; // URL to web api
+  private oracleLoginBaseUrl = "https://fa-euny-test-saasfaprod1.fa.ocs.oraclecloud.com/fscmRestApi/"
   private username = "jorge.argibay@serkes1.com";
   private password = "Anik2580";
   private auth = "Basic " + btoa(this.username + ":" + this.password)
-  private partyNumber = sessionStorage.getItem('partyNumber')
+  public partyNumber = sessionStorage.getItem('partyNumber')
+  public selectedAccount = {} as any
+  public anticsrfToken: String = '';
   private contenedor = {
     "EMPID": 4,
     "TPCON": "T",
@@ -93,6 +96,16 @@ export class ApiService {
     return this.http.get(this.url + "priceBookHeaders/" + priceBook, {
       headers: { 'Authorization': this.auth, 'Content-Type': "application/vnd.oracle.adf.resourcecollection+json" },
     });
+  }
+
+  getAntiCSRFToken(){
+    return this.http.get(this.oracleLoginBaseUrl+'anticsrf')
+  }
+
+  getOracleLogin(csrfToken: any){
+    return this.http.get(this.oracleLoginBaseUrl+'tokenrelay',{
+      headers: {'X-XSRF-TOKEN' : csrfToken}
+    })
   }
 
 

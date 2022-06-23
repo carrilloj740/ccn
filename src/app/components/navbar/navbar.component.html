@@ -13,7 +13,15 @@
     <mat-icon>location_on</mat-icon>Tracking
   </button>
   <span class="example-spacer"></span>
-
+  <button mat-button class="icon" [matMenuTriggerFor]="accounts">
+    {{selectedAccount.OrganizationName}}{{selectedAccount.SubjectPartyName}}
+  </button>
+  <mat-menu #accounts="matMenu">
+    <button mat-menu-item
+      (click)="selectAccount(this.apiService.account)">{{this.apiService.account.OrganizationName}}</button>
+    <button mat-menu-item *ngFor="let account of accountsList"
+      (click)="selectAccount(account)">{{account.SubjectPartyName}}</button>
+  </mat-menu>
   <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
     <mat-icon class="icon">account_circle</mat-icon>
   </button>
@@ -24,12 +32,11 @@
     <button mat-menu-item routerLink="/login">
       <span>Sign out</span>
     </button>
-    <hr>
-    <button mat-menu-item [matMenuTriggerFor]="accounts">
-      Stores
-    </button>
   </mat-menu>
-  <mat-menu #accounts="matMenu" >
-    <button mat-menu-item *ngFor="let account of accountsList" (click)="selectAccount(account)">{{account.SubjectPartyNumber}}</button>
+  <mat-menu #accounts="matMenu">
+    <button mat-menu-item
+      (click)="selectAccount(this.apiService.account)">{{this.apiService.account.OrganizationName}}</button>
+    <button mat-menu-item *ngFor="let account of accountsList"
+      (click)="selectAccount(account)">{{account.SubjectPartyName}}</button>
   </mat-menu>
 </mat-toolbar>

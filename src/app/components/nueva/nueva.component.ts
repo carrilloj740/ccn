@@ -111,6 +111,7 @@ export class NuevaComponent {
     this.apiService.getAccountInfo().subscribe((account: any) => {
       console.log(account)
       this.apiService.account = account
+      this.apiService.selectedAccount = account;
       this.apiService.getPriceList(account.OrganizationDEO___ORACO__PriceBook_Id_c).subscribe((priceBookInfo: any) => {
         this.tableComponent.getShoppingCartList(this.apiService.account["OrganizationDEO___ORACO__ShoppingCart_Id_c"])
         console.log(priceBookInfo)

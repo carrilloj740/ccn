@@ -42,7 +42,8 @@ import { ForgotPasswordComponent } from './components/forgot-password/forgot-pas
  
   ],
   providers: [
-  TableComponent
+  TableComponent,
+  NavbarComponent
   ],
   bootstrap: [AppComponent]
 })
