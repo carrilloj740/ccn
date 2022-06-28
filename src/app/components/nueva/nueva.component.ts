@@ -8,6 +8,7 @@ import { Product } from './Product';
 import { Order } from './Order';
 import { TableComponent } from 'src/app/table/table.component';
 import { logicFilling } from './logic';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-nueva',
@@ -23,6 +24,9 @@ export class NuevaComponent {
     quantity: 0,
   };
 
+  cantidad: any;
+  cantidadMul: any = 20;
+  confirmaCantidad: boolean = false;
   selected = 'Truck';
   shipmentType: string = ''
   buttonDisabled: boolean = true;
@@ -32,7 +36,7 @@ export class NuevaComponent {
   addressesList: any = []
   shoppingCartList: any = []
 
-  constructor(private fb: FormBuilder, private addService: AddService, private apiService: ApiService, private tableComponent: TableComponent,) {
+  constructor(private fb: FormBuilder, private addService: AddService, private apiService: ApiService, private tableComponent: TableComponent, private _snackBar: MatSnackBar) {
 
     this.formHeader = new FormGroup({
       etd: new FormControl(),
@@ -56,7 +60,6 @@ export class NuevaComponent {
       pallets: new FormControl(),
       shipmentType: new FormControl(),
     })
-
   }
 
 
@@ -127,6 +130,23 @@ export class NuevaComponent {
   completarOrden() {
     console.log(new Order(this.formHeader.value.poNbr, this.formHeader.value.shipTo, this.formHeader.value.incortem, this.formHeader.value.soldTo, this.formHeader.value.source, this.formHeader.value.eta, this.formHeader.value.etd, this.formHeader.value.country, this.addService.productos))
     console.log(this.formHeader.value)
+  }
+
+  calculo(e:number) {
+    console.log(e)
+    if (e % this.cantidadMul != 0) {
+      this.confirmaCantidad = false
+    } else{
+      this.confirmaCantidad = true
+    }
+  }
+
+  error() {
+    this._snackBar.open('Cantidad invalida', '', {
+      duration: 5000,
+      horizontalPosition: 'center',
+      verticalPosition: 'bottom'
+    })
   }
 
 }

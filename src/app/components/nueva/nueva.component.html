@@ -38,14 +38,7 @@
           <mat-form-field class="ancho">
             <label>Incortem</label>
             <select matNativeControl formControlName="incortem">
-              <option value="EXW">EXW</option>
-              <option value="FCA">FCA</option>
-              <option value="FAS">FAS</option>
-              <option value="FOB">FOB</option>
-              <option value="CFR">CFR</option>
-              <option value="CIF">CIF</option>
-              <option value="CTP">CTP</option>
-              <option value="CIP">CIP</option>
+              <option value="XWORK">XWORK</option>
             </select>
           </mat-form-field>
         </mat-grid-tile>
@@ -98,12 +91,13 @@
     <h1 style="font-weight: 700;font-family: 'Poppins', sans-serif; margin-top: 40px;">Product <mat-icon>inventory_2
       </mat-icon>
     </h1>
+
     <form [formGroup]="formProduct" (ngSubmit)="onSubmitProducto()">
 
       <mat-grid-list cols="3" rowHeight="100px">
         <mat-grid-tile [colspan]="1" [rowspan]="1">
           <mat-form-field class="ancho">
-            <label> Select Product</label>
+            <label> Select Producto</label>
 
             <mat-select matNativeControl name="select" required formControlName="sku"
               (ngModelChange)="selectedProduct = $event" (ngModel)="productsList">
@@ -129,20 +123,6 @@
 
 
 
-        <mat-grid-tile [colspan]="1" [rowspan]="1">
-          <mat-form-field class="ancho">
-            <mat-label>Quantity in case </mat-label>
-            <input [(ngModel)]="logic.pallets" matInput type="number" formControlName="quantity" autocomplete="off">
-          </mat-form-field>
-        </mat-grid-tile>
-
-
-        <mat-grid-tile [colspan]="1" [rowspan]="1">
-          <mat-form-field class="ancho">
-            <mat-label>Loading</mat-label>
-            <input matInput type="number" formControlName="loading" autocomplete="off">
-          </mat-form-field>
-        </mat-grid-tile>
 
         <mat-grid-tile [colspan]="1" [rowspan]="1">
           <mat-form-field class="ancho">
@@ -163,8 +143,7 @@
         <mat-grid-tile [colspan]="1" [rowspan]="1">
           <mat-form-field class="ancho">
             <mat-label>Pallets</mat-label>
-            <input id="pallets" [(ngModel)]="logic.pallets" matInput type="number" formControlName="pallets"
-              autocomplete="off">
+            <input id="pallets" matInput type="number" formControlName="pallets" autocomplete="off">
           </mat-form-field>
         </mat-grid-tile>
 
@@ -184,9 +163,21 @@
           </mat-form-field>
         </mat-grid-tile>
 
-        <button mat-raised-button type="submit" value="Agregar" [disabled]="formProduct.invalid">Add</button>
+        <mat-grid-tile [colspan]="1" [rowspan]="1">
+          <mat-form-field class="ancho">
+            <mat-label>Quantity in case </mat-label>
+            <input matInput type="number" formControlName="quantity" autocomplete="off" 
+              (ngModelChange)="calculo($event)">
+              <mat-hint align="end" *ngIf="!confirmaCantidad">You must enter a number that is a multiple of {{cantidadMul}}</mat-hint>
+          </mat-form-field>
+        </mat-grid-tile>
 
+        
+        <mat-grid-tile [colspan]="1" [rowspan]="1">
+          multiplos de {{cantidadMul}} cajas ---{{confirmaCantidad}}
+        </mat-grid-tile>
 
+        <button mat-raised-button type="submit" value="Agregar" [disabled]="!formProduct.valid || !confirmaCantidad">Add</button>
 
       </mat-grid-list>
       <mat-divider></mat-divider>
