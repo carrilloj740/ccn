@@ -28,21 +28,24 @@ export class LoginComponent implements OnInit {
   }
 
   ingresar() {
-    console.log(this.form.value);
-    const usuario = this.form.value.usuario;
-    const password = this.form.value.password;
+    
+    this.apiService.signin(this.form).subscribe({
+      next:(res)=>{
+        console.log(res)
+        //TODO: Identificar cual es la cuenta padre y partir de esa
+        this.router.navigate(['inicio'])
+        this.form.reset()
+      },
+      error:(err)=>{
+        this.formError();
+        this.form.reset()
+      }
+    })
 
-    if (usuario == 'admin' && password == 'admin') {
-      //Redireccionamos al dashboard
-      this.fakeLoading();
-    } else {
-      //Mostramos un mensaje de error;
-      this.error();
-      this.form.reset();
-    }
+
   }
 
-  error() {
+  formError() {
     this._snackBar.open('Usuario o contraseña son invalidas', '', {
       duration: 5000,
       horizontalPosition: 'center',
@@ -50,15 +53,16 @@ export class LoginComponent implements OnInit {
     })
   }
 
-  fakeLoading() {
-    this.loading = true;
-    setTimeout(() => {
-      this.router.navigate(['inicio'])
-    }, 1500);
-    this.apiService.getAccountInfo().subscribe((account: any) => {
-      console.log(account)
-    })
-  }
+  // TODO: Sacar
+  // fakeLoading() {
+  //   this.loading = true;
+  //   setTimeout(() => {
+  //     this.router.navigate(['inicio'])
+  //   }, 1500);
+  //   this.apiService.getAccountInfo().subscribe((account: any) => {
+  //     console.log(account)
+  //   })
+  // }
 
   ngOnInit(): void {
     sessionStorage.setItem("partyNumber","1Yp")

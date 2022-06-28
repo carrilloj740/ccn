@@ -3,6 +3,7 @@ import { Buffer } from 'buffer';
 
 import { HttpClient, HttpHeaders } from '@angular/common/http'
 import { Observable } from 'rxjs';
+import { FormGroup } from '@angular/forms';
 
 
 
@@ -22,7 +23,8 @@ export class ApiService {
   private url = "https://fa-euny-test-saasfaprod1.fa.ocs.oraclecloud.com/crmRestApi/resources/11.13.18.05/"; // URL to web api
   private username = "jorge.argibay@serkes1.com";
   private password = "Anik2580";
-  private auth = "Basic " + btoa(this.username + ":" + this.password)
+  //private auth = "Basic " + btoa(this.username + ":" + this.password)
+  private auth = "";
   private partyNumber = sessionStorage.getItem('partyNumber')
   private contenedor = {
     "EMPID": 4,
@@ -89,10 +91,19 @@ export class ApiService {
       headers: { 'Authorization': this.auth, 'Content-Type': "application/vnd.oracle.adf.resourcecollection+json" },
     });
   }
+
   getPriceList(priceBook: number): any {
     return this.http.get(this.url + "priceBookHeaders/" + priceBook, {
       headers: { 'Authorization': this.auth, 'Content-Type': "application/vnd.oracle.adf.resourcecollection+json" },
     });
+  }
+
+  signin(form: FormGroup) {
+    this.auth = "Basic " + btoa(form.value.usuario + ":" + form.value.password);
+    console.log(this.auth)
+    return this.http.get(this.url + "accounts/", {
+      headers: { 'Authorization': this.auth,'Content-Type': "application/vnd.oracle.adf.resourcecollection+json" }
+    })
   }
 
 
