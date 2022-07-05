@@ -17,50 +17,53 @@
           </mat-form-field>
         </mat-grid-tile>
 
-        <mat-grid-tile [colspan]="1" [rowspan]="1">
+      
           <!-- <mat-form-field class="ancho">
                         <label>Ship to</label>
                         <select matNativeControl formControlName="shipTo">
                             <option *ngFor="let address of addressesList" [ngValue]="address.FormattedAddress">{{address.FormattedAddress}} </option>
                         </select>
                     </mat-form-field>  -->
+
+          <mat-grid-tile [colspan]="1" [rowspan]="1">
+            <mat-form-field class="ancho">
+              <mat-label>Sold to</mat-label>
+              <mat-select matNativeControl formControlName="soldTo" (ngModelChange)="selectSoldTo($event)"
+                (ngModel)="selectSoldTo">
+                <mat-option *ngFor="let accountAddress of accountAddressesList" [value]="accountAddress">
+                  {{accountAddress.FormattedAddress}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </mat-grid-tile>
+
+          <mat-grid-tile [colspan]="1" [rowspan]="1">
+            <mat-form-field class="ancho">
+              <label>Incortem</label>
+              <select matNativeControl formControlName="incortem">
+                <option value="EXW">EXW</option>
+                <option value="FCA">FCA</option>
+                <option value="FAS">FAS</option>
+                <option value="FOB">FOB</option>
+                <option value="CFR">CFR</option>
+                <option value="CIF">CIF</option>
+                <option value="CTP">CTP</option>
+                <option value="CIP">CIP</option>
+              </select>
+            </mat-form-field>
+          </mat-grid-tile>
+
+          <mat-grid-tile [colspan]="1" [rowspan]="1">
           <mat-form-field class="ancho">
             <mat-label>Ship to</mat-label>
             <mat-select matNativeControl formControlName="shipTo">
-              <mat-option *ngFor="let address of addressesList" [value]="address.FormattedAddress">
-                {{address.FormattedAddress}}
+              <mat-option *ngFor="let accountAddress of accountAddressesList" [value]="accountAddress">
+                {{accountAddress.FormattedAddress}}
               </mat-option>
             </mat-select>
           </mat-form-field>
         </mat-grid-tile>
 
-        <mat-grid-tile [colspan]="1" [rowspan]="1">
-          <mat-form-field class="ancho">
-            <label>Incortem</label>
-            <select matNativeControl formControlName="incortem">
-              <option value="EXW">EXW</option>
-              <option value="FCA">FCA</option>
-              <option value="FAS">FAS</option>
-              <option value="FOB">FOB</option>
-              <option value="CFR">CFR</option>
-              <option value="CIF">CIF</option>
-              <option value="CTP">CTP</option>
-              <option value="CIP">CIP</option>
-            </select>
-          </mat-form-field>
-        </mat-grid-tile>
-
-        <mat-grid-tile [colspan]="1" [rowspan]="1">
-
-          <mat-form-field class="ancho">
-            <mat-label>Sold to</mat-label>
-            <mat-select matNativeControl formControlName="soldTo">
-              <mat-option *ngFor="let address of addressesList" [value]="address.FormattedAddress">
-                {{address.FormattedAddress}}
-              </mat-option>
-            </mat-select>
-          </mat-form-field>
-        </mat-grid-tile>
 
         <mat-grid-tile [colspan]="1" [rowspan]="1">
           <mat-form-field class="ancho">
@@ -137,12 +140,12 @@
         </mat-grid-tile>
 
 
-        <mat-grid-tile [colspan]="1" [rowspan]="1">
+        <!-- <mat-grid-tile [colspan]="1" [rowspan]="1">
           <mat-form-field class="ancho">
             <mat-label>Loading</mat-label>
             <input matInput type="number" formControlName="loading" autocomplete="off">
           </mat-form-field>
-        </mat-grid-tile>
+        </mat-grid-tile> -->
 
         <mat-grid-tile [colspan]="1" [rowspan]="1">
           <mat-form-field class="ancho">

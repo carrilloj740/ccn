@@ -25,7 +25,13 @@ export class ApiService {
   private password = "Anik2580";
   //private auth = "Basic " + btoa(this.username + ":" + this.password)
   private auth = "";
-  private partyNumber = sessionStorage.getItem('partyNumber')
+  // public partyNumber = sessionStorage.getItem('partyNumber')
+  public padre = {} as any;
+  public bodegas: any[] = [];
+  public bodegaSeleccionada = {} as any;
+
+
+
   private contenedor = {
     "EMPID": 4,
     "TPCON": "T",
@@ -52,20 +58,20 @@ export class ApiService {
     });
   }
 
-  getAccountInfo(): any {
-    return this.http.get(this.url + "accounts/" + (this.partyNumber), {
+  getAccountInfo(partyNumber:string): any {
+    return this.http.get(this.url + "accounts/" + (partyNumber), {
       headers: { 'Authorization': this.auth, 'Content-Type': "application/vnd.oracle.adf.resourcecollection+json" },
     })
   }
 
-  getAccountChange(): any {
-    return this.http.get(this.url + "accounts/" + (this.partyNumber) + "/child/Relationship/", {
+  getAccountChange(partyNumber:string): any {
+    return this.http.get(this.url + "accounts/" + (partyNumber) + "/child/Relationship/", {
       headers: { 'Authorization': this.auth, 'Content-Type': "application/vnd.oracle.adf.resourcecollection+json" },
     })
   }
 
-  getListAddress(): any {
-    return this.http.get(this.url + "accounts/" + (this.partyNumber) + "/child/Address/", {
+  getListAddress(partyNumber:string,parametro : string =""): any {
+    return this.http.get(this.url + "accounts/" + (partyNumber) + "/child/Address" + (parametro), {
       headers: { 'Authorization': this.auth, 'Content-Type': "application/vnd.oracle.adf.resourcecollection+json" },
     })
   }

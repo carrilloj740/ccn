@@ -30,9 +30,17 @@ export class LoginComponent implements OnInit {
   ingresar() {
     
     this.apiService.signin(this.form).subscribe({
-      next:(res)=>{
+      next:(res: any)=>{
+
         console.log(res)
         //TODO: Identificar cual es la cuenta padre y partir de esa
+        res.items.forEach((account: any) => {
+          if(account.ParentAccountPartyNumber != null){
+            this.apiService.bodegas.push(account)
+          }else{
+            this.apiService.padre = account
+          }
+        })
         this.router.navigate(['inicio'])
         this.form.reset()
       },

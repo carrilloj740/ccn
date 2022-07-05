@@ -83,22 +83,25 @@
 
  /* Grid */
  .window {
-   height: 440px;
-   width: 800px;
+   height: 80%;
+   width: 100%;
    background: #006a3a;
    display: -webkit-box;
    display: -webkit-flex;
    display: -ms-flexbox;
    display: flex;
+   flex-grow: 1;
    box-shadow: 0px 15px 50px 10px rgba(0, 0, 0, 0.2);
    border-radius: 30px;
    z-index: 10;
    color: white;
  }
 
+
  .order-info {
    height: 100%;
-   width: 50%;
+   width: 40%;
+   flex: 1;
    padding-left: 25px;
    padding-right: 25px;
    box-sizing: border-box;
@@ -118,6 +121,7 @@
    position: absolute;
    right: 0px;
    color: black;
+   margin-right: 5%;
  }
 
  .price2 {
@@ -163,7 +167,7 @@
  .credit-info {
    background: white;
    height: 100%;
-   width: 50%;
+   width: 80%;
    color: black;
    -webkit-box-pack: center;
    -webkit-justify-content: center;
@@ -181,6 +185,7 @@
    border-top-right-radius: 30px;
    border-bottom-right-radius: 30px;
    position: relative;
+
  }
 
 
@@ -230,4 +235,10 @@
  .thin2 {
   font-weight: 400;
   color: white;
+}
+
+.contenedor-bodegas{
+  overflow-y: auto;
+  overflow-x: hidden;
+  
 }

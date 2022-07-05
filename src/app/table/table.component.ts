@@ -30,7 +30,6 @@ export class TableComponent implements OnInit {
     this.addService.getProductos().subscribe(productos => {
       this.productos = productos;
     });
-    this.getShoppingCartList(this.apiService.account.shoppingCartId);
   }
 
   getShoppingCartList(shoppingCartId: number) {

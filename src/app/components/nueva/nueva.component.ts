@@ -16,8 +16,9 @@ import { logicFilling } from './logic';
 })
 export class NuevaComponent {
 
-  selectedProduct = { "InvItemId": 0, "ItemNumber": "", "ItemDescripcion": "" };
-
+  selectedProduct = {} as any;
+  selectedWarhouse = {} as any;
+  
   logic: logicFilling = {
     pallets: 0,
     quantity: 0,
@@ -29,8 +30,9 @@ export class NuevaComponent {
   formHeader: FormGroup;
   formProduct: FormGroup;
   productsList: any = []
-  addressesList: any = []
+  accountAddressesList: any = []
   shoppingCartList: any = []
+  
 
   constructor(private fb: FormBuilder, private addService: AddService, private apiService: ApiService, private tableComponent: TableComponent,) {
 
@@ -64,14 +66,15 @@ export class NuevaComponent {
   productoSeleccionado = "";
 
   ngOnInit(): void {
-    this.getItemPrices()
-    this.getAddress()
-    this.getAccountShoppingCart()
+    // this.getAddress()
+    // this.getAccountShoppingCart()
+    this.accountAddressesList = this.apiService.bodegas
 
   }
 
+
   getAccountShoppingCart() {
-    this.apiService.getAccountInfo().subscribe((account: any) => {
+    this.apiService.getAccountInfo(this.apiService.bodegaSeleccionada.PartyNumber).subscribe((account: any) => {
       // this.apiService.account = account
       // TODO: unificar llamada del getAccountInfo
       console.log(account)
@@ -87,19 +90,26 @@ export class NuevaComponent {
       });
   }
 
+  selectSoldTo(account: any){
+    console.log(account)
+    this.apiService.bodegaSeleccionada = account
+    this.getItemPrices()
+    this.tableComponent.getShoppingCartList(this.apiService.bodegaSeleccionada["OrganizationDEO___ORACO__ShoppingCart_Id_c"])
+  }
+
   postCreateShoppingCart() {
   }
 
   onSubmitProducto() {
-    this.addService.agregarProducto(this.apiService.account["OrganizationDEO___ORACO__ShoppingCart_Id_c"], new Product(this.selectedProduct.InvItemId, this.formProduct.value.sku.ItemNumber, this.formProduct.value.sku.ItemDescription, this.formProduct.value.quantity, this.formProduct.value.typeContainer, this.formProduct.value.quantityContainer, this.formProduct.value.loading, this.formProduct.value.minimumOrder, this.formProduct.value.pallets, this.formProduct.value.shipmentType), this.formHeader.value.etd);
+    this.addService.agregarProducto(this.apiService.bodegaSeleccionada["OrganizationDEO___ORACO__ShoppingCart_Id_c"], new Product(this.selectedProduct.InvItemId, this.formProduct.value.sku.ItemNumber, this.formProduct.value.sku.ItemDescription, this.formProduct.value.quantity, this.formProduct.value.typeContainer, this.formProduct.value.quantityContainer, this.formProduct.value.loading, this.formProduct.value.minimumOrder, this.formProduct.value.pallets, this.formProduct.value.shipmentType), this.formHeader.value.etd);
     this.formProduct.reset();
   }
 
-  getAddress() {
-    this.apiService.getListAddress()
-      .subscribe((address: any) => this.addressesList = address.items);
-    console.log(this.addressesList)
-  }
+  // getAddress() {
+  //   this.apiService.getListAddress()
+  //     .subscribe((address: any) => this.addressesList = address.items);
+  //   console.log(this.addressesList)
+  // }
 
   getItems() {
     this.apiService.getItems()
@@ -108,11 +118,11 @@ export class NuevaComponent {
   }
 
   getItemPrices() {
-    this.apiService.getAccountInfo().subscribe((account: any) => {
+    this.apiService.getAccountInfo(this.apiService.bodegaSeleccionada.PartyNumber).subscribe((account: any) => {
       console.log(account)
       this.apiService.account = account
       this.apiService.getPriceList(account.OrganizationDEO___ORACO__PriceBook_Id_c).subscribe((priceBookInfo: any) => {
-        this.tableComponent.getShoppingCartList(this.apiService.account["OrganizationDEO___ORACO__ShoppingCart_Id_c"])
+        this.tableComponent.getShoppingCartList(this.apiService.bodegaSeleccionada["OrganizationDEO___ORACO__ShoppingCart_Id_c"])
         console.log(priceBookInfo)
         if (priceBookInfo.StatusCode == 'ACTIVE') {
           this.apiService.getPrice(account.OrganizationDEO___ORACO__PriceBook_Id_c).subscribe((priceItems: any) => {

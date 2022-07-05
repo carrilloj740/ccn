@@ -6,21 +6,21 @@
     <div class='order-info'>
       <div class='order-info-content'>
         <h2 style="margin-top: 25%;">Amount available</h2>
-        <div  style="margin-top: 9%;"></div>
-        <table class='order-table' >
+        <div style="margin-top: 9%;"></div>
+        <table class='order-table'>
           <tbody>
-            <tr >
+            <tr>
               <!-- <td><img src='https://dl.dropboxusercontent.com/s/sim84r2xfedj99n/%24_32.JPG' class='full-width'></img>
               </td> -->
               <td>
-                 <span class='thin2'>Total amount available</span>
+                <span class='thin2'>Total amount available</span>
                 <br> <br> <br>
               </td>
 
             </tr>
             <tr>
               <td>
-                <div class='price2'><span>{{amount.totalAmount}}</span></div>
+                <div class='price2'><span>${{grupoEmpresario.OrganizationDEO_DisponibleDeCredito_c}}</span></div>
               </td>
             </tr>
           </tbody>
@@ -30,71 +30,39 @@
       </div>
     </div>
 
-      <!-- Segunda zona -->
+    <!-- Segunda zona -->
     <div class='credit-info'>
       <div class='credit-info-content'>
         <h2>Warehouse amount</h2>
         <div class='line'></div>
-        <table class='order-table'>
-          <tbody>
-            <tr>
-              <!-- <td><img src='https://dl.dropboxusercontent.com/s/sim84r2xfedj99n/%24_32.JPG' class='full-width'></img>
-              </td> -->
-              <td>
-                 <br><span class='thin'>Warehouse 1</span>
-                <br> <br>
-              </td>
+        <div class="contenedor-bodegas">
 
-            </tr>
-            <tr>
-              <td>
-                <div class='price'>{{amount.wareHouse1}}</div>
-              </td>
-            </tr>
-          </tbody>
-        </table>
 
-        <div class='line'></div>
-        <table class='order-table'>
-          <tbody>
-            <tr>
-              <!-- <td><img src='https://dl.dropboxusercontent.com/s/sim84r2xfedj99n/%24_32.JPG' class='full-width'></img>
-              </td> -->
-              <td>
-                <br> <span class='thin'>Warehouse 2</span>
-                <br> <br>
-              </td>
+          <div *ngFor="let bodega of bodegas">
+            <table class='order-table'>
+              <tbody>
+                <tr>
+                  <!-- <td><img src='https://dl.dropboxusercontent.com/s/sim84r2xfedj99n/%24_32.JPG' class='full-width'></img>
+                </td> -->
+                  <td>
+                    <br><span class='thin'>{{bodega.FormattedAddress}}</span>
+                    <br> <br>
+                  </td>
 
-            </tr>
-            <tr>
-              <td>
-                <div class='price'>{{amount.wareHouse3}}</div>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-        <div class='line'></div>
-        <table class='order-table'>
-          <tbody>
-            <tr>
-              <!-- <td><img src='https://dl.dropboxusercontent.com/s/sim84r2xfedj99n/%24_32.JPG' class='full-width'></img>
-              </td> -->
-              <td>
-                <br> <span class='thin'>Warehouse 3</span>
-                <br> <br>
-              </td>
+                </tr>
+                <tr>
+                  <td>
+                    <div class='price'>${{bodega.OrganizationDEO_DisponibleDeCredito_c}}</div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            <div class='line'></div>
+          </div>
 
-            </tr>
-            <tr>
-              <td>
-                <div class='price'>{{amount.wareHouse3}}</div>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-        <div class='line'></div>
+        </div>
+
       </div>
-
     </div>
   </div>
 </div>
