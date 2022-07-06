@@ -83,6 +83,7 @@ export class ApiService {
   }
 
   postShoppingCartItem(shoppingCartId: any, productoId: any, cantidad: any): any {
+    console.log(this)
     const body = {
       "__ORACO__Product_Id_c": productoId,
       "__ORACO__Quantity_c": cantidad
@@ -106,7 +107,7 @@ export class ApiService {
 
   signin(form: FormGroup) {
     this.auth = "Basic " + btoa(form.value.usuario + ":" + form.value.password);
-    console.log(this.auth)
+    console.log(this)
     return this.http.get(this.url + "accounts/", {
       headers: { 'Authorization': this.auth,'Content-Type': "application/vnd.oracle.adf.resourcecollection+json" }
     })

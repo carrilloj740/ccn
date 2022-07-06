@@ -12,7 +12,8 @@ import { logicFilling } from './logic';
 @Component({
   selector: 'app-nueva',
   templateUrl: './nueva.component.html',
-  styleUrls: ['./nueva.component.css']
+  styleUrls: ['./nueva.component.css'],
+  providers: [AddService]
 })
 export class NuevaComponent {
 

@@ -17,6 +17,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { TableComponent } from './table/table.component';
 import { DetailsComponent } from './details/details.component';
 import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
+import { ApiService } from './services/api.service';
 
 @NgModule({
   declarations: [
@@ -42,7 +43,8 @@ import { ForgotPasswordComponent } from './components/forgot-password/forgot-pas
  
   ],
   providers: [
-  TableComponent
+  TableComponent,
+  ApiService
   ],
   bootstrap: [AppComponent]
 })
