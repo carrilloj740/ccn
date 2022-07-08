@@ -22,6 +22,7 @@
     "@angular/platform-browser-dynamic": "~12.2.0",
     "@angular/router": "~12.2.0",
     "@auth0/angular-jwt": "^5.0.2",
+    "angular-cli-ghpages": "^1.0.0",
     "angular-dob": "^0.2.1",
     "angular-ws-steps": "^1.2.0",
     "cleave.js": "^1.6.0",

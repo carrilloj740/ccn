@@ -17,43 +17,38 @@
           </mat-form-field>
         </mat-grid-tile>
 
-      
-          <!-- <mat-form-field class="ancho">
+
+        <!-- <mat-form-field class="ancho">
                         <label>Ship to</label>
                         <select matNativeControl formControlName="shipTo">
                             <option *ngFor="let address of addressesList" [ngValue]="address.FormattedAddress">{{address.FormattedAddress}} </option>
                         </select>
                     </mat-form-field>  -->
 
-          <mat-grid-tile [colspan]="1" [rowspan]="1">
-            <mat-form-field class="ancho">
-              <mat-label>Sold to</mat-label>
-              <mat-select matNativeControl formControlName="soldTo" (ngModelChange)="selectSoldTo($event)"
-                (ngModel)="selectSoldTo">
-                <mat-option *ngFor="let accountAddress of accountAddressesList" [value]="accountAddress">
-                  {{accountAddress.FormattedAddress}}
-                </mat-option>
-              </mat-select>
-            </mat-form-field>
-          </mat-grid-tile>
+        <mat-grid-tile [colspan]="1" [rowspan]="1">
+          <mat-form-field class="ancho">
+            <mat-label>Sold to</mat-label>
+            <mat-select matNativeControl formControlName="soldTo" (ngModelChange)="selectSoldTo($event)"
+              (ngModel)="selectSoldTo">
+              <mat-option *ngFor="let accountAddress of accountAddressesList" [value]="accountAddress">
+                {{accountAddress.FormattedAddress}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </mat-grid-tile>
 
-          <mat-grid-tile [colspan]="1" [rowspan]="1">
-            <mat-form-field class="ancho">
-              <label>Incortem</label>
-              <select matNativeControl formControlName="incortem">
-                <option value="EXW">EXW</option>
-                <option value="FCA">FCA</option>
-                <option value="FAS">FAS</option>
-                <option value="FOB">FOB</option>
-                <option value="CFR">CFR</option>
-                <option value="CIF">CIF</option>
-                <option value="CTP">CTP</option>
-                <option value="CIP">CIP</option>
-              </select>
-            </mat-form-field>
-          </mat-grid-tile>
+        <mat-grid-tile [colspan]="1" [rowspan]="1">
+          <mat-form-field class="ancho">
+            <mat-label>Incortem</mat-label>
+            <mat-select [value]="incoterm">
+              <mat-option [value]="incoterm">
+                {{incoterm}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </mat-grid-tile>
 
-          <mat-grid-tile [colspan]="1" [rowspan]="1">
+        <mat-grid-tile [colspan]="1" [rowspan]="1">
           <mat-form-field class="ancho">
             <mat-label>Ship to</mat-label>
             <mat-select matNativeControl formControlName="shipTo">
@@ -124,8 +119,8 @@
           <mat-form-field class="ancho">
             <label>Shipment Type</label>
             <mat-select [(ngModel)]="shipmentType" matNativeControl required formControlName="shipmentType">
-              <mat-option value="truck">Truck</mat-option>
-              <mat-option value="maritime">Maritime</mat-option>
+              <mat-option *ngFor="let shipmentType of shipmentTypeList" value="shipmentType">{{shipmentType.LookupCode}}</mat-option>
+    
             </mat-select>
           </mat-form-field>
         </mat-grid-tile>
@@ -174,7 +169,6 @@
         <mat-grid-tile [colspan]="1" [rowspan]="1">
           <mat-form-field class="ancho">
             <label>Container Type</label>
-
             <mat-select matNativeControl formControlName="typeContainer">
               <mat-option *ngIf="shipmentType == 'truck'" value="20"> T1-20</mat-option>
               <mat-option *ngIf="shipmentType == 'truck'" value="40">T2-40</mat-option>
@@ -189,18 +183,16 @@
         <mat-grid-tile [colspan]="1" [rowspan]="1">
           <mat-form-field class="ancho">
             <mat-label>Quantity in case </mat-label>
-            <input matInput type="number" formControlName="quantity" autocomplete="off" 
+            <input matInput type="number" formControlName="quantity" autocomplete="off"
               (ngModelChange)="calculo($event)">
-              <mat-hint align="end" *ngIf="!confirmaCantidad">You must enter a number that is a multiple of {{cantidadMul}}</mat-hint>
+            <mat-hint align="end" *ngIf="!confirmaCantidad">You must enter a number that is a multiple of
+              {{cantidadMul}}</mat-hint>
           </mat-form-field>
         </mat-grid-tile>
 
-        
-        <mat-grid-tile [colspan]="1" [rowspan]="1">
-          multiplos de {{cantidadMul}} cajas ---{{confirmaCantidad}}
-        </mat-grid-tile>
 
-        <button mat-raised-button type="submit" value="Agregar" [disabled]="!formProduct.valid || !confirmaCantidad">Add</button>
+        <button mat-raised-button type="submit" value="Agregar"
+          [disabled]="!formProduct.valid || !confirmaCantidad">Add</button>
 
       </mat-grid-list>
       <mat-divider></mat-divider>

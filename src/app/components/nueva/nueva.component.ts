@@ -9,6 +9,7 @@ import { Order } from './Order';
 import { TableComponent } from 'src/app/table/table.component';
 import { logicFilling } from './logic';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { InicioComponent } from '../inicio/inicio.component';
 
 @Component({
   selector: 'app-nueva',
@@ -18,9 +19,13 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 })
 export class NuevaComponent {
 
+  bodegas: any[] = [];
   selectedProduct = {} as any;
   selectedWarhouse = {} as any;
-  
+  incoterm: string = "";
+  shipmentTypeList: any[] = [];
+  containerType: any[] = [];
+
   logic: logicFilling = {
     pallets: 0,
     quantity: 0,
@@ -37,7 +42,7 @@ export class NuevaComponent {
   productsList: any = []
   accountAddressesList: any = []
   shoppingCartList: any = []
-  
+
 
   constructor(private fb: FormBuilder, private addService: AddService, private apiService: ApiService, private tableComponent: TableComponent, private _snackBar: MatSnackBar) {
 
@@ -73,9 +78,9 @@ export class NuevaComponent {
     // this.getAddress()
     // this.getAccountShoppingCart()
     this.accountAddressesList = this.apiService.bodegas
+    this.incoterm = this.apiService.padre.incoterm
 
   }
-
 
   getAccountShoppingCart() {
     this.apiService.getAccountInfo(this.apiService.bodegaSeleccionada.PartyNumber).subscribe((account: any) => {
@@ -94,11 +99,13 @@ export class NuevaComponent {
       });
   }
 
-  selectSoldTo(account: any){
+  selectSoldTo(account: any) {
     console.log(account)
     this.apiService.bodegaSeleccionada = account
     this.getItemPrices()
     this.tableComponent.getShoppingCartList(this.apiService.bodegaSeleccionada["OrganizationDEO___ORACO__ShoppingCart_Id_c"])
+    this.getContainers()
+    // this.getContainerType()
   }
 
   postCreateShoppingCart() {
@@ -143,11 +150,11 @@ export class NuevaComponent {
     console.log(this.formHeader.value)
   }
 
-  calculo(e:number) {
+  calculo(e: number) {
     console.log(e)
     if (e % this.cantidadMul != 0) {
       this.confirmaCantidad = false
-    } else{
+    } else {
       this.confirmaCantidad = true
     }
   }
@@ -160,6 +167,19 @@ export class NuevaComponent {
     })
   }
 
-}
+  getContainers() {
+    this.apiService.getListAddress(this.apiService.bodegaSeleccionada.PartyNumber).subscribe((address: any) => {
+      console.log(address)
+      this.apiService.getShipmentType(this.apiService.bodegaSeleccionada.PartyNumber, address.items[0].AddressNumber).subscribe((shipmentType: any) => {
+        console.log(shipmentType)
+        this.shipmentTypeList = shipmentType.items
+      })
+      this.apiService.getContainerType(this.apiService.bodegaSeleccionada.PartyNumber, address.items[0].AddressNumber).subscribe((containerType: any) => {
+        console.log(containerType)
+      })
+    })
 
+  }
+
+}
 

@@ -70,12 +70,24 @@ export class ApiService {
     })
   }
 
-  getListAddress(partyNumber:string,parametro : string =""): any {
-    return this.http.get(this.url + "accounts/" + (partyNumber) + "/child/Address" + (parametro), {
+  getListAddress(partyNumber:string): any {
+    return this.http.get(this.url + "accounts/" + (partyNumber) + "/child/Address", {
       headers: { 'Authorization': this.auth, 'Content-Type': "application/vnd.oracle.adf.resourcecollection+json" },
     })
   }
 
+  getContainerType(partyNumber:string, addressNumber: string): any {
+    return this.http.get(this.url + "accounts/" + (partyNumber) + "/child/Address/" + (addressNumber), {
+      headers: { 'Authorization': this.auth, 'Content-Type': "application/vnd.oracle.adf.resourcecollection+json" },
+    })
+  }
+  
+  getShipmentType(partyNumber:string, addressNumber: string): any {
+    return this.http.get(this.url + "accounts/" + (partyNumber) + "/child/Address/" + (addressNumber) + "/lov/PartySiteEO_LOVVA_For_TIPODECONTENEDOR_c/", {
+      headers: { 'Authorization': this.auth, 'Content-Type': "application/vnd.oracle.adf.resourcecollection+json" },
+    })
+  }
+  
   getShoppingCartItems(shoppingCartId: any) {
     return this.http.get(this.url + "__ORACO__ShoppingCartDSD_c/" + (shoppingCartId) + "/child/__ORACO__ShoppingCartItemCollection_c", {
       headers: { 'Authorization': this.auth },
