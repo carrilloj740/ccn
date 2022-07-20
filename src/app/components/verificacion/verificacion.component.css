@@ -45,10 +45,6 @@ button:hover {
 }
 
 
-h3 {
-    margin-top: 15%;
-}
-
 .picker {
     background: var(--primary);
     color: #ffffff;
@@ -63,3 +59,6 @@ h3 {
     color: #fff;
 }
 
+.logo-principal {
+    width: 45%;
+}

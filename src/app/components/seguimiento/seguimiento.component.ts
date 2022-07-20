@@ -6,6 +6,8 @@ import { DetailsComponent } from 'src/app/details/details.component';
 import { AddService } from 'src/app/services/add.service';
 import { Router } from '@angular/router';
 import { Location } from '@angular/common';
+import { ApiService } from 'src/app/services/api.service';
+
 
 export interface PeriodicElement {
   vista: number,
@@ -42,7 +44,7 @@ export class SeguimientoComponent implements OnInit {
   displayedColumns: string[] = ['vista', 'order_Number', 'sold_Number', 'sold_to', 'etd_solicitado', 'ETA_solicitada', 'icon'];
   dataSource = new MatTableDataSource(ELEMENT_DATA);
 
-  constructor(public dialog: MatDialog, private addService: AddService, public _router: Router, public _location: Location) { }
+  constructor(public dialog: MatDialog, private addService: AddService, public _router: Router, public _location: Location, private apiService: ApiService) { }
 
  
 
@@ -73,4 +75,5 @@ export class SeguimientoComponent implements OnInit {
     });
       
   }
+
 }

@@ -2,7 +2,7 @@
   <mat-card style="border-radius: 15px;" class="card">
     <div class="login">
       <form [formGroup]="form" (ngSubmit)="ingresar()">
-        <img src="../assets/index.png" width="85%" style="margin-top: 10px;">
+        <img src="https://www.ccn.com.ni/wp-content/uploads/b2b/1.png" class="logo-principal">
         <h1 style="font-weight: 700;font-family: 'Poppins', sans-serif;">Login</h1>
         <mat-form-field class="ancho" style="font-weight: 300;font-family: 'Poppins', sans-serif;">
           <mat-label>User</mat-label>
@@ -28,8 +28,8 @@
         <br>
         <button type="submit" class="buttomancho buttomcolor" mat-raised-button color="primary"
           routerLink="/login" style="font-weight: 700;font-family: 'Poppins', sans-serif;" [disabled]="form.invalid">Login</button>
-        <hr style="margin-top: 50px;">
         <footer>
+          <br>
           <span>You do not have an account? <a href="#"> Register</a></span>
         </footer>
       </form>

@@ -58,36 +58,43 @@ export class ApiService {
     });
   }
 
-  getAccountInfo(partyNumber:string): any {
+  getAccountInfo(partyNumber: string): any {
     return this.http.get(this.url + "accounts/" + (partyNumber), {
       headers: { 'Authorization': this.auth, 'Content-Type': "application/vnd.oracle.adf.resourcecollection+json" },
     })
   }
 
-  getAccountChange(partyNumber:string): any {
+
+  getStatusOrder(partyNumber: string): any {
+    return this.http.get(this.url + "accounts?q=" + (partyNumber) + "LIKE%" + (partyNumber) + "&fields=PartyNumber,OrganizationDEO_EstadosDelPedido_c", {
+      headers: { 'Authorization': this.auth, 'Content-Type': "application/vnd.oracle.adf.resourcecollection+json" },
+    })
+  }
+  
+  getAccountChange(partyNumber: string): any {
     return this.http.get(this.url + "accounts/" + (partyNumber) + "/child/Relationship/", {
       headers: { 'Authorization': this.auth, 'Content-Type': "application/vnd.oracle.adf.resourcecollection+json" },
     })
   }
 
-  getListAddress(partyNumber:string): any {
+  getListAddress(partyNumber: string): any {
     return this.http.get(this.url + "accounts/" + (partyNumber) + "/child/Address", {
       headers: { 'Authorization': this.auth, 'Content-Type': "application/vnd.oracle.adf.resourcecollection+json" },
     })
   }
 
-  getContainerType(partyNumber:string, addressNumber: string): any {
+  getContainerType(partyNumber: string, addressNumber: string): any {
     return this.http.get(this.url + "accounts/" + (partyNumber) + "/child/Address/" + (addressNumber), {
       headers: { 'Authorization': this.auth, 'Content-Type': "application/vnd.oracle.adf.resourcecollection+json" },
     })
   }
-  
-  getShipmentType(partyNumber:string, addressNumber: string): any {
+
+  getShipmentType(partyNumber: string, addressNumber: string): any {
     return this.http.get(this.url + "accounts/" + (partyNumber) + "/child/Address/" + (addressNumber) + "/lov/PartySiteEO_LOVVA_For_TIPODECONTENEDOR_c/", {
       headers: { 'Authorization': this.auth, 'Content-Type': "application/vnd.oracle.adf.resourcecollection+json" },
     })
   }
-  
+
   getShoppingCartItems(shoppingCartId: any) {
     return this.http.get(this.url + "__ORACO__ShoppingCartDSD_c/" + (shoppingCartId) + "/child/__ORACO__ShoppingCartItemCollection_c", {
       headers: { 'Authorization': this.auth },
@@ -105,6 +112,16 @@ export class ApiService {
     });
   }
 
+  confirmationShoppingCart(shoppingCartId: any) {
+    const body = {
+      "name": "__ORACO__CreateOrderREST"
+    }
+    return this.http.post(this.url + "__ORACO__ShoppingCartDSD_c/" + (shoppingCartId),body, {
+      headers: { 'Authorization': this.auth,'Content-Type': "application/vnd.oracle.adf.action+json" },
+    });
+
+  }
+
   getPrice(priceBook: number): any {
     return this.http.get(this.url + "priceBookHeaders/" + priceBook + "/child/PriceBookItem", {
       headers: { 'Authorization': this.auth, 'Content-Type': "application/vnd.oracle.adf.resourcecollection+json" },
@@ -119,9 +136,8 @@ export class ApiService {
 
   signin(form: FormGroup) {
     this.auth = "Basic " + btoa(form.value.usuario + ":" + form.value.password);
-    console.log(this)
-    return this.http.get(this.url + "accounts/", {
-      headers: { 'Authorization': this.auth,'Content-Type': "application/vnd.oracle.adf.resourcecollection+json" }
+    return this.http.get(this.url + 'accounts/?q=OrganizationName LIKE "CLIENTE TEST %"', {
+      headers: { 'Authorization': this.auth, 'Content-Type': "application/vnd.oracle.adf.resourcecollection+json" }
     })
   }
 

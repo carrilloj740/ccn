@@ -12,14 +12,14 @@ import { ApiService } from 'src/app/services/api.service';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  
+
   hide = true;
   form: FormGroup
   loading: boolean | undefined;
 
   constructor(
-   
-    private fb: FormBuilder, private _snackBar: MatSnackBar, private router: Router,private apiService: ApiService) {
+
+    private fb: FormBuilder, private _snackBar: MatSnackBar, private router: Router, private apiService: ApiService) {
     this.form = this.fb.group({
       usuario: ['', Validators.required],
       password: ['', Validators.required],
@@ -28,28 +28,27 @@ export class LoginComponent implements OnInit {
   }
 
   ingresar() {
-    
-    this.apiService.signin(this.form).subscribe({
-      next:(res: any)=>{
+  
 
-        console.log(res)
-        //TODO: Identificar cual es la cuenta padre y partir de esa
-        res.items.forEach((account: any) => {
-          if(account.ParentAccountPartyNumber != null){
-            this.apiService.bodegas.push(account)
-          }else{
-            this.apiService.padre = account
-          }
-        })
-        this.router.navigate(['inicio'])
-        this.form.reset()
+    this.apiService.signin(this.form).subscribe({
+      next: (res: any) => {
+          //TODO: Identificar cual es la cuenta padre y partir de esa
+          res.items.forEach((account: any) => {
+            if (account.ParentAccountPartyNumber != null) {
+              this.apiService.bodegas.push(account)
+            } else {
+              this.apiService.padre = account
+            }
+          })
+        
       },
-      error:(err)=>{
+      error: (err) => {
         this.formError();
         this.form.reset()
       }
     })
-
+    this.router.navigate(['inicio'])
+    this.form.reset()
 
   }
 
@@ -73,7 +72,7 @@ export class LoginComponent implements OnInit {
   // }
 
   ngOnInit(): void {
-    sessionStorage.setItem("partyNumber","1Yp")
+    sessionStorage.setItem("partyNumber", "1Yp")
   }
 
 }

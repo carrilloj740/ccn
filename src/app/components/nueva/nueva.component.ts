@@ -42,9 +42,21 @@ export class NuevaComponent {
   productsList: any = []
   accountAddressesList: any = []
   shoppingCartList: any = []
+  minDate: Date;
+  maxDate: Date;
 
 
   constructor(private fb: FormBuilder, private addService: AddService, private apiService: ApiService, private tableComponent: TableComponent, private _snackBar: MatSnackBar) {
+
+    const today = new Date();
+    const currentYear = today.getFullYear();
+    const currentMonth = today.getMonth();
+    const currentDay = today.getDate();
+
+    this.minDate = new Date(currentYear, currentMonth + 1, 15);
+    this.maxDate = new Date(currentYear, currentMonth + 1, 20);
+    // TODO: Se tiene pensado colocar un maximo de 5 años, falta definir.
+
 
     this.formHeader = new FormGroup({
       etd: new FormControl(),
@@ -78,8 +90,6 @@ export class NuevaComponent {
     // this.getAddress()
     // this.getAccountShoppingCart()
     this.accountAddressesList = this.apiService.bodegas
-    this.incoterm = this.apiService.padre.incoterm
-
   }
 
   getAccountShoppingCart() {
@@ -105,6 +115,7 @@ export class NuevaComponent {
     this.getItemPrices()
     this.tableComponent.getShoppingCartList(this.apiService.bodegaSeleccionada["OrganizationDEO___ORACO__ShoppingCart_Id_c"])
     this.getContainers()
+    this.incoterm = account.OrganizationDEO_INCOTERM_c
     // this.getContainerType()
   }
 
@@ -148,6 +159,9 @@ export class NuevaComponent {
   completarOrden() {
     console.log(new Order(this.formHeader.value.poNbr, this.formHeader.value.shipTo, this.formHeader.value.incortem, this.formHeader.value.soldTo, this.formHeader.value.source, this.formHeader.value.eta, this.formHeader.value.etd, this.formHeader.value.country, this.addService.productos))
     console.log(this.formHeader.value)
+    this.apiService.confirmationShoppingCart(this.apiService.bodegaSeleccionada["OrganizationDEO___ORACO__ShoppingCart_Id_c"]).subscribe((response: any) => {
+      console.log(response)
+    })
   }
 
   calculo(e: number) {
