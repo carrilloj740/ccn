@@ -4,7 +4,10 @@ import { Product } from '../components/nueva/Product';
 import { NuevaComponent } from '../components/nueva/nueva.component';
 import { ApiService } from '../services/api.service';
 
-let ordenList: Orden[] = [];
+let shoppingCartList: Orden[] = [
+  {sku: '', description: '', etd : '',  quantity: '', typeContainer: '', quantityContainer: ''},
+];
+
 shoppingCartList: [] = [];
 
 @Component({
@@ -24,12 +27,14 @@ export class TableComponent implements OnInit {
 
   //  @ViewChild('productoTable', {static : true}) productoTable!: MatTable<any>;
 
-  constructor(private addService: AddService, private apiService: ApiService,) { }
+  constructor(private addService: AddService, private apiService: ApiService) { }
 
   ngOnInit(): void {
     this.addService.getProductos().subscribe(productos => {
       this.productos = productos;
+      this.getShoppingCartList
     });
+    
   }
 
   getShoppingCartList(shoppingCartId: number) {
@@ -39,4 +44,6 @@ export class TableComponent implements OnInit {
         console.log(this.shoppingCartList)
       });
   }
+
+  
 }

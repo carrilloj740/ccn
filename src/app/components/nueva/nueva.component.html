@@ -23,7 +23,7 @@
             <mat-select matNativeControl formControlName="soldTo" (ngModelChange)="selectSoldTo($event)"
               (ngModel)="selectSoldTo">
               <mat-option *ngFor="let accountAddress of accountAddressesList" [value]="accountAddress">
-                {{accountAddress.FormattedAddress}}
+                {{accountAddress.OrganizationName}}    {{accountAddress.FormattedAddress}}
               </mat-option>
             </mat-select>
           </mat-form-field>
@@ -45,7 +45,7 @@
             <mat-label>Ship to</mat-label>
             <mat-select matNativeControl formControlName="shipTo">
               <mat-option *ngFor="let accountAddress of accountAddressesList" [value]="accountAddress">
-                {{accountAddress.FormattedAddress}}
+                 {{accountAddress.FormattedAddress}}
               </mat-option>
             </mat-select>
           </mat-form-field>
@@ -109,7 +109,7 @@
         <mat-grid-tile [colspan]="1" [rowspan]="1">
           <mat-form-field class="ancho">
             <mat-label>Quantity in case </mat-label>
-            <input matInput type="number" formControlName="quantity" autocomplete="off"
+            <input matInput type="number" formControlName="quantity" min="1" max="999999" autocomplete="off"
               (ngModelChange)="calculo($event)">
           </mat-form-field>
         </mat-grid-tile>
@@ -139,7 +139,7 @@
         <span class="title-info">N° of Containers:</span>
       </p>
       <p>
-        <span class="title-info" *ngFor="let shipmentType  of shipmentTypeList">Shipment Type:{{shipmentType.LookupCode}}</span>
+        Shipment Type: <span class="title-info" *ngFor="let shipmentType  of shipmentTypeList">{{shipmentType.LookupCode}} </span>
       </p>
       <!-- <button mat-raised-button type="submit" value="Agregar"
           >Add</button> -->
