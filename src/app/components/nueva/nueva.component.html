@@ -7,7 +7,7 @@
 
 <mat-card>
   <div class="container">
-    <form [formGroup]="formHeader" (ngSubmit)="completarOrden()">
+    <form [formGroup]="formHeader" (ngSubmit)="completarOrden()" >
 
       <mat-grid-list cols="4" rowHeight="100px">
         <mat-grid-tile [colspan]="1" [rowspan]="1">
@@ -23,7 +23,7 @@
             <mat-select matNativeControl formControlName="soldTo" (ngModelChange)="selectSoldTo($event)"
               (ngModel)="selectSoldTo">
               <mat-option *ngFor="let accountAddress of accountAddressesList" [value]="accountAddress">
-                {{accountAddress.OrganizationName}}    {{accountAddress.FormattedAddress}}
+                {{accountAddress.OrganizationName}} {{accountAddress.FormattedAddress}}
               </mat-option>
             </mat-select>
           </mat-form-field>
@@ -45,7 +45,7 @@
             <mat-label>Ship to</mat-label>
             <mat-select matNativeControl formControlName="shipTo">
               <mat-option *ngFor="let accountAddress of accountAddressesList" [value]="accountAddress">
-                 {{accountAddress.FormattedAddress}}
+                {{accountAddress.FormattedAddress}}
               </mat-option>
             </mat-select>
           </mat-form-field>
@@ -54,17 +54,17 @@
         <mat-grid-tile [colspan]="1" [rowspan]="1">
           <mat-form-field class="ancho">
             <mat-label>Request ETD</mat-label>
-            <input matInput [min]="minDate" [max]="maxDate" [matDatepicker]="picker2" formControlName="etd" autocomplete="off">
+            <input matInput [min]="minDate" [max]="maxDate" [matDatepicker]="picker2" formControlName="etd"
+              autocomplete="off">
             <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
             <mat-datepicker #picker2></mat-datepicker>
           </mat-form-field>
         </mat-grid-tile>
-
       </mat-grid-list>
     </form>
-      <p>
+    <p>
       <span class="title-info">Incortem:{{incoterm}}</span>
-      </p>
+    </p>
     <mat-divider></mat-divider>
     <!-- Seleccion de producto-->
     <h1 style="font-weight: 700;font-family: 'Poppins', sans-serif; margin-top: 40px;">Product <mat-icon>inventory_2
@@ -77,11 +77,12 @@
           <mat-form-field class="ancho">
             <mat-label>Container Type</mat-label>
             <mat-select matNativeControl formControlName="typeContainer">
-              <mat-option *ngIf="shipmentType == 'Terrestre'" value="20"> T1-20</mat-option>
+              <mat-option *ngFor="let shipmentType  of shipmentTypeList" [value]="shipmentType">{{shipmentType.Meaning }}</mat-option>
+              <!-- <mat-option *ngIf="shipmentType == 'Terrestre'" value="20"> T1-20</mat-option>
               <mat-option *ngIf="shipmentType == 'Maritimo'" value="40HC">M1-40' HC(High Cube) 
               </mat-option>
               <mat-option *ngIf="shipmentType == 'Maritimo'" value="45HC">M2-45' HC(High Cube)
-              </mat-option>
+              </mat-option> -->
               <!-- <mat-option value="20"> T1-20</mat-option>
               <mat-option value="40">T2-40</mat-option>
               <mat-option value="40HC">M1-40' HC(High Cube)
@@ -97,41 +98,25 @@
             <mat-label> Select Producto</mat-label>
             <!-- <mat-label>Select Product</mat-label> -->
             <mat-select matNativeControl name="select" required formControlName="sku"
-              (ngModelChange)="selectedProduct = $event" (ngModel)="productsList">
+              (ngModelChange)="getItemInfo($event)" (ngModel)="productsList">
               <mat-option *ngFor="let product of productsList" [value]="product">
                 {{product.ItemDescription}}
                 - ${{product.ListPrice}}
               </mat-option>
             </mat-select>
           </mat-form-field>
-        </mat-grid-tile>  
+        </mat-grid-tile>
 
         <mat-grid-tile [colspan]="1" [rowspan]="1">
           <mat-form-field class="ancho">
-            <mat-label>Quantity in case </mat-label>
+            <mat-label>Quantity</mat-label>
             <input matInput type="number" formControlName="quantity" min="1" max="999999" autocomplete="off"
               (ngModelChange)="calculo($event)">
           </mat-form-field>
         </mat-grid-tile>
-        
-        <!-- Cantidad de pallets -->
-        <!-- <mat-grid-tile [colspan]="1" [rowspan]="1">
-            <mat-form-field class="ancho">
-              <mat-label>Pallets</mat-label>
-              <input id="pallets" matInput type="number" formControlName="pallets" autocomplete="off">
-            </mat-form-field>
-           </mat-grid-tile> -->
-  
-          <!-- Cantidad de contenedores -->
-          <!-- <mat-grid-tile [colspan]="1" [rowspan]="1">
-            <mat-form-field class="ancho">
-              <mat-label># of Container</mat-label>
-              <input matInput type="number" formControlName="quantityContainer" autocomplete="off">
-            </mat-form-field>
-          </mat-grid-tile> -->
-          <button mat-raised-button type="submit" value="Agregar"
-            >Add</button>
-        </mat-grid-list>
+
+        <button mat-raised-button type="submit" value="Agregar" >Add</button>
+      </mat-grid-list>
       <p>
         <span class="title-info">Pallets: </span>
       </p>
@@ -139,8 +124,11 @@
         <span class="title-info">N° of Containers:</span>
       </p>
       <p>
-        Shipment Type: <span class="title-info" *ngFor="let shipmentType  of shipmentTypeList">{{shipmentType.LookupCode}} </span>
+        <span class="title-info">Shipment Type: </span><span class="title-info"
+          *ngFor="let shipmentType  of shipmentTypeList">{{shipmentType.LookupCode}} </span>
       </p>
+
+     
       <!-- <button mat-raised-button type="submit" value="Agregar"
           >Add</button> -->
       <!-- [disabled]="!formProduct.valid || !confirmaCantidad" -->
@@ -148,9 +136,32 @@
 
       <br>
     </form>
-    <app-table></app-table>
+
+    <table class="styled-table">
+      <thead>
+        <tr class="top">
+          <th><strong>SKU</strong></th>
+          <th><strong>Description</strong></th>
+          <th><strong>Quantity </strong></th>
+          <th><strong>Request ETD</strong></th>
+          <th><strong>Type Container</strong></th>
+          </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let shoppingCart of shoppingCartList">
+          <td>{{shoppingCart.__ORACO__SKU_c}}</td>
+          <td>{{shoppingCart.__ORACO__Product_c}}</td>
+          <td>{{shoppingCart.__ORACO__Quantity_c}}</td>
+          <td>{{shoppingCart.CreationDate}}</td>
+          <td>{{shoppingCart.LookupCode}}</td>
+        </tr>
+      </tbody>
+    </table>
+    
+    
     <button class="button2" mat-raised-button (click)="completarOrden()" routerLink="/inicio/seguimiento"
       value="Confirmar">Confirm
     </button>
 
   </div>
+  

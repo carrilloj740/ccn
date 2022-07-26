@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
 import { Product } from '../components/nueva/Product';
-import { TableComponent } from '../table/table.component';
 import { ApiService } from './api.service';
 
 
@@ -29,7 +28,7 @@ export class AddService {
   }
 
 
-  agregarProducto(shoppingCartId: any, producto: Product, etd: any) {
+  async agregarProducto(shoppingCartId: any, producto: Product, etd: any) {
     producto["etd"] = etd
     this.productos.push(producto);
     this.productos$.next(this.productos);
@@ -37,6 +36,7 @@ export class AddService {
     this.apiService.postShoppingCartItem(shoppingCartId, producto.id, producto.quantity).subscribe({
       next: (data: any) => {
         console.log(data)
+        return true;
       },
       error: (err: any) => {
         console.log(err)

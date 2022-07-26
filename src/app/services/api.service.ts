@@ -58,6 +58,12 @@ export class ApiService {
     });
   }
 
+  getItemById(idProducto:number): any {
+    return this.http.get(this.url + "products/" + idProducto, {
+      headers: { 'Authorization': this.auth, 'Content-Type': "application/vnd.oracle.adf.resourcecollection+json" },
+    });
+  }
+
   getAccountInfo(partyNumber: string): any {
     return this.http.get(this.url + "accounts/" + (partyNumber), {
       headers: { 'Authorization': this.auth, 'Content-Type': "application/vnd.oracle.adf.resourcecollection+json" },
@@ -95,7 +101,7 @@ export class ApiService {
     })
   }
 
-  getShoppingCartItems(shoppingCartId: any) {
+    getShoppingCartItems(shoppingCartId: any) {
     return this.http.get(this.url + "__ORACO__ShoppingCartDSD_c/" + (shoppingCartId) + "/child/__ORACO__ShoppingCartItemCollection_c", {
       headers: { 'Authorization': this.auth },
     });
@@ -136,7 +142,7 @@ export class ApiService {
 
   signin(form: FormGroup) {
     this.auth = "Basic " + btoa(form.value.usuario + ":" + form.value.password);
-    return this.http.get(this.url + 'accounts/?q=OrganizationName LIKE "CLIENTE TEST %"', {
+    return this.http.get(this.url + "accounts/", {
       headers: { 'Authorization': this.auth, 'Content-Type': "application/vnd.oracle.adf.resourcecollection+json" }
     })
   }

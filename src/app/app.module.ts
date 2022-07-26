@@ -14,7 +14,6 @@ import { SeguimientoComponent } from './components/seguimiento/seguimiento.compo
 import { LoginComponent } from './components/login/login.component';
 import { VerificacionComponent } from './components/verificacion/verificacion.component';
 import { HttpClientModule } from '@angular/common/http';
-import { TableComponent } from './table/table.component';
 import { DetailsComponent } from './details/details.component';
 import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
 import { ApiService } from './services/api.service';
@@ -28,7 +27,6 @@ import { ApiService } from './services/api.service';
     SeguimientoComponent,
     LoginComponent,
     VerificacionComponent,
-    TableComponent,
     DetailsComponent,
     ForgotPasswordComponent,
     
@@ -43,7 +41,6 @@ import { ApiService } from './services/api.service';
  
   ],
   providers: [
-  TableComponent,
   ApiService
   ],
   bootstrap: [AppComponent]

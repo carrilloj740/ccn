@@ -1,4 +1,4 @@
-import { Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { Component, OnChanges, OnInit, SimpleChanges, ViewChild } from '@angular/core';
 import { ApiService } from '../../services/api.service';
 import { FormBuilder, FormControl, FormGroup, Validators, FormsModule } from '@angular/forms';
 import { AddService, Orden } from 'src/app/services/add.service';
@@ -6,10 +6,11 @@ import { Router } from '@angular/router';
 import { OrdenIn } from 'src/app/interfaces/ordenIn';
 import { Product } from './Product';
 import { Order } from './Order';
-import { TableComponent } from 'src/app/table/table.component';
 import { logicFilling } from './logic';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { InicioComponent } from '../inicio/inicio.component';
+import { MatTable } from '@angular/material/table';
+
 
 @Component({
   selector: 'app-nueva',
@@ -21,6 +22,7 @@ export class NuevaComponent {
 
   bodegas: any[] = [];
   selectedProduct = {} as any;
+  selectedProductDetails = {} as any;
   selectedWarhouse = {} as any;
   incoterm: string = "";
   shipmentTypeList: any[] = [];
@@ -44,16 +46,17 @@ export class NuevaComponent {
   shoppingCartList: any = []
   minDate: Date;
   maxDate: Date;
+  productos: Product[] = [];
 
 
-  constructor(private fb: FormBuilder, private addService: AddService, private apiService: ApiService, private tableComponent: TableComponent, private _snackBar: MatSnackBar) {
+  constructor(private fb: FormBuilder, private addService: AddService, private apiService: ApiService, private _snackBar: MatSnackBar) {
 
     const today = new Date();
     const currentYear = today.getFullYear();
     const currentMonth = today.getMonth();
     const currentDay = today.getDate();
 
-    this.minDate = new Date(currentYear, currentMonth + 1, 15);
+    this.minDate = new Date(currentYear, currentMonth, 45);
     this.maxDate = new Date(currentYear, currentMonth + 1, 20);
     // TODO: Se tiene pensado colocar un maximo de 5 años, falta definir.
 
@@ -90,6 +93,9 @@ export class NuevaComponent {
     // this.getAddress()
     // this.getAccountShoppingCart()
     this.accountAddressesList = this.apiService.bodegas
+    this.addService.getProductos().subscribe(productos => {
+      this.productos = productos;
+    });
   }
 
   getAccountShoppingCart() {
@@ -113,7 +119,7 @@ export class NuevaComponent {
     console.log(account)
     this.apiService.bodegaSeleccionada = account
     this.getItemPrices()
-    this.tableComponent.getShoppingCartList(this.apiService.bodegaSeleccionada["OrganizationDEO___ORACO__ShoppingCart_Id_c"])
+    this.getShoppingCartList(this.apiService.bodegaSeleccionada["OrganizationDEO___ORACO__ShoppingCart_Id_c"])
     this.getContainers()
     this.incoterm = account.OrganizationDEO_INCOTERM_c
     // this.getContainerType()
@@ -122,9 +128,11 @@ export class NuevaComponent {
   postCreateShoppingCart() {
   }
 
-  onSubmitProducto() {
-    this.addService.agregarProducto(this.apiService.bodegaSeleccionada["OrganizationDEO___ORACO__ShoppingCart_Id_c"], new Product(this.selectedProduct.InvItemId, this.formProduct.value.sku.ItemNumber, this.formProduct.value.sku.ItemDescription, this.formProduct.value.quantity, this.formProduct.value.typeContainer, this.formProduct.value.quantityContainer, this.formProduct.value.loading, this.formProduct.value.minimumOrder, this.formProduct.value.pallets, this.formProduct.value.shipmentType), this.formHeader.value.etd);
+  async onSubmitProducto() {
+    await this.addService.agregarProducto(this.apiService.bodegaSeleccionada["OrganizationDEO___ORACO__ShoppingCart_Id_c"], new Product(this.selectedProduct.InvItemId, this.formProduct.value.sku.ItemNumber, this.formProduct.value.sku.ItemDescription, this.formProduct.value.quantity, this.formProduct.value.typeContainer, this.formProduct.value.quantityContainer, this.formProduct.value.loading, this.formProduct.value.minimumOrder, this.formProduct.value.pallets, this.formProduct.value.shipmentType), this.formHeader.value.etd);
     this.formProduct.reset();
+    this.getShoppingCartList(this.apiService.bodegaSeleccionada["OrganizationDEO___ORACO__ShoppingCart_Id_c"]);
+
   }
 
   // getAddress() {
@@ -144,7 +152,7 @@ export class NuevaComponent {
       console.log(account)
       this.apiService.account = account
       this.apiService.getPriceList(account.OrganizationDEO___ORACO__PriceBook_Id_c).subscribe((priceBookInfo: any) => {
-        this.tableComponent.getShoppingCartList(this.apiService.bodegaSeleccionada["OrganizationDEO___ORACO__ShoppingCart_Id_c"])
+        this.getShoppingCartList(this.apiService.bodegaSeleccionada["OrganizationDEO___ORACO__ShoppingCart_Id_c"])
         console.log(priceBookInfo)
         if (priceBookInfo.StatusCode == 'ACTIVE') {
           this.apiService.getPrice(account.OrganizationDEO___ORACO__PriceBook_Id_c).subscribe((priceItems: any) => {
@@ -195,5 +203,20 @@ export class NuevaComponent {
 
   }
 
+  getShoppingCartList(shoppingCartId: number) {
+    this.apiService.getShoppingCartItems(shoppingCartId)
+      .subscribe((shoppingCart: any) => {
+        this.shoppingCartList = shoppingCart.items;
+        console.log(this.shoppingCartList)
+      });
+  }
+
+  getItemInfo(producto: any) {
+    this.selectedProduct = producto
+    this.apiService.getItemById(producto.InvItemId).subscribe((item: any) => {
+      this.selectedProductDetails = item
+      console.log(this.selectedProductDetails)
+    })
+  }
 }
 
