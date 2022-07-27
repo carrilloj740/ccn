@@ -7,9 +7,9 @@
 
 <mat-card>
   <div class="container">
-    <form [formGroup]="formHeader" (ngSubmit)="completarOrden()" >
+    <form [formGroup]="formHeader" (ngSubmit)="completarOrden()">
 
-      <mat-grid-list cols="4" rowHeight="100px">
+      <mat-grid-list cols="3" rowHeight="100px">
         <mat-grid-tile [colspan]="1" [rowspan]="1">
           <mat-form-field class="ancho">
             <mat-label>My PO Number</mat-label>
@@ -40,7 +40,7 @@
           </mat-form-field>
         </mat-grid-tile> -->
 
-        <mat-grid-tile [colspan]="1" [rowspan]="1">
+        <!-- <mat-grid-tile [colspan]="1" [rowspan]="1">
           <mat-form-field class="ancho">
             <mat-label>Ship to</mat-label>
             <mat-select matNativeControl formControlName="shipTo">
@@ -49,7 +49,7 @@
               </mat-option>
             </mat-select>
           </mat-form-field>
-        </mat-grid-tile>
+        </mat-grid-tile> -->
 
         <mat-grid-tile [colspan]="1" [rowspan]="1">
           <mat-form-field class="ancho">
@@ -62,10 +62,14 @@
         </mat-grid-tile>
       </mat-grid-list>
     </form>
-    <p>
-      <span class="title-info">Incortem:{{incoterm}}</span>
-    </p>
-    <mat-divider></mat-divider>
+    <mat-card class="card-form">
+      <div>
+        <p class="title-info">Incortem: {{incoterm}}</p>
+        <p class="title-info">Ship to:
+          {{shipTo}}</p>
+      </div>
+    </mat-card>
+    
     <!-- Seleccion de producto-->
     <h1 style="font-weight: 700;font-family: 'Poppins', sans-serif; margin-top: 40px;">Product <mat-icon>inventory_2
       </mat-icon>
@@ -73,26 +77,22 @@
 
     <form [formGroup]="formProduct" (ngSubmit)="onSubmitProducto()">
       <mat-grid-list cols="3" rowHeight="100px">
-        <mat-grid-tile [colspan]="1" [rowspan]="1">
+        <mat-grid-tile [colspan]="1" [rowspan]="1" *ngIf="shipmentType == 'Maritimo'">
           <mat-form-field class="ancho">
             <mat-label>Container Type</mat-label>
-            <mat-select matNativeControl formControlName="typeContainer">
-              <mat-option *ngFor="let shipmentType  of shipmentTypeList" [value]="shipmentType">{{shipmentType.Meaning }}</mat-option>
-              <!-- <mat-option *ngIf="shipmentType == 'Terrestre'" value="20"> T1-20</mat-option>
-              <mat-option *ngIf="shipmentType == 'Maritimo'" value="40HC">M1-40' HC(High Cube) 
+            <mat-select  matNativeControl formControlName="typeContainer">
+              <mat-option  value="40HC">M1-40' HC(High Cube) 
               </mat-option>
-              <mat-option *ngIf="shipmentType == 'Maritimo'" value="45HC">M2-45' HC(High Cube)
-              </mat-option> -->
-              <!-- <mat-option value="20"> T1-20</mat-option>
-              <mat-option value="40">T2-40</mat-option>
-              <mat-option value="40HC">M1-40' HC(High Cube)
+              <mat-option  value="45HC">M2-45' HC(High Cube)
               </mat-option>
-              <mat-option value="45HC">M2-45' HC(High Cube)
-              </mat-option> -->
             </mat-select>
           </mat-form-field>
         </mat-grid-tile>
-
+        <mat-grid-tile [colspan]="1" [rowspan]="1" *ngIf="shipmentType != 'Maritimo'">
+          <strong>
+            Capacidad de cajas: 2850 Wilmers
+          </strong>
+        </mat-grid-tile>
         <mat-grid-tile [colspan]="1" [rowspan]="1">
           <mat-form-field class="ancho">
             <mat-label> Select Producto</mat-label>
@@ -115,7 +115,7 @@
           </mat-form-field>
         </mat-grid-tile>
 
-        <button mat-raised-button type="submit" value="Agregar" >Add</button>
+        <button mat-raised-button type="submit" value="Agregar">Add</button> 
       </mat-grid-list>
       <p>
         <span class="title-info">Pallets: </span>
@@ -124,11 +124,8 @@
         <span class="title-info">N° of Containers:</span>
       </p>
       <p>
-        <span class="title-info">Shipment Type: </span><span class="title-info"
-          *ngFor="let shipmentType  of shipmentTypeList">{{shipmentType.LookupCode}} </span>
+        <span class="title-info">Shipment Type: </span><span class="title-info">{{shipmentType}}</span>
       </p>
-
-     
       <!-- <button mat-raised-button type="submit" value="Agregar"
           >Add</button> -->
       <!-- [disabled]="!formProduct.valid || !confirmaCantidad" -->
@@ -145,7 +142,7 @@
           <th><strong>Quantity </strong></th>
           <th><strong>Request ETD</strong></th>
           <th><strong>Type Container</strong></th>
-          </tr>
+        </tr>
       </thead>
       <tbody>
         <tr *ngFor="let shoppingCart of shoppingCartList">
@@ -157,11 +154,10 @@
         </tr>
       </tbody>
     </table>
-    
-    
+
+
     <button class="button2" mat-raised-button (click)="completarOrden()" routerLink="/inicio/seguimiento"
       value="Confirmar">Confirm
     </button>
 
   </div>
-  

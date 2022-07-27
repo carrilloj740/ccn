@@ -25,6 +25,7 @@ export class NuevaComponent {
   selectedProductDetails = {} as any;
   selectedWarhouse = {} as any;
   incoterm: string = "";
+  shipTo:string= "";
   shipmentTypeList: any[] = [];
   containerType: any[] = [];
 
@@ -122,7 +123,7 @@ export class NuevaComponent {
     this.getShoppingCartList(this.apiService.bodegaSeleccionada["OrganizationDEO___ORACO__ShoppingCart_Id_c"])
     this.getContainers()
     this.incoterm = account.OrganizationDEO_INCOTERM_c
-    // this.getContainerType()
+    this.shipTo = account.FormattedAddress
   }
 
   postCreateShoppingCart() {
@@ -194,10 +195,7 @@ export class NuevaComponent {
       console.log(address)
       this.apiService.getShipmentType(this.apiService.bodegaSeleccionada.PartyNumber, address.items[0].AddressNumber).subscribe((shipmentType: any) => {
         console.log(shipmentType)
-        this.shipmentTypeList = shipmentType.items
-      })
-      this.apiService.getContainerType(this.apiService.bodegaSeleccionada.PartyNumber, address.items[0].AddressNumber).subscribe((containerType: any) => {
-        console.log(containerType)
+        this.shipmentType = shipmentType.PartySiteEO_TIPODECONTENEDOR_c
       })
     })
 

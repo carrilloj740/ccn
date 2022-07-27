@@ -1,18 +1,18 @@
 <div class="body">
-  <mat-card style="border-radius: 15px;" class="card">
+  <mat-card  class="card">
     <div class="login">
       <form [formGroup]="form" (ngSubmit)="ingresar()">
         <img src="https://www.ccn.com.ni/wp-content/uploads/b2b/1.png" class="logo-principal">
         <h1 style="font-weight: 700;font-family: 'Poppins', sans-serif;">Login</h1>
-        <mat-form-field class="ancho" style="font-weight: 300;font-family: 'Poppins', sans-serif;">
+        <mat-form-field class="witdh-form" style="font-weight: 300;font-family: 'Poppins', sans-serif;">
           <mat-label>User</mat-label>
           <input type="text" matInput autocomplete="off" formControlName="usuario">
         </mat-form-field>
 
-        <mat-form-field class="ancho">
+        <mat-form-field class="witdh-form">
           <mat-label>Enter your password</mat-label>
           <input matInput [type]="hide ? 'password' : 'text'" formControlName="password">
-          <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+          <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide" class="button-login-color">
             <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
           </button>
         </mat-form-field>
@@ -26,11 +26,10 @@
         </section>
 
         <br>
-        <button type="submit" class="buttomancho buttomcolor" mat-raised-button color="primary"
-          routerLink="/login" style="font-weight: 700;font-family: 'Poppins', sans-serif;" [disabled]="form.invalid">Login</button>
+        <button type="submit" class="bottom-login" mat-raised-button
+          routerLink="/login"  [disabled]="form.invalid">Login</button>
         <footer>
           <br>
-          <span>You do not have an account? <a href="#"> Register</a></span>
         </footer>
       </form>
       <br>

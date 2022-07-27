@@ -89,14 +89,8 @@ export class ApiService {
     })
   }
 
-  getContainerType(partyNumber: string, addressNumber: string): any {
-    return this.http.get(this.url + "accounts/" + (partyNumber) + "/child/Address/" + (addressNumber), {
-      headers: { 'Authorization': this.auth, 'Content-Type': "application/vnd.oracle.adf.resourcecollection+json" },
-    })
-  }
-
   getShipmentType(partyNumber: string, addressNumber: string): any {
-    return this.http.get(this.url + "accounts/" + (partyNumber) + "/child/Address/" + (addressNumber) + "/lov/PartySiteEO_LOVVA_For_TIPODECONTENEDOR_c/", {
+    return this.http.get(this.url + "accounts/" + (partyNumber) + "/child/Address/" + (addressNumber), {
       headers: { 'Authorization': this.auth, 'Content-Type': "application/vnd.oracle.adf.resourcecollection+json" },
     })
   }
